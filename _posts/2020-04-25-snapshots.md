@@ -1,5 +1,5 @@
 ---
-title: BTRFS : bootable snapshots
+title: BTRFS bootable snapshots
 layout: post
 ---
 
