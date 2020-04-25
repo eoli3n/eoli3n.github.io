@@ -1,6 +1,7 @@
 ---
 title: BTRFS bootable snapshots
 layout: post
+categories: archlinux
 ---
 
 # First
