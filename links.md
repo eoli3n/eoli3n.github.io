@@ -6,5 +6,4 @@ icon: fa-link
 order: 4
 ---
 
-1. [Archlinux Wiki](https://wiki.archlinux.fr/)
-2. 
+1. [Font Awesome free logos](https://fontawesome.com/icons?d=gallery&m=free)
