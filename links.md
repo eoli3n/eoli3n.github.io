@@ -6,4 +6,4 @@ icon: fa-link
 order: 4
 ---
 
-1. [Font Awesome free logos](https://fontawesome.com/icons?d=gallery&m=free)
+1. [Font Awesome 4 icons](https://fontawesome.com/v4.7.0/icons/)
