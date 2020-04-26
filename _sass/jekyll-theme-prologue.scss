@@ -142,13 +142,13 @@
 	sub {
 		position: relative;
 		top: 0.5em;
-		/*font-size: 0.8em;*/
+		font-size: 0.8em;
 	}
 
 	sup {
 		position: relative;
 		top: -0.5em;
-		/*font-size: 0.8em;*/
+		font-size: 0.8em;
 	}
 
 	hr {
@@ -572,7 +572,8 @@
 			li {
 				a {
 					display: block;
-					padding: 0.5em 1.5em 0.5em 1.5em;
+					/*padding: 0.5em 1.5em 0.5em 1.5em;*/
+					padding: 0em 1.5em 0em 1.5em;
 					color: rgba(255, 255, 255, 0.5);
 					text-decoration: none;
 					outline: 0;
@@ -582,7 +583,7 @@
 					span {
 						position: relative;
 						display: block;
-						font-size: 0.8em;
+						/*font-size: 0.8em;*/
 
 						&::before {
 							position: absolute;
