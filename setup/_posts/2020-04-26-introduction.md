@@ -2,6 +2,8 @@
 title: Introduction
 layout: post
 cover-photo: assets/images/setup-introduction-banner.jpg
+cover-photo-alt: cover introduction
+auto-header: none
 ---
 
 Ansible allows me to automate my desktop setup over multiple hosts with specific configuration (dualscreen, packages...) by using jinja2 templating.  
