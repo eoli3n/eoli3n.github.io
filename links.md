@@ -1,12 +1,12 @@
 ---
-title: Links
-subtitle: a list of usefull links
 layout: "page"
+title: Links
 icon: fa-link
-order: 4
 cover-photo: assets/images/neural_network.jpg
 cover-photo-alt: cover photo
+subtitle: a list of usefull links
 auto-header: none
+order: 4
 ---
 
 1. [Font Awesome 4 icons](https://fontawesome.com/v4.7.0/icons/)
