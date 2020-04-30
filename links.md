@@ -15,3 +15,4 @@ order: 4
 4. [Cool Hack game](https://overthewire.org/wargames/)
 5. [Update Faker to prank coworkers](https://updatefaker.com/)
 6. [Cloud Native Interactive Landscape](https://landscape.cncf.io/)
+7. [FDN Invidious](https://invidious.fdn.fr/) is a lighter youtube wrapper
