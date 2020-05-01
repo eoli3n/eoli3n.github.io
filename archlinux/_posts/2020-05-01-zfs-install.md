@@ -39,7 +39,7 @@ Archzfs has a ``zfs-dkms`` package which compile zfs kernel module.
 In order to build the module, DKMS needs the ``linux-headers`` package for the running kernel.  
 Fortunately, [Arch Linux Archive](https://wiki.archlinux.org/index.php/Arch_Linux_Archive#How_to_restore_all_packages_to_a_specific_date) lets you set the mirrorlist to a specific date.
 
-I [wrote a script]((https://github.com/eoli3n/archiso-zfs)) which automates the whole building process and opened an issue to the maintainer of Archzfs.
+I [wrote a script](https://github.com/eoli3n/archiso-zfs) which automates the whole building process and opened an issue to the maintainer of Archzfs.
 It seems that there is an archive mirror for its repository too, it would be easier to uses it, avoiding compilation step.
 
 For now, just use this after booting a standard archiso system to initialize zfs module.
