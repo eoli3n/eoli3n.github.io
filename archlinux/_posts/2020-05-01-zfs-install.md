@@ -10,7 +10,7 @@ After a test of [Nixos implementation of ZFS](https://nixos.wiki/wiki/NixOS_on_Z
 
 ZFS subvolumes are called ``datasets`` which are stored in ``zpools``.
 NixOS [doesn't use datasets as it should](https://nixos.wiki/wiki/NixOS_on_ZFS#Known_issues), it uses classic fstab mounts.
-ZFS is designed top be used with its own mount mecanic, that's pretty surprising at first look, I have never seen any FS which doesn't use fstab/crypttab entries.
+ZFS is designed to be used with its own mount mecanic, that's pretty surprising at first look, I have never seen any FS which doesn't use fstab/crypttab entries.
 
 My [NixOS install scripts](https://github.com/eoli3n/nix-config/tree/master/scripts/install) are not usable as is on Archlinux.
 Let's rewrite it.
