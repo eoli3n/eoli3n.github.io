@@ -13,6 +13,15 @@ layout: default
 				<p>{% if page.author %}{{ page.author }}, {% endif %}{{- page.date | date_to_long_string -}}</p>
 			</header>
 	    {{- content -}}
+        
+        <script src="https://utteranc.es/client.js"
+           repo="eoli3n/eoli3n.github.io"
+           issue-term="pathname"
+           theme="github-dark"
+           crossorigin="anonymous"
+           async>
+        </script> 
+
 	  </div>
 	</article>
 </div>
