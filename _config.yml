@@ -65,9 +65,10 @@ collections: [sections]
 
 exclude: [archzfs/README.md]
 
+markdown: kramdown
+highlighter: rouge
 kramdown:
+  input: GFM
   hard_wrap : true
-  syntax_highlighter: true
-  highlighter: rouge
 
 
