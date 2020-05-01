@@ -23,7 +23,7 @@ After searching for the [ZFS article](https://wiki.archlinux.org/index.php/ZFS) 
 >
 >As a result:
 >
->    ZFSonLinux project must keep up with Linux kernel versions. After making stable ZFSonLinux release - Arch ZFS maintainers release them.
+>    ZFSonLinux project must keep up with Linux kernel versions. After making stable ZFSonLinux release - Arch ZFS maintainers release them.  
 >    This situation sometimes locks down the normal rolling update process by unsatisfied dependencies because the new kernel version, proposed by update, is unsupported by ZFSonLinux.  
 
 What a nice start, ZFS needs its kernel module, but you need to install it manually from ``Archzfs`` [unofficial user repository](https://wiki.archlinux.org/index.php/unofficial_user_repositories#archzfs).
