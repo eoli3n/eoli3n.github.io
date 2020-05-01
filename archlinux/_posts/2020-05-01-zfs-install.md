@@ -1,5 +1,5 @@
 ---
-title: ZFS 
+title: ZFS to archiso
 layout: post
 icon: fa-database
 ---
