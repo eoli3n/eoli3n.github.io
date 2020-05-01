@@ -17,7 +17,7 @@ Let's rewrite it.
 
 ### No arms, no chocolate
 
-*step 1*, search for the [ZFS article](https://wiki.archlinux.org/index.php/ZFS).
+After searching for the [ZFS article](https://wiki.archlinux.org/index.php/ZFS) on the archlinux wiki, ...
 
 >Due to potential legal incompatibilities between CDDL license of ZFS code and GPL of the Linux kernel ([2],CDDL-GPL,ZFS in Linux) - ZFS development is not supported by the kernel.
 >
