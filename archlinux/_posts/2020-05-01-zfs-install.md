@@ -4,7 +4,7 @@ layout: post
 icon: fa-database
 ---
 
-After a test of [Nixos ZFS implementation](https://nixos.wiki/wiki/NixOS_on_ZFS), and the fact that Ubuntu added [ZFS root install](https://wiki.ubuntu.com/FocalFossa/ReleaseNotes#ZFS_0.8.3), I was curious about how to use it on Archlinux.
+After a test of [Nixos ZFS implementation](https://nixos.wiki/wiki/NixOS_on_ZFS), and the fact that Ubuntu added [ZFS root install](https://wiki.ubuntu.com/FocalFossa/ReleaseNotes#ZFS_0.8.3) support, I was curious about how to use it on Archlinux.
 
 ### Harder than on NixOS
 
@@ -31,7 +31,7 @@ But there is a huge problem: as Archlinux iso is released at first of each month
 Then the kernel version that runs your latest archiso dismatch your zfs module version.
 
 The workaround is to [build your own archiso](https://wiki.archlinux.org/index.php/Install_Arch_Linux_on_ZFS#Embedding_archzfs_into_archiso) that includes that module.
-What a deception, i just found a way to use [netboot archlinux](../../../2020/04/25/recovery.html) as installer or recovery.
+What a deception, I just found a way to use [netboot archlinux](../../../2020/04/25/recovery.html) as installer or recovery.
 
 ### There's always a way, if you're a commiter
 
