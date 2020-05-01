@@ -66,6 +66,8 @@ collections: [sections]
 exclude: [archzfs/README.md]
 
 kramdown:
-  enable_coderay: true
   hard_wrap : true
   syntax_highlighter: true
+  highlighter: rouge
+
+
