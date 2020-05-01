@@ -1,0 +1,51 @@
+---
+title: ZFS 
+layout: post
+icon: fa-database
+---
+
+After a test of [Nixos ZFS implementation](https://nixos.wiki/wiki/NixOS_on_ZFS), and the fact that Ubuntu added [ZFS root install](https://wiki.ubuntu.com/FocalFossa/ReleaseNotes#ZFS_0.8.3), I was curious about how to use it on Archlinux.
+
+### Harder than on NixOS
+
+ZFS subvolumes are called ``datasets`` stored in ``zpools``.
+NixOS [doesn't use datasets as it should](https://nixos.wiki/wiki/NixOS_on_ZFS#Known_issues), it uses legacy mounts in fstab.
+ZFS was designed with its own mount mecanic, that's pretty surprising at first look as I have never seen any FS which don't use fstab/crypttab entries.
+
+My [NixOS install scripts](https://github.com/eoli3n/nix-config/tree/master/scripts/install) are not usable as is on Archlinux.
+Let's rewrite it.
+
+### No arms, no chocolate
+
+*step 1*, search for the [ZFS article](https://wiki.archlinux.org/index.php/ZFS).
+
+>Due to potential legal incompatibilities between CDDL license of ZFS code and GPL of the Linux kernel ([2],CDDL-GPL,ZFS in Linux) - ZFS development is not supported by the kernel.
+>
+>As a result:
+>
+>    ZFSonLinux project must keep up with Linux kernel versions. After making stable ZFSonLinux release - Arch ZFS maintainers release them.
+>    This situation sometimes locks down the normal rolling update process by unsatisfied dependencies because the new kernel version, proposed by update, is unsupported by ZFSonLinux.
+
+What a nice start, ZFS needs its kernel module, but you need to install it manually from ``Archzfs`` [unofficial user repository](https://wiki.archlinux.org/index.php/unofficial_user_repositories#archzfs).
+But there is a huge problem: as Archlinux iso is released at first of each month embeeding the current kernel, at the first kernel upgrade on community list, zfs modules of Archzfs are recompiled for the latest kernel.  
+Then the kernel version that runs your latest archiso dismatch your zfs module version.
+
+The workaround is to [build your own archiso](https://wiki.archlinux.org/index.php/Install_Arch_Linux_on_ZFS#Embedding_archzfs_into_archiso) that includes that module.
+What a deception, i just found a way to use [netboot archlinux](../../../2020/04/25/recovery.html) as installer or recovery.
+
+### There's always a way, if you're a commiter
+
+Archzfs has a ``zfs-dkms`` package which compile zfs kernel module.  
+In order to build the module, DKMS needs the ``linux-headers`` package for the running kernel.  
+Fortunately, [Arch Linux Archive](https://wiki.archlinux.org/index.php/Arch_Linux_Archive#How_to_restore_all_packages_to_a_specific_date) lets you set the mirrorlist to a specific date.
+
+I [wrote a script]((https://github.com/eoli3n/archiso-zfs)) which automates the whole building process and opened an issue to the maintainer of Archzfs.
+It seems that there is an archive mirror for its repository too, it would be easier to uses it, avoiding compilation step.
+
+For now, just use this after booting a standard archiso to init zfs module.
+
+```
+curl -s https://eoli3n.github.io/archzfs/init | bash
+```
+
+Wait and see.
