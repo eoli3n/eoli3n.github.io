@@ -64,3 +64,8 @@ remote_theme: chrisbobbe/jekyll-theme-prologue
 collections: [sections]
 
 exclude: [archzfs/README.md]
+
+kramdown:
+  enable_coderay: true
+  hard_wrap : true
+  syntax_highlighter: true

@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-{%- include header.html scrolly_nav=_posts -%}
+{%- assign _titles = site.categories.desktop | sort: 'date' | reverse -%}
+{%- include header.html scrolly_nav=_titles -%}
 
 <!-- Main -->
 <div id="main">
