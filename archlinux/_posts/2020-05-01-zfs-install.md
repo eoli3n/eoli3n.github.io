@@ -33,7 +33,7 @@ Then the kernel version that embeed your latest archiso image dismatch your zfs 
 The workaround is to [build your own archiso](https://wiki.archlinux.org/index.php/Install_Arch_Linux_on_ZFS#Embedding_archzfs_into_archiso) that includes that module.
 What a deception, I just found a way to use [netboot archlinux](../../../2020/04/25/recovery.html) as installer or recovery system.
 
-### There's always a way, if you're a commiter
+### There's always a way, if you're a committer
 
 Archzfs has a ``zfs-dkms`` package which compile zfs kernel module.  
 In order to build the module, DKMS needs the ``linux-headers`` package for the running kernel.  
