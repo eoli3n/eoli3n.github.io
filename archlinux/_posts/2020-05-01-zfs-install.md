@@ -8,7 +8,7 @@ After a test of [Nixos implementation of ZFS](https://nixos.wiki/wiki/NixOS_on_Z
 
 ### Harder than on NixOS
 
-ZFS subvolumes are called ``datasets`` stored in ``zpools``.
+ZFS subvolumes are called ``datasets`` which are stored in ``zpools``.
 NixOS [doesn't use datasets as it should](https://nixos.wiki/wiki/NixOS_on_ZFS#Known_issues), it uses classic fstab mounts.
 ZFS is designed top be used with its own mount mecanic, that's pretty surprising at first look, I have never seen any FS which doesn't use fstab/crypttab entries.
 
