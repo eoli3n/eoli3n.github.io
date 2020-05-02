@@ -70,5 +70,4 @@ highlighter: rouge
 kramdown:
   input: GFM
   hard_wrap : true
-
-
+  css_class   : 'syntax'
