@@ -1,6 +1,6 @@
 /*! edited Base16 Chalk Dark by Chris Kempson; https://github.com/idleberg */
-.highlight, .highlight pre, .highlight table { background: #151515; color: #f5f5f5 }
-.highlight .hll { background-color: #212528 }
+.highlight, .highlight pre, .highlight table { background: #212528; color: #f5f5f5 }
+.highlight .hll { background-color: #303030 }
 .highlight .c { color: #505050 } /* Comment */
 .highlight .err { color: #fb9fb1 } /* Error */
 .highlight .k { color: #e1a3ee } /* Keyword */
