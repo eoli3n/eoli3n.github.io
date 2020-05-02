@@ -70,3 +70,5 @@ highlighter: rouge
 kramdown:
   input: GFM
   hard_wrap : true
+  syntax_highlighter_opts:
+    default_lang: bash
