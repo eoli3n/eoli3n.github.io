@@ -66,6 +66,7 @@ collections: [sections]
 exclude: [archzfs/README.md]
 
 markdown: kramdown
+# https://stylishthemes.github.io/Syntax-Themes/pygments/ || https://github.com/StylishThemes/Syntax-Themes/tree/master/pygments/css-github
 highlighter: rouge
 kramdown:
   input: GFM
