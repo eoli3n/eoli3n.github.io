@@ -52,10 +52,10 @@ Wait and see.
 
 ## Less than 10 seconds
 
+
 *06 May 2020*
 
-After some work was done with [ArchZFS maintainer](https://github.com/archzfs/archzfs/issues/337), i changed the script to get precompiled package from ``ArchZFS archives`` repository.
-
-The ZFS module is now easily accessible for Archiso.
+After some work was done with [ArchZFS maintainer](https://github.com/archzfs/archzfs/issues/337), i changed the script to get precompiled package from ``ArchZFS archives`` repository.  
+The ZFS module is now easily accessible for Archiso. \o/
 
 ![zfs](/assets/images/archlinux/zfs.png)
