@@ -16,3 +16,5 @@ order: 4
 5. [Update Faker to prank coworkers](https://updatefaker.com/)
 6. [Cloud Native Interactive Landscape](https://landscape.cncf.io/)
 7. [FDN Invidious](https://invidious.fdn.fr/) is a lighter youtube wrapper
+8. [The best mother fucking website](http://thebestmotherfuckingwebsite.com/)
+9. [Better mother fucking website](http://bettermotherfuckingwebsite.com/)
