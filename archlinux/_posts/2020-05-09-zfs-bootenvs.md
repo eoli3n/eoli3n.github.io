@@ -4,7 +4,7 @@ layout: post
 icon: fa-history
 ---
 
-Backing up an OS slash filesystem as data seems useless today. Since we use highly automated deployment processes, it is safer to re-provision a fresh, healthy, up-to-date system than to restore a file system with potential instabilities. It can be comfortable to historize system states at low level to allow us to rollback quickly. This mechanism should be very simple to apply, as an emergency process.
+Backing up an OS slash filesystem as data seems useless today. Since we use highly automated deployment processes, it is safer to re-provision a fresh, healthy, up-to-date system than to restore a file system with potential instabilities, in case of problem. It can be comfortable to historize system states at low level to allow us to rollback quickly. This mechanism should be very simple to apply, as an emergency process.
 
 [NixOS generations](https://nixos.wiki/wiki/NixOS#Generations) implemented this at the file level, each file states are stored in an index and the whole system reffers to it. It's easy to make filesets to rollback anything to a previous state. I wanted to be able to rollback as easily on Arch Linux. As NixOS paradigm is unique, i needed to use a solution at the block level: rootfs snapshots. I wanted to moved from ``ext4`` over ``LVM`` with thin provisionning, let's give a try to ``BTRFS`` and ``ZFS``.
 
