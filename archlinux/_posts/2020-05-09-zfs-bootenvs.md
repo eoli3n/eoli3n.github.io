@@ -16,7 +16,7 @@ ZFS uses volumes named ``datasets``, each one stores its own configuration.
 
 ZFS [Boot Environments](https://ramsdenj.com/2018/05/29/zedenv-zfs-boot-environment-manager.html) are just dataset clones with some boot management. Datasets embeed their mountpoints, a clone is bootable just by editing ``zfs=`` cmdline var. We just need to specify which dataset to use as bootfs.
 
-[zectl](https://ramsdenj.com/2020/03/18/zectl-zfs-boot-environment-manager-for-linux.html) is a Boot Environment manager which has a ``systemd-boot`` plugin. As systemd-boot can't read ``/boot`` on ZFS, it forces to set a separated one. After [some tweak](https://github.com/johnramsden/zectl/blob/master/docs/plugins/systemdboot.md) arround ``boot`` location, and [few configurations](https://github.com/eoli3n/arch-config/blob/master/ansible/roles/zfs/systemd-boot-zectl/tasks/main.yml), zectl knows how to manage your separated `/boot`, you can now create your first BE !
+[zectl](https://ramsdenj.com/2020/03/18/zectl-zfs-boot-environment-manager-for-linux.html) is a Boot Environment manager which has a ``systemd-boot`` plugin. As systemd-boot can't read ``/boot`` on ZFS, it forces to set a separated one. After [some tweak](https://github.com/johnramsden/zectl/blob/master/docs/plugins/systemdboot.md) arround ``/boot`` location, and [few configurations](https://github.com/eoli3n/arch-config/blob/master/ansible/roles/zfs/systemd-boot-zectl/tasks/main.yml), zectl knows how to manage your separated `/boot`, you can now create your first BE !
 
 ### Check your setup
 
