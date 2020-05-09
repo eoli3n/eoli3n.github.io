@@ -25,8 +25,8 @@ ZFS [Boot Environments](https://ramsdenj.com/2018/05/29/zedenv-zfs-boot-environm
 
 First lets check that ``systemdboot`` plugin is enabled and that ``/efi`` mount and ``/boot`` bind mount are ok.
 
-```
-[root@osz ~]# zectl get
+```bash
+$ zectl get
 PROPERTY                    VALUE
 org.zectl:bootloader        systemdboot
 org.zectl.systemdboot:efi   /efi
@@ -34,21 +34,21 @@ org.zectl.systemdboot:boot  /boot
 org.zectl:bootpool_root
 org.zectl:bootpool_prefix
 
-[root@osz ~]# ls /efi
+$ ls /efi
 dc6d323dfcb146d4b79641866073ba33  EFI  env  loader
 
-[root@osz ~]# ls /efi/env/org.zectl-default/
+$ ls /efi/env/org.zectl-default/
 initramfs-linux-lts-fallback.img  initramfs-linux-lts.img  intel-ucode.img  vmlinuz-linux-lts
 ```
 
 We bind mount ``/boot`` to ``/efi/env/org.zectl-default/``, to let zectl manage it automatically.  
 It also needs a ``org.zectl-default.conf`` entry.
 
-```
-[root@osz ~]# cat /efi/loader/entries/
+```bash
+$ cat /efi/loader/entries/
 org.zectl-default.conf  recovery.conf
 
-[root@osz ~]# cat /efi/loader/entries/org.zectl-default.conf
+$ cat /efi/loader/entries/org.zectl-default.conf
 title           Arch Linux ZFS Default
 linux           /env/org.zectl-default/vmlinuz-linux-lts
 initrd          /env/org.zectl-default/intel-ucode.img
@@ -60,12 +60,13 @@ options         zfs=zroot/ROOT/default rw
 
 Creating a BE is simple:
 
-```
-[root@osz ~]# zectl create test
+```bash
+$ zectl create test
 
-[root@osz ~]# ls /efi/loader/entries/
+$ ls /efi/loader/entries/
 org.zectl-default.conf	org.zectl-test.conf  recovery.conf
-[root@osz ~]# cat /efi/loader/entries/org.zectl-test.conf
+
+$ cat /efi/loader/entries/org.zectl-test.conf
 title           Arch Linux ZFS Default
 linux           /env/org.zectl-test/vmlinuz-linux-lts
 initrd          /env/org.zectl-test/intel-ucode.img
@@ -82,9 +83,9 @@ zectl just:
 
 Let's play a bit
 
-```
-[root@osz ~]# rm -Rf /usr
-[root@osz ~]# ls
+```bash
+$ rm -Rf /usr
+$ ls
 bash: ls : command not found
 ```
 Nice, lets restore the snapshot.
@@ -92,18 +93,22 @@ Nice, lets restore the snapshot.
 After rebooting and selecting the new ``test`` entry in the bootloader, my system boots well!
 zectl think that's still a test boot environment, we need to activate current booted environment:
 
-```
-[root@osz ~]# zectl list
+```bash
+$ zectl list
 Name     Active  Mountpoint  Creation
 default  R       -                 2020-05-09 11:13
 test     N       /                 2020-05-09 12:33
-[root@osz ~]# zectl activate test
-[root@osz ~]# zectl list
+
+$ zectl activate test
+
+$ zectl list
 Name     Active  Mountpoint  Creation
 default          -                 2020-05-09 11:13
 test     NR      /                 2020-05-09 12:33
-[root@osz ~]# zectl destroy default
-[root@osz ~]# zectl list
+
+$ zectl destroy default
+
+$ zectl list
 Name  Active  Mountpoint  Creation
 test  NR      /                 2020-05-09 12:33
 ```
