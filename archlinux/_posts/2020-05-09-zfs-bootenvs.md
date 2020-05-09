@@ -111,5 +111,8 @@ Name  Active  Mountpoint  Creation
 test  NR      /                 2020-05-09 12:33
 ```
 
+From the man page:
+> The Active column displays an N on the boot environment currently booted, and a R on the activate boot environment.
+
 Sounds solid, and simple to manage, far than my previous try with BTRFS.
 I will probably write a pacman hook to automate the process before each upgrades.
