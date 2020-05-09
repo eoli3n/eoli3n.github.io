@@ -115,4 +115,7 @@ From the man page:
 > The Active column displays an N on the boot environment currently booted, and a R on the activate boot environment.
 
 Sounds solid, and simple to manage, far than my previous try with BTRFS.
-I will probably write a pacman hook to automate the process before each upgrades.
+
+I started to write a pacman hook to automate the process before each upgrades.
+
+[https://github.com/eoli3n/zectl-pacman-hook](https://github.com/eoli3n/zectl-pacman-hook)

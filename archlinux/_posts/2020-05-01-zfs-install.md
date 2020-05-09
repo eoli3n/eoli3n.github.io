@@ -59,3 +59,5 @@ After some work was done with [ArchZFS maintainer](https://github.com/archzfs/ar
 The ZFS module is now easily accessible for Archiso. \o/
 
 ![zfs](/assets/images/archlinux/zfs.png)
+
+[https://github.com/eoli3n/archiso-zfs](https://github.com/eoli3n/archiso-zfs)
