@@ -72,6 +72,7 @@ options         zfs=zroot/ROOT/test rw
 ```
 
 zectl just:
+- Created a clone of currently running dataset
 - Created a new bootloader entry which target the new dataset as bootfs
 - Backed up current kernel and initramfs in a new directory ``/efi/env/org.zectl-test/``
 - Edited ``fstab`` entry in snapshot to know where is located that new ``/boot`` directory
