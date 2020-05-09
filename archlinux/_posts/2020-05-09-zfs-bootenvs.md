@@ -6,7 +6,7 @@ icon: fa-history
 
 Backing up an OS slash filesystem as data seems useless today. Since we use highly automated deployment processes, it is safer to re-provision a fresh, healthy, up-to-date system than to restore a file system with potential instabilities. It can be comfortable to historize system states at low level to allow us to rollback quickly. This mechanism should be very simple to apply, as an emergency process.
 
-[NixOS generations](https://nixos.wiki/wiki/NixOS#Generations) implemented this at the file level, each file states are stored in an index and the whole system reffers to it. It's easy to make filesets to rollback anything to a previous state. I wanted to be able to rollback as easily on Arch Linux. As NixOS paradigm is unique, i needed to use a solution at the block level: rootfs snapshots. As i wanted to moved from ``ext4`` over ``LVM`` with thin provisionning, i tried ``BTRFS`` and ``ZFS``.
+[NixOS generations](https://nixos.wiki/wiki/NixOS#Generations) implemented this at the file level, each file states are stored in an index and the whole system reffers to it. It's easy to make filesets to rollback anything to a previous state. I wanted to be able to rollback as easily on Arch Linux. As NixOS paradigm is unique, i needed to use a solution at the block level: rootfs snapshots. I wanted to moved from ``ext4`` over ``LVM`` with thin provisionning, let's give a try to ``BTRFS`` and ``ZFS``.
 
 After a first try with [Grub, BTRFS snapshots and snapper](https://github.com/eoli3n/arch-config/tree/master/ansible/roles/btrfs), I was disappointed: that's not a default feature and is hard to manage. That's one of reasons which gave me the push to try ``ZFS``, with a FS crash after i killed my virtual machine with the power button...
 
@@ -14,7 +14,7 @@ After a first try with [Grub, BTRFS snapshots and snapper](https://github.com/eo
 
 ZFS uses volumes named ``datasets``, each one stores its own configuration.
 
-ZFS [Boot Environments](https://ramsdenj.com/2018/05/29/zedenv-zfs-boot-environment-manager.html) are just dataset clones with some boot management. As datasets embeed their mountpoints, a clone is bootable just by editing ``zfs=`` cmdline var. We just need to specify which dataset to use as bootfs.
+ZFS [Boot Environments](https://ramsdenj.com/2018/05/29/zedenv-zfs-boot-environment-manager.html) are just dataset clones with some boot management. Datasets embeed their mountpoints, a clone is bootable just by editing ``zfs=`` cmdline var. We just need to specify which dataset to use as bootfs.
 
 [zectl](https://ramsdenj.com/2020/03/18/zectl-zfs-boot-environment-manager-for-linux.html) is a Boot Environment manager which has a ``systemd-boot`` plugin. As systemd-boot can't read ``/boot`` on ZFS, it forces to set a separated one. After [some tweak](https://github.com/johnramsden/zectl/blob/master/docs/plugins/systemdboot.md) arround ``boot`` location, and [few configurations](https://github.com/eoli3n/arch-config/blob/master/ansible/roles/zfs/systemd-boot-zectl/tasks/main.yml), zectl knows how to manage your separated `/boot`, you can now create your first BE !
 
