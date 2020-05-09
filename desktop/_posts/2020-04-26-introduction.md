@@ -20,6 +20,6 @@ It also let me share my configurations with other linux users.
 
 I wanted my setup to be modulable at multiple levels. I use roles and inventory to be able to separate servers from desktops configuration.  
 Since I started to use Nixos, I separated my package management project from my dotfiles and added to each OS-projects my install scripts to automate provisioning process from the beggining.  
-Then I can use Nixos embeedeed automation process to configure it, then apply my dotfiles with ansible too in a second time.
+I can use Nixos embeedeed automation process to configure the system, and push my dotfiles with ansible too in a second time.
 
 As my configuration is fully managed, i can auto test at each push with a Continuous Integration tool : [Travis-CI](https://travis-ci.org/github/eoli3n)
