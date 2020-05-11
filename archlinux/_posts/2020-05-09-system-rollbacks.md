@@ -124,7 +124,8 @@ I started to write a pacman hook to automate the process before each upgrades.
 *11 May 2020*
 
 ``zectl-pacman-hook`` is now distributed through AUR: [https://aur.archlinux.org/packages/zectl-pacman-hook/](https://aur.archlinux.org/packages/zectl-pacman-hook/)  
-At each pacman command, a hook trigger a boot environment creation and a rotation script.
+At each pacman command, a hook triggers a boot environment creation and a rotation script.
+I opened issues to [add prune feature](https://github.com/johnramsden/zectl/issues/16) to ``zectl``, and to [increase possible number of boot envs](https://github.com/johnramsden/zectl/issues/19).
 
 ```
 $ LANG=C sudo pacman -S sl
