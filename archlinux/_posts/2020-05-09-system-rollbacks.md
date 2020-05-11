@@ -119,8 +119,8 @@ I started to write a pacman hook to automate the process before each upgrades.
 [https://github.com/eoli3n/zectl-pacman-hook](https://github.com/eoli3n/zectl-pacman-hook)
 
 ## My first AUR package
-
+  
 
 *11 May 2020*
 
-``zectl-pacman-hook`` is now distributed through AUR : [https://aur.archlinux.org/packages/zectl-pacman-hook/](https://aur.archlinux.org/packages/zectl-pacman-hook/)
+``zectl-pacman-hook`` is now distributed through AUR: [https://aur.archlinux.org/packages/zectl-pacman-hook/](https://aur.archlinux.org/packages/zectl-pacman-hook/)
