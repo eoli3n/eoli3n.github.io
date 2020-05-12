@@ -124,8 +124,8 @@ I started to write a pacman hook to automate the process before each upgrades.
 *11 May 2020*
 
 ``zectl-pacman-hook`` is now distributed through AUR: [https://aur.archlinux.org/packages/zectl-pacman-hook/](https://aur.archlinux.org/packages/zectl-pacman-hook/)  
-At each upgrade, a pacman hook triggers a boot environment creation and a rotation.
-I opened issues to [add prune feature](https://github.com/johnramsden/zectl/issues/16) to ``zectl``, and to [increase possible number of boot envs](https://github.com/johnramsden/zectl/issues/19).
+At each kernel upgrade, a pacman hook triggers a boot environment creation and a rotation. It would help on any problem with the zfs module build.
+I opened issues to [add prune feature](https://github.com/johnramsden/zectl/issues/16) to ``zectl``.
 
 ```
 $ sudo pacman -Syu
@@ -133,27 +133,31 @@ $ sudo pacman -Syu
  core is up to date
  extra is up to date
  community is up to date
- archzfs is up to date multilib is up to date
+ archzfs is up to date
+ multilib is up to date
 :: Starting full system upgrade...
 resolving dependencies...
 looking for conflicting packages...
 
-Packages (1) bat-0.15.0-1
+Packages (1) linux-lts-5.4.39-1
 
-Total Installed Size:  4.57 MiB
-Net Upgrade Size:      0.09 MiB
-:: Proceed with installation? [Y/n] 
+Total Installed Size:  73.34 MiB
+Net Upgrade Size:      -0.01 MiB
+
+:: Proceed with installation? [Y/n] Y
 (1/1) checking keys in keyring                     [------------------------] 100%
 (1/1) checking package integrity                   [------------------------] 100%
 (1/1) loading package files                        [------------------------] 100%
 (1/1) checking for file conflicts                  [------------------------] 100%
 (1/1) checking available disk space                [------------------------] 100%
 :: Running pre-transaction hooks...
-(1/1) Create a boot environment
-• Destroyed pacmanhook-20200411T121502
-• Created pacmanhook-20200511T193646
+(1/3) Create a boot environment
+• Destroyed pacmanhook-20200512T154713
+• Created pacmanhook-20200512T154826
+(2/3) Removing linux initcpios...
+(3/3) Remove DKMS modules
 :: Processing package changes...
-(1/1) upgrading bat                                [------------------------] 100%
+(1/1) upgrading linux-lts                          [------------------------] 100%
 :: Running post-transaction hooks...
-(1/1) Arming ConditionNeedsUpdate...
+...
 ```
