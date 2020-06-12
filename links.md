@@ -19,3 +19,4 @@ order: 4
 8. [The best mother fucking website](http://thebestmotherfuckingwebsite.com/)
 9. [Better mother fucking website](http://bettermotherfuckingwebsite.com/)
 10. [Why you should migrate everything from linux to bsd](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
+11. [The Art of Code](https://www.youtube.com/watch?v=gdSlcxxYAA8)
