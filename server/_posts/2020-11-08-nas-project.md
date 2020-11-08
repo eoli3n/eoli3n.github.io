@@ -30,6 +30,10 @@ In Linux world, Archlinux could be a great choice, it is my main OS and I worked
 The only Linux distro which supports ZFS nativly is Ubuntu since 20.04 LTS ! It has a server version, and I trust Canonical after many years maintaning 800 Ubuntu desktop clients.  
 It seems to be the [best compromise](https://www.reddit.com/r/zfs/comments/hd58hv/vanilla_zfs_on_ubuntu_for_nas_server_better_than/), a solid storage management with ZFS, and native possibility of using Docker or Podman containers.  
 
+### Scheme
+
+![server](/assets/svg/server.svg)
+
 ### Hardware
 
 A nice guide gave me lots of directions about hardware choice: [Building a DIY Home Server with FreeNAS](https://www.devroom.io/2020/02/28/building-a-diy-home-server-with-freenas/).
