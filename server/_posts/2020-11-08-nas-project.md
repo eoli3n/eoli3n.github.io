@@ -77,7 +77,4 @@ For storage, two choices possible:
 **Power supply**  
 [Be Quiet! Pure Power 11 CM - 400W - Gold](https://www.bequiet.com/fr/powersupply/1549)  
 
-**Thermal paste**
-[Noctua NT-H1](https://noctua.at/fr/products/thermal-grease/nt-h1-3-5g)
-
-It misses SATA cables, total for the cheaper solution is ~540€ and the expensive one is ~750€.
+It misses SATA cables, total for the cheaper solution is ~530€ and the expensive one is ~740€.
