@@ -47,12 +47,16 @@ A bit expensive, but it has a good design, not so massive and you can setup 8 di
 
 **Motherboard**  
 [MSI H310M PRO-M2 PLUS](https://fr.msi.com/Motherboard/H310M-PRO-M2-PLUS.html)  
-4xSATA3, 1xM.2, 2xDDR4 2666Mh  
+4xSATA3, 1xM.2, 2xDDR4 2666Mh, Intel 8gen  
 It is the cheaper but less evolutive solution.  
 
+[MSI B365M Pro-VDH](https://fr.msi.com/Motherboard/B365M-PRO-VDH)
+6xSATA3, 1xM.2, 4xDDR4 2666Mh, Intel 8gen and 9gen  
+Middle solution with 2 extra SATA ports and 2 extra RAM slots.  
+
 [Asus PRIME B360M-A](https://www.asus.com/fr/Motherboards-Components/Motherboards/PRIME/PRIME-B360M-A/)  
-6xSATA3, 2xM.2, 4xDDR4 2666Mh  
-A solution which let you use mirroring of the M.2 SSD, 2 extra SATA ports and 2 extra RAM slots.  
+6xSATA3, 2xM.2, 4xDDR4 2666Mh, Intel 8gen  
+A solution which let you use mirroring of the M.2 SSD.  
 
 **CPU**
 [Intel Pentium G5400](https://www.intel.fr/content/www/fr/fr/products/processors/pentium/g5400.html)  
