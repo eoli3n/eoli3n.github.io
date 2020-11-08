@@ -67,6 +67,10 @@ Cheaper solution, less evolutive if more containers are needed in the future.
 4 cores, 4 threads, 3.60 GHz, 6 Mo, HD Graphics, Coffee Lake, 65 Watts  
 2 extra cores which allow Hardware virtualization if needed.  
 
+[Intel Core i3 9100F](https://ark.intel.com/content/www/fr/fr/ark/products/190886/intel-core-i3-9100f-processor-6m-cache-up-to-4-20-ghz.html)
+4 coeurs, 4 threads, 3.60 GHz, 6 Mo, Coffee Lake Refresh, 65 Watts  
+Cheaper and better, but only for MSI B365M Pro-VDH motherboard.  
+
 **RAM**  
 [2x8G DDR4 2666Mh](https://www.materiel.net/produit/201804240051.html)
 [1x16G DDR4 2666Mh](https://www.materiel.net/produit/201810080050.html)  
