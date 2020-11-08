@@ -4,9 +4,9 @@ layout: post
 icon: fa-quote-right
 ---
 
-Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backup.html) my personnal and professional datas on distant storage at work but the lack of a reliable hosting solution makes me keep important datas on my main desktop. Then backuping my desktop duplicates that datas, but it takes place on my 240G SSD just to let backup process duplicate it.  
+Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backup.html) my personnal and professional datas on distant storage at work but the lack of a reliable hosting solution makes me keep important datas on my main desktop. Then backuping my desktop duplicates that datas, but it takes place on my 240G SSD.  
 
-It would be useful to host a [Gogs](https://gogs.io/) git server, to keep a duplicate of work repositories and why not a personnal wiki.
+I want to setup my self hosted NAS and it would be useful to be able to host some webservers like [Gogs](https://gogs.io/) git server, to keep a duplicate of work repositories and why not a personnal wiki.
 The solution would be modular using containers with a reverse proxy in front.
 
 Concerning storage, needs are not so heavy, 3To to 6To would be enough.
@@ -17,15 +17,15 @@ Reading about storage management usually leads to consider [ZFS](https://eoli3n.
 It is rock solid, as far as host OS support the module nativly.  
 
 BSD systems have the best [ZFS support](https://github.com/eoli3n/archiso-zfs), it is included in the kernel.
-FreeNAS is great on the paper:
+FreeNAS is great on the paper:  
 - provides a [Web UI](https://www.freenas.org/about/screenshots/)
 - based on [FreeBSD](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
 - nativly support [virtualisation](https://www.freenas.org/about/screenshots/) as docker containers run on [RancherOS](https://rancher.com/docs/os/v1.x/en/)
 Sadly, it suffers of a pretty bad reputation concerning its stability, and hard OS upgrades, confirmed by my tests on a VM.
 
-FreeBSD would be the next Gold choice, but Docker is [currently broken](https://wiki.freebsd.org/Docker), and I don't trust the Linux Compatibility Layer. Using jails with [iocage](https://github.com/iocage/iocage) or [bastille](https://github.com/BastilleBSD/bastille) which support templates, but everything needs to be done manually while docker provides a huge images catalog on [hub.docker.com](https://hub.docker.com/).  
+FreeBSD would be the next Gold choice, but Docker is [currently broken](https://wiki.freebsd.org/Docker), and I don't trust the Linux Compatibility Layer. There are jails with [iocage](https://github.com/iocage/iocage) or [bastille](https://github.com/BastilleBSD/bastille) which support templates, but everything needs to be done manually while docker provides a huge images catalog on [hub.docker.com](https://hub.docker.com/).  
 
-Consedering Linux world, Archlinux could be a great choice, it is my main OS and i worked on ZFS archlinux install. Rolling upgrades are also less stressful than release upgrades but ZFS isn't supported defaultly and its the primary purpose of the NAS.
+In Linux world, Archlinux could be a great choice, it is my main OS and I worked on ZFS archlinux install. Rolling upgrades are also less stressful than release upgrades but ZFS isn't supported defaultly and its the primary purpose of the NAS.
 
 The only Linux distro which supports ZFS nativly is Ubuntu since 20.04 LTS ! It has a server version, and I trust Caninical after many years maintaning 800 Ubuntu desktop clients.  
 It seems to be the [best of two worlds](https://www.reddit.com/r/zfs/comments/hd58hv/vanilla_zfs_on_ubuntu_for_nas_server_better_than/), a solid storage management with ZFS, and native possibility of using Docker or Podman containers.  
@@ -34,8 +34,8 @@ It seems to be the [best of two worlds](https://www.reddit.com/r/zfs/comments/hd
 
 A nice guide gave me lots of directions about hardware choice: [Building a DIY Home Server with FreeNAS](https://www.devroom.io/2020/02/28/building-a-diy-home-server-with-freenas/).
 
-**Case**  
-[Fractal Design Node 804 Black Window](https://www.fractal-design.com/products/cases/node/node-804/black/)  
+##### Case  
+[Fractal Design Node 804 Black Window](https://www.fractal-design.com/products/cases/node/node-804/black/)
 A bit expensive, but it has a good design, not so massive and you can setup 8 disks, and a micro ATX motherboard.  
 
 [Node 304](https://www.fractal-design.com/products/cases/node/node-304/Black/) is a good option too, but it is in mini ITX and motherboards are more expensive. Fans are also smaller so it would be a louder and less evolutive config.  
