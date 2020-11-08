@@ -34,7 +34,7 @@ It seems to be the [best of two worlds](https://www.reddit.com/r/zfs/comments/hd
 
 A nice guide gave me lots of directions about hardware choice: [Building a DIY Home Server with FreeNAS](https://www.devroom.io/2020/02/28/building-a-diy-home-server-with-freenas/).
 
-##### Case  
+#### Case  
 [Fractal Design Node 804 Black Window](https://www.fractal-design.com/products/cases/node/node-804/black/)
 A bit expensive, but it has a good design, not so massive and you can setup 8 disks, and a micro ATX motherboard.  
 
