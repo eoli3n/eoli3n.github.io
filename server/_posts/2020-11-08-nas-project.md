@@ -11,7 +11,7 @@ The solution would be modular using containers with a reverse proxy in front.
 
 Concerning storage, needs are not so heavy, 3To to 6To would be enough.
 
-### OS Choice
+### OS
 
 Reading about storage management usually leads to consider [ZFS](https://eoli3n.github.io/archlinux/2020/05/09/system-rollbacks.html) as the best solution.  
 It is rock solid, as far as host OS support the module nativly.  
