@@ -9,12 +9,12 @@ Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backu
 I want to setup my self hosted NAS and it would be useful to be able to host some webservers like [Gogs](https://gogs.io/) git server, to keep a duplicate of work repositories and why not a personnal wiki.
 The solution would be modular using containers with a reverse proxy in front.
 
-Concerning storage, needs are not so heavy, 3To to 6To would be enough.
-
-### OS
-
+Concerning storage, needs are not so heavy, 3To to 6To would be enough.  
 Reading about storage management usually leads to consider [ZFS](https://eoli3n.github.io/archlinux/2020/05/09/system-rollbacks.html) as the best solution.  
 It is rock solid, as far as host OS support the module nativly.  
+RAID-Z1 needs a minimum of four disks including one of parity, resulting pool capacity is N-1.
+
+### OS
 
 BSD systems have the best [ZFS support](https://github.com/eoli3n/archiso-zfs), it is included in the kernel.
 FreeNAS is great on the paper:  
