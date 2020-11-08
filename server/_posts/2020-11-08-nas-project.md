@@ -4,7 +4,7 @@ layout: post
 icon: fa-quote-right
 ---
 
-Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backup.html) my personnal and professional datas on distant storage at work but the lack of a reliable hosting solution makes me keep important datas on my main desktop. Then backuping my desktop duplicates that datas, but it takes place on my 240G SSD.  
+Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backup.html) my personnal and professional datas on distant storage at work but the lack of a reliable hosting solution makes me keep important datas on my main desktop computer. Then backuping duplicates that datas, but it takes up spaces on my 240G SSD.  
 
 I want to setup my self hosted NAS and it would be useful to be able to host some webservers like [Gogs](https://gogs.io/) git server, to keep a duplicate of work repositories and why not a personnal wiki.
 The solution would be modular using containers with a reverse proxy in front.
