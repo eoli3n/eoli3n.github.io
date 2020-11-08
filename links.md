@@ -21,3 +21,4 @@ order: 4
 10. [Why you should migrate everything from linux to bsd](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
 11. [The Art of Code](https://www.youtube.com/watch?v=gdSlcxxYAA8)
 12. [Save 418](https://save418.com)
+13. [Contrast Rebellion](https://contrastrebellion.com/)

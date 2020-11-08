@@ -65,7 +65,8 @@
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 1.75em;
-		color: #444;
+		/*color: #444;*/
+		color: #111;
 
 		&.is-loading * {
 			@include vendor('transition', 'none !important');
@@ -78,12 +79,14 @@
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 1.75em;
-		color: #444;
+		/*color: #444;*/
+		color: #111111;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 300;
-		color: #333;
+		/*color: #333;*/
+		color: #101010;
 		line-height: 1.5em;
 	}
 
@@ -92,7 +95,8 @@
 		text-decoration: none;
 
 		strong {
-			color: #222;
+			/*color: #222;*/
+			color: #000001;
 		}
 	}
 
@@ -119,7 +123,8 @@
 
 	strong, b {
 		font-weight: 300;
-		color: #111;
+		/*color: #111;*/
+		color: #000001;
 	}
 
 	em, i {
