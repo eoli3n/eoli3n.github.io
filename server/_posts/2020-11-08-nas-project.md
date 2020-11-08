@@ -31,7 +31,7 @@ The only Linux distro which supports ZFS nativly is Ubuntu since 20.04 LTS ! It 
 It seems to be the [best compromise](https://www.reddit.com/r/zfs/comments/hd58hv/vanilla_zfs_on_ubuntu_for_nas_server_better_than/), a solid storage management with ZFS, and native possibility of using Docker or Podman containers.  
 
 ### Scheme
-
+  
 ![server](/assets/svg/server.svg)
 
 ### Hardware
