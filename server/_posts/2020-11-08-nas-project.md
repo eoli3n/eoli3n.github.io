@@ -18,9 +18,9 @@ RAID-Z1 needs a minimum of three disks and i will include a parity disk, resulti
 
 BSD systems have the best [ZFS support](https://github.com/eoli3n/archiso-zfs), it is included in the kernel.
 FreeNAS is great on the paper:  
-- provides a [Web UI](https://www.freenas.org/about/screenshots/)
+- it provides a [Web UI](https://www.freenas.org/about/screenshots/)
 - based on [FreeBSD](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
-- nativly support [virtualisation](https://www.freenas.org/about/screenshots/) as docker containers run on [RancherOS](https://rancher.com/docs/os/v1.x/en/)
+- it nativly supports [virtualisation](https://www.freenas.org/about/screenshots/) as docker containers are run on [RancherOS](https://rancher.com/docs/os/v1.x/en/) VM
 Sadly, it suffers of a pretty bad reputation concerning its stability, and hard OS upgrades, confirmed by my tests on a VM.
 
 FreeBSD would be the next Gold choice, but Docker is [currently broken](https://wiki.freebsd.org/Docker), and I don't trust the Linux Compatibility Layer. There are jails with [iocage](https://github.com/iocage/iocage) or [bastille](https://github.com/BastilleBSD/bastille) which support templates, but everything needs to be done manually while docker provides a huge images catalog on [hub.docker.com](https://hub.docker.com/).  
