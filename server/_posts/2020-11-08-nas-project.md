@@ -20,7 +20,7 @@ BSD systems have the best [ZFS support](https://github.com/eoli3n/archiso-zfs), 
 FreeNAS is great on the paper:  
 - it provides a [Web UI](https://www.freenas.org/about/screenshots/)
 - based on [FreeBSD](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
-- it nativly supports [virtualisation](https://www.freenas.org/about/screenshots/),docker containers are run on a [RancherOS](https://rancher.com/docs/os/v1.x/en/) VM
+- it nativly supports [virtualisation](https://www.freenas.org/about/screenshots/),docker containers are run on a [RancherOS](https://rancher.com/docs/os/v1.x/en/) VM  
 Sadly, it suffers of a pretty bad reputation concerning its stability, and OS upgrades, confirmed by my tests on a VM.
 
 FreeBSD would be the next gold choice, but Docker is [currently broken](https://wiki.freebsd.org/Docker), and I don't trust the Linux Compatibility Layer. There are jails with [iocage](https://github.com/iocage/iocage) or [bastille](https://github.com/BastilleBSD/bastille) which support templates, but everything needs to be done manually while docker provides a huge images catalog on [hub.docker.com](https://hub.docker.com/).  
