@@ -22,3 +22,4 @@ order: 4
 11. [The Art of Code](https://www.youtube.com/watch?v=gdSlcxxYAA8)
 12. [Save 418](https://save418.com)
 13. [Contrast Rebellion](https://contrastrebellion.com/)
+14. [The best way to write secure and reliable applications](https://github.com/kelseyhightower/nocode)
