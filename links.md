@@ -13,7 +13,7 @@ order: 4
 2. [Github does dotfiles](https://dotfiles.github.io/)
 3. [Docker Swarm is not dead](https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/)
 4. [Cool Hack game](https://overthewire.org/wargames/)
-5. [Update Faker to prank coworkers](https://updatefaker.com/)
+5. [Update Faker to prank coworkers](https://updatefaker.com/) - [Fake Update](https://fakeupdate.net/)
 6. [Cloud Native Interactive Landscape](https://landscape.cncf.io/)
 7. [FDN Invidious](https://invidious.fdn.fr/) is a lighter youtube wrapper
 8. [The best mother fucking website](http://thebestmotherfuckingwebsite.com/)
