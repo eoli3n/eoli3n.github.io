@@ -4,3 +4,4 @@
 - [ ] comments with disqu
 - [ ] https://github.com/jekyll/jekyll-seo-tag#usage
 - [ ] favicon
+- [x] change font

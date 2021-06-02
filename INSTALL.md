@@ -43,3 +43,5 @@ $ bundle show minima
 - https://pages.github.com/versions/
 
 - https://github.com/jekyll/minima/blob/v2.5.1/README.md
+- change font: https://stackoverflow.com/a/54142205/11061370
+- https://bartjolling.github.io/blog/2018/11/24/customizing-jekyll-minima-github-pages.html
