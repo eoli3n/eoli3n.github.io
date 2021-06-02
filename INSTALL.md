@@ -27,6 +27,13 @@ $ git remote add origin git@github.com:eoli3n/blog-test.git
 $ git push origin gh-pages
 ```
 
+### EDIT
+
+```bash
+$ bundle show minima
+/home/user/dev/blog-test/vendor/bundle/ruby/2.7.0/gems/minima-2.5.1
+```
+
 ### Resources
 
 - https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
