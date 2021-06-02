@@ -31,7 +31,7 @@ But there is a huge problem: as Arch Linux iso is released at first of each mont
 Then the kernel version that embeed your latest archiso image dismatch your zfs module version.
 
 The workaround is to [build your own archiso](https://wiki.archlinux.org/index.php/Install_Arch_Linux_on_ZFS#Embedding_archzfs_into_archiso) that includes that module.
-What a deception, I just found a way to use [netboot Arch Linux](../../../2020/04/25/recovery.html) as installer or recovery system.
+What a deception, I just found a way to use [netboot Arch Linux]({{ site.baseurl }}{% link _posts/2020-04-25-recovery.md %}) as installer or recovery system.
 
 ### There's always a way, if you're a committer
 
