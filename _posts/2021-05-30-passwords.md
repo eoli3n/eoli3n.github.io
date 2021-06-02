@@ -74,7 +74,7 @@ Now, you need a centralised git repository, and the ability to sign your commits
 I created mine on my nas server with [gitolite](https://gitolite.com/gitolite/index.html), but you can use a Github private repository.
 To make signing work, I needed to edit my git-config to match my gpg binary and my gpg key.
 
-```ini
+```
 $ cat ~/.gitconfig
 [user]
     name = eoli3n
@@ -86,7 +86,7 @@ $ cat ~/.gitconfig
     program = gpg2
 ```
 Let's try to sign a commit:
-```
+```bash
 $ mkdir git-gpg-test
 $ cd git-gpg-test/
 $ echo "testing" > README.md
