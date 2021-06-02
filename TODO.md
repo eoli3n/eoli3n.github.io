@@ -1,4 +1,5 @@
-- [ ] dark theme
+- [x] dark theme
+  - [x] highlights
 - [ ] dynamic theme from web browser
       https://kevq.uk/how-to-add-css-dark-mode-to-a-website/
 - [ ] https://github.com/jekyll/jekyll-seo-tag#usage
@@ -7,3 +8,4 @@
 - [ ] post subtitles as links
 - [ ] tags
 - [ ] comments
+- [ ] oneline post list
