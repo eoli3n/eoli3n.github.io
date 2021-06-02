@@ -1,11 +1,3 @@
-### Resources
-
-- https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
-- https://jekyllrb.com/docs/ruby-101/
-- https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites
-- https://pages.github.com/versions/
-- https://stackoverflow.com/questions/19072070/how-to-find-where-gem-files-are-installed
-
 ### Install and create jekyll site
 
 As **root**
@@ -35,4 +27,10 @@ $ git remote add origin git@github.com:eoli3n/blog-test.git
 $ git push origin gh-pages
 ```
 
+### Resources
 
+- https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
+- https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites
+
+- https://jekyllrb.com/docs/ruby-101/
+- https://pages.github.com/versions/
