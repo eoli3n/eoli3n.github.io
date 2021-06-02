@@ -7,9 +7,11 @@ $text-color: #e6e6e6; /* an off-white for the text */
 $grey-color-light: #565656; /* for the border-top separators */
 $grey-color-dark: #adadad; /* such as the site title in the header, visited */
 $code-font-family: 'JetBrains Mono', monospace;
-$code-font-size: '14px';
+$code-font-size: 14px;
+$base-font-size: 16px;
 $code-background-color: #1e1e1e;
-$brand_color: #565656; /* link colors */
+$code-border: #565656;
+$brand_color: #00cdcd; /* link colors */
 
 @import "{{ site.theme }}";
 
