@@ -4,13 +4,13 @@ layout: post
 icon: fa-quote-right
 ---
 
-Since many years, I [backup](https://eoli3n.github.io/archlinux/2020/04/30/backup.html) my personnal and professional data on distant storage at work but the lack of a reliable hosting solution makes me keep important data on my main desktop computer. Then backuping duplicates that data, but it takes up spaces on my 240G SSD.  
+Since many years, I [backup]({{ site.baseurl }}{% link _posts/2020-04-30-backup.md %}) my personnal and professional data on distant storage at work but the lack of a reliable hosting solution makes me keep important data on my main desktop computer. Then backuping duplicates that data, but it takes up spaces on my 240G SSD.  
 
 I want to setup my self hosted NAS and it would be useful to be able to host some webservers like [Gogs](https://gogs.io/) git server, to keep a duplicate of work repositories and why not a personnal wiki.
 The solution would be modular using containers with a reverse proxy in front.
 
 Concerning storage, needs are not so heavy, 3To to 6To would be enough.  
-Reading about storage management usually leads to consider [ZFS](https://eoli3n.github.io/archlinux/2020/05/09/system-rollbacks.html) as the best solution.  
+Reading about storage management usually leads to consider [ZFS]({{ site.baseurl }}{% link _posts/2020-05-09-system-rollbacks.md %}) as the best solution.  
 It is rock solid, as long as host OS support the module nativly.  
 RAID-Z1 needs a minimum of three disks and i will include a parity disk, resulting pool capacity is N-1.
 

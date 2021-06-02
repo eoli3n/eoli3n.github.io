@@ -59,7 +59,7 @@ $ grep dnsmasq /var/log/socklog/everything/current
 
 ### What about the filesystem ?
 
-Void Linux community developed a powerful tool, to let you manage ZFS root system rollbacks far better than [zectl on Arch Linux](https://eoli3n.github.io/os/2020/05/09/system-rollbacks.html) does.
+Void Linux community developed a powerful tool, to let you manage ZFS root system rollbacks far better than [zectl on Arch Linux]({{ site.baseurl }}{% link _posts/2020-05-09-system-rollbacks.md %}) does.
 [zfsbootmenu](https://zfsbootmenu.org/) uses dracut to generate a kernel/initramfs couple with zfs module packed into an ``efi`` file. It lets you point directly to it with ``efibootmgr`` which removes the need to use a bootloader.
 Booting this gives you a nice menu to manage your ZFS pool, you can create clone from a dataset snapshot, chroot a dataset, etc...
 To boot the OS, ``kexec`` is used to load the kernel from the chosen zfs dataset.

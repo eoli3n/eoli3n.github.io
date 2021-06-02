@@ -5,7 +5,7 @@ icon: fa-hdd
 icon-style: solid
 ---
 
-After [my first post](/os/2020/04/30/backup.html) about how to setup BorgBackup and a first install of a home nas, I do have now two borg servers, lets spread our backups !
+After [my first post]({{ site.baseurl }}{% link _posts/2020-04-30-backup.md %}) about how to setup BorgBackup and a first install of a home nas, I do have now two borg servers, lets spread our backups !
 
 ### Drop the shell backup script
 
