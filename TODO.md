@@ -9,3 +9,5 @@
 - [ ] tags
 - [ ] comments
 - [ ] oneline post list
+- [ ] header with logo
+- [ ] index with prez
