@@ -34,3 +34,5 @@ $ git push origin gh-pages
 
 - https://jekyllrb.com/docs/ruby-101/
 - https://pages.github.com/versions/
+
+- https://github.com/jekyll/minima/blob/v2.5.1/README.md
