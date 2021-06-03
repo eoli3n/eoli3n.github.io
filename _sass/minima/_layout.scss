@@ -244,6 +244,11 @@
   }
 }
 
+.post-grid {
+  display: grid;
+  grid-template-columns: 60px 60px auto;
+}
+
 .post-tree {
   color: $grey-color-light;
   @include relative-font-size(2.4);
