@@ -34,7 +34,13 @@ list_title: "_posts"
         {% endif %}
         <a class="post-link" href="{{ post.url | relative_url }}">
           {{ post.title | escape }}
-          <span class="post-meta">{{ post.date | date: date_format }} - {{ words }} words, {{ time }} {%if time > 1 %} mins{% else %}min{% endif %}</span>
+          <span class="post-meta">
+            <i class="far fa-calendar-alt"></i>
+            {{ post.date | date: date_format }}
+            <i class="fas fa-hourglass-start"></i>
+            {{ words }} words
+            {{ time }} {%if time > 1 %} mins{% else %}min{% endif %}
+          </span>
         </a>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
