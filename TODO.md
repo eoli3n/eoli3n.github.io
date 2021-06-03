@@ -1,12 +1,13 @@
 # Site
 
-- [ ] favicon
+- [x] favicon
 - [ ] header with logo
-- [ ] index with prez
 - [x] oneline post list
 - [x] tree like
   - [ ] subdirs
-- [ ] links
+- [x] links
+- [x] about
+  - [ ] update about
 
 # Style
 
@@ -19,6 +20,9 @@
 
 # Posts
 
+- [ ] fix code quotes
+- [x] fix dynamic images links
+- [x] fix dynamic links between articles
 - [ ] post subtitles as links
 
 # Features
@@ -26,3 +30,4 @@
 - [ ] https://github.com/jekyll/jekyll-seo-tag#usage
 - [ ] comments
 - [ ] tags
+- [ ] archzfs mirror
