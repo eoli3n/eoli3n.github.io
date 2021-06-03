@@ -203,13 +203,20 @@
     }
   }
 
+
   > li {
     margin-top: $spacing-unit;
     margin-bottom: $spacing-unit;
     /* change line height */
-    line-height: 0.5em;
-    height: auto;
+    line-height: 0em;
+    display: block;
+    /*height: auto;*/
   }
+}
+
+.post-tree {
+  /*color: $text-color;*/
+  @include relative-font-size(2.4);
 }
 
 .post-meta {
@@ -219,9 +226,7 @@
 }
 
 .post-link {
-  display: block;
   @include relative-font-size(1.5);
-
 }
 
 
