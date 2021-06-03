@@ -25,6 +25,7 @@
       https://kevq.uk/how-to-add-css-dark-mode-to-a-website/
 - [x] change font
 - [ ] add fontawesome
+- [x] disable visited links
 
 # Posts
 

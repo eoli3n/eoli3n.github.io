@@ -21,7 +21,6 @@
 title: eoli3n
 subtitle: ... Blog ...
 logo: avatar.png
-header-background: header-banner.jpg
 email: jonathan.kirszling@runbox.com
 description: >- # this means to ignore newlines until "baseurl:"
   A blog that talks about Linux, Pizza, DevOps and more.
