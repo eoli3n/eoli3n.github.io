@@ -14,6 +14,7 @@
   - [ ] count articles last line
   - [ ] subdirs
 - [x] links
+  - [ ] links as posts style
 - [x] about
   - [ ] update about
 
