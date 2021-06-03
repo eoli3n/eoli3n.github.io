@@ -24,10 +24,25 @@ logo: avatar.png
 email: jonathan.kirszling@runbox.com
 description: >- # this means to ignore newlines until "baseurl:"
   A blog that talks about Linux, Pizza, DevOps and more.
+  Reach me on irc.libera.chat #archlinux-fr or #voidlinux
 baseurl: "/blog-test" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
-github_username: eoli3n
+
+# Social icons
+twitter_url:
+facebook_url:
+googleplus_url:
+instagram_url:
+linkedin_url:
+github_url: https://github.com/eoli3n
+pizza_url: https://photos.google.com/share/AF1QipOwuYXLCoWlUpS7sk2UiT1-xFopAaeXYT21rPl9iKjNl2txOxwc3vpCIknVYpRf1w?key=RnNVSUxvQWkyTzdvSnBURXVZMWpGbVpXcTZnbEFn
+bread_url: https://photos.google.com/share/AF1QipO7ZE4k_K7VpfrDcQ6pXZc3URXhCuIHF4aZ3iYFZ26G6wpC5and65WkXzfl-Ctsnw?key=UGdsSDAwanlOV1BkaU5WZ0p3MWI0VGFlRzJwdXdR
+stackoverflow_url: https://stackoverflow.com/users/11061370/eoli3n
+pinterest_url:
+slack_url:
+dribbble_url:
+asciinema_url: https://asciinema.org/~eoli3n
+reddit_url: https://www.reddit.com/user/eoli3n
 
 # Build settings
 theme: minima

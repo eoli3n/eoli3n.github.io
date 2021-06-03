@@ -129,9 +129,21 @@
   margin-left: 0;
 }
 
+.social-media-list {
+  font-size: 40px;
+  li {
+    display: block;
+    float: left;
+    width: 1em;
+  }
+  .label {
+    display: none;
+  }
+}
+
 .footer-col-wrapper {
   @include relative-font-size(0.9375);
-  color: $grey-color;
+  color: $text-color;
   margin-left: -$spacing-unit / 2;
   @extend %clearfix;
 }

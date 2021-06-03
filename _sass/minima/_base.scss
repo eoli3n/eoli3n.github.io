@@ -113,10 +113,11 @@ a {
 
   .social-media-list &:hover {
     text-decoration: none;
+    color: $text-color;
+  }
 
-    .username {
-      text-decoration: underline;
-    }
+  .social-media-list & {
+    color: $grey-color-dark;
   }
 }
 
@@ -214,14 +215,6 @@ pre {
     padding-right: 5px;
     vertical-align: text-top;
 }
-
-.social-media-list {
-  li + li {
-    padding-top: 5px;
-  }
-}
-
-
 
 /**
  * Tables
