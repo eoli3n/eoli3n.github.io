@@ -11,7 +11,7 @@ layout: default
         {{ page.date | date: date_format }}
         {% assign words = page.content | strip_html | strip_newlines | remove: " " | size %}
         {% assign time = page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 400 | plus: 1 %}
-        - {{ words }} words {{ time }} {%if time > 1 %} mins{% else %}min{% endif %}
+        - {{ words }} words, {{ time }} {%if time > 1 %} mins{% else %}min{% endif %}
       </time>
       {%- if page.author -%}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
