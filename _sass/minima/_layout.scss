@@ -17,11 +17,16 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
-
   &,
-  &:visited {
+  &:visited,
+  &:hover {
     color: $grey-color-dark;
+    text-decoration: none;
   }
+}
+
+.site-subtitle {
+  @include relative-font-size(0.8);
 }
 
 .site-nav {

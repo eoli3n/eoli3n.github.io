@@ -1,9 +1,12 @@
-<header class="site-header" role="banner">
-
+<header class="site-header" role="banner" style="background-image: url('{{site.baseurl}}/assets/images/{{ site.header-background }}');">
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+      <img src="{{site.baseurl}}/assets/images/{{ site.logo }}" alt="logo" width="30">
+      {{ site.title | escape }}
+      <span class="site-subtitle"> {{ site.subtitle | escape }}</span>
+    </a>
 
     {%- if page_paths -%}
       <nav class="site-nav">
