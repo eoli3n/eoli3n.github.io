@@ -9,7 +9,14 @@
   <link rel="stylesheet" href="{{ "/assets/fonts/fontawesome-free/css/all.css" | relative_url }}">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png" href="assets/images/avatar.png">
+  <link rel="shortcut icon" type="image/png" href="{{ "/assets/images/avatar.png" | relative_url }}">
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ "/assets/js/jquery-3.6.0.slim.min.js" | relative_url }}"></script>
+
+  <!-- Auto headings -->
+  <!-- https://github.com/jekyll/jekyll/issues/2690 -->
+  <script type="text/javascript" src="{{ "/assets/js/headings.js" | relative_url }}"></script>
 
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
