@@ -133,12 +133,16 @@
   margin-left: 0;
 }
 
+.social-media-wrapper ul {
+  text-align: center;
+}
+
 .social-media-list {
   font-size: 23px;
   li {
-    display: block;
-    float: left;
-    width: 1em;
+    display: inline-block;
+    float: none;
+    text-align: center;
     padding: 6px;
   }
   .label {
