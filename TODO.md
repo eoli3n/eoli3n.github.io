@@ -2,7 +2,7 @@
 
 - [x] tree like
   - [x] count articles last line
-  - [ ] subdirs
+  - [ ] subdirs : https://jsfiddle.net/snyzh19v/
 - [x] links
   - [ ] links as posts style
 - [x] about
@@ -12,12 +12,12 @@
 
 - [x] dark theme
   - [ ] highlights fix
-- [ ] cool custrom title text font
+- [ ] cool custom title text font
 
 # Posts
 
 - [ ] fix code quotes
-- [ ] post subtitles as links
+- [x] post subtitles as links
 
 # Features
 
