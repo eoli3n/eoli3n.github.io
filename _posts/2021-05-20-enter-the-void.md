@@ -4,7 +4,7 @@ layout: post
 icon: fa-exchange-alt
 ---
 
-After few years on Arch Linux, I was curious to try a new OS. My needs are increasingly less years after years, I focus on features, and try to keep my system as light and rock solid as possible.
+After few years on Arch Linux, I was curious to try a new OS. My needs are increasingly less year after year, I focus on features, and try to keep my system as light and rock solid as possible.
 I heard about [Void Linux](https://voidlinux.org/), a rolling release distribution without Systemd.
 
 ### No more systemd, use the system D
@@ -16,7 +16,7 @@ Without systemd, no systemd-journald, no systemd-resolved, no systemd-networkd, 
 Documentation gives lighter alternatives, known for some, for all of those components. Two important ones are:
 
 ### Init and services
-It defaultly uses [runit](http://smarden.org/runit/).
+It uses [runit](http://smarden.org/runit/) by default.
 I don't miss systemd services, runit ones are simple shell scripts, back to basics.
 Per user services are possible. To enable a service, you only need to symlink service directory ``/etc/sv/$service`` to ``/var/service/$service``.
 Each directory contains a ``run`` shell script.
@@ -36,7 +36,7 @@ acpid        agetty-tty3  agetty-tty6  dbus         libvirtd       seatd        
 agetty-tty1  agetty-tty4  chronyd      dhcpcd-eth0  nanoklogd      socklog-unix  virtlockd
 agetty-tty2  agetty-tty5  crond        iwd          runsvdir-user  tlp           virtlogd
 
-$ cat /var/service/libvirtd/run 
+$ cat /var/service/libvirtd/run
 #!/bin/sh
 sv check dbus >/dev/null || exit 1
 [ -f ./conf ] && . ./conf
@@ -46,10 +46,10 @@ exec libvirtd $OPTS 2>&1
 ### Logs
 [Socklog](http://smarden.org/socklog/) is made by the same dev as runit and manage logs as plain text files, not binary files which need a specific tool to be queried...
 
-```bash  
+```bash
 $ ls /var/log/socklog/
 cron  daemon  debug  errors  everything  kernel  lpr  mail  messages  remote-udp  secure  tty12  user  xbps
-  
+
 $ grep dnsmasq /var/log/socklog/everything/current
 2021-05-20T20:19:16.77340 daemon.info: May 20 22:19:16 dnsmasq[2141]: reading /etc/resolv.conf
 2021-05-20T20:19:16.77344 daemon.info: May 20 22:19:16 dnsmasq[2141]: using nameserver 1.1.1.1#53
@@ -82,7 +82,7 @@ $ sudo rmmod kvm_intel
 $ sudo xbps-install -Su
 
 Name              Action    Version           New version            Download size
-linux5.11         update    5.11.21_1         5.11.22_1              112MB 
+linux5.11         update    5.11.21_1         5.11.22_1              112MB
 [...]
 
 $ sudo modprobe kvm_intel && echo ":)"
