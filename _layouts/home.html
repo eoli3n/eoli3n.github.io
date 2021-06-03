@@ -10,6 +10,7 @@ list_title: "_posts"
 
   {{ content }}
 
+  <h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree -D *</h3>
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
@@ -35,6 +36,7 @@ list_title: "_posts"
         {%- endif -%}
       </li>
       {%- endfor -%}
+    <h3 class="post-list-heading" style="margin-top: 20px;">{{ site.posts | size }} posts</h3>
     </ul>
 
     <h2 class="post-list-heading">rss/</h2>
