@@ -26,6 +26,8 @@
 - [x] change font
 - [ ] add fontawesome
 - [x] disable visited links
+- [ ] change classic text font
+- [ ] cool custrom title text font
 
 # Posts
 

@@ -6,7 +6,6 @@
   border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
   background-image: linear-gradient(to bottom right, $header-gradiant-color1, $header-gradiant-color2);
-
   // Positioning context for the mobile navigation icon
   position: relative;
 }
@@ -24,10 +23,15 @@
     color: $text-color;
     text-decoration: none;
   }
+  img:first-child {
+    padding-left: 20px;
+    padding-right: 10px;
+  }
 }
 
 .site-subtitle {
   @include relative-font-size(0.8);
+  margin-left: 10px;
 }
 
 .site-nav {
