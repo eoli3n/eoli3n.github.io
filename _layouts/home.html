@@ -17,9 +17,9 @@ list_title: "_posts"
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {% if forloop.last == false %}
-        <span class="post-tree">├── </span>
+        <span class="post-tree">├──</span>
         {% else %}
-        <span class="post-tree">└── </span>
+        <span class="post-tree">└──</span>
         {% endif %}
         {% if post.icon %}
         <i class="fa fas fab {{ post.icon }} post-icon"></i>
