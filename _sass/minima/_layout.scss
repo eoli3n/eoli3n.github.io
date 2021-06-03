@@ -214,7 +214,7 @@
 }
 
 .post-list-heading {
-  @include relative-font-size(1.75);
+  @include relative-font-size(1);
   /* change to code font */
   font-family: $code-font-family;
   color: $grey-color-light;
@@ -247,12 +247,12 @@
 
 .post-grid {
   display: grid;
-  grid-template-columns: 60px 42px auto;
+  grid-template-columns: 50px 42px auto;
 }
 
 .post-tree {
   color: $grey-color-light;
-  @include relative-font-size(2.4);
+  @include relative-font-size(2);
 }
 
 .post-icon {
