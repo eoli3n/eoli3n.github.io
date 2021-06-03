@@ -34,6 +34,12 @@ $ bundle show minima
 /home/user/dev/blog-test/vendor/bundle/ruby/2.7.0/gems/minima-2.5.1
 ```
 
+### Local Run
+
+```bash
+bundle exec jekyll serve
+```
+
 ### Resources
 
 - https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll

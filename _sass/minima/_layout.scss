@@ -191,6 +191,13 @@
 .post-list {
   margin-left: 0;
   list-style: none;
+  /* change menu link color */
+  a {
+    color: $menu-link-color;
+    &:visited {
+      color: darken($menu-link-color, 15%);
+    }
+  }
 
   > li {
     margin-bottom: $spacing-unit;
@@ -205,6 +212,7 @@
 .post-link {
   display: block;
   @include relative-font-size(1.5);
+
 }
 
 
