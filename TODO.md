@@ -10,6 +10,7 @@
   - [ ] background
 
 - [x] oneline post list
+  - [ ] add icons
 - [x] tree like
   - [ ] count articles last line
   - [ ] subdirs
