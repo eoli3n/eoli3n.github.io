@@ -3,8 +3,10 @@
 - [ ] favicon
 - [ ] header with logo
 - [ ] index with prez
-- [ ] oneline post list
-- [ ] tree like with dirs
+- [x] oneline post list
+- [x] tree like
+  - [ ] subdirs
+- [ ] links
 
 # Style
 
@@ -13,6 +15,7 @@
 - [ ] dynamic theme from web browser
       https://kevq.uk/how-to-add-css-dark-mode-to-a-website/
 - [x] change font
+- [ ] add fontawesome
 
 # Posts
 
