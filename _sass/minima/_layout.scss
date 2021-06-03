@@ -186,11 +186,15 @@
 
 .post-list-heading {
   @include relative-font-size(1.75);
+  /* change to code font */
+  font-family: $code-font-family;
 }
 
 .post-list {
   margin-left: 0;
   list-style: none;
+  /* change to code font */
+  font-family: $code-font-family;
   /* change menu link color */
   a {
     color: $menu-link-color;
@@ -201,12 +205,16 @@
 
   > li {
     margin-bottom: $spacing-unit;
+    /* change line height */
+    line-height: 1.5em;
+    height: auto;
   }
 }
 
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
+  font-style: italic;
 }
 
 .post-link {
