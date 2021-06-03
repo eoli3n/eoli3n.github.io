@@ -10,9 +10,9 @@
   - [ ] background
 
 - [x] oneline post list
-  - [ ] add icons
+  - [x] add icons
 - [x] tree like
-  - [ ] count articles last line
+  - [x] count articles last line
   - [ ] subdirs
 - [x] links
   - [ ] links as posts style
