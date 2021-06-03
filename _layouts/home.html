@@ -17,9 +17,14 @@ list_title: "_posts"
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {% if forloop.last == false %}
-        <span class="post-tree">├──</span>
+        <span class="post-tree">├── </span>
         {% else %}
-        <span class="post-tree">└──</span>
+        <span class="post-tree">└── </span>
+        {% endif %}
+        {% if post.icon %}
+        <i class="fa fas fab {{ post.icon }} post-icon"></i>
+        {% else %}
+        <i class="fas fa-quote-right post-icon"></i>
         {% endif %}
         <a class="post-link" href="{{ post.url | relative_url }}">
           {{ post.title | escape }}
@@ -36,7 +41,8 @@ list_title: "_posts"
     <ul class="post-list">
       <li>
         <span class="post-tree">└──</span>
-        <a class="post-link" href="{{ "/feed.xml" | relative_url }}">subscribe <i class="fas fa-rss post-meta" style="display: unset"></i></a>
+        <i class="fas fa-rss post-icon"></i>
+        <a class="post-link" href="{{ "/feed.xml" | relative_url }}">subscribe</a>
       </li>
     </ul>
   {%- endif -%}

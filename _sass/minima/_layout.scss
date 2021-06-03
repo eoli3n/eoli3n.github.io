@@ -249,6 +249,14 @@
   @include relative-font-size(2.4);
 }
 
+.post-icon {
+  display: unset;
+  @include relative-font-size(1.6);
+  color: $grey-color-light;
+  width: 40px;
+  text-align: center;
+}
+
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
@@ -258,7 +266,6 @@
 .post-link {
   @include relative-font-size(1.5);
 }
-
 
 
 /**
