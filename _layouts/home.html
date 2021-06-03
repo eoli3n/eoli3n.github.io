@@ -32,7 +32,13 @@ list_title: "_posts"
       {%- endfor -%}
     </ul>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    <h2 class="post-list-heading">rss/</h2>
+    <ul class="post-list">
+      <li>
+        <span class="post-tree">└──</span>
+        <a class="post-link" href="{{ "/feed.xml" | relative_url }}">subscribe <i class="fas fa-rss post-meta"></i></a>
+      </li>
+    </ul>
   {%- endif -%}
 
 </div>

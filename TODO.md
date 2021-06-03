@@ -1,9 +1,17 @@
 # Site
 
 - [x] favicon
-- [ ] header with logo
+- [x] header
+  - [x] logo
+  - [x] subtitle
+  - [x] background
+
+- [ ] footer
+  - [ ] background
+
 - [x] oneline post list
 - [x] tree like
+  - [ ] count articles last line
   - [ ] subdirs
 - [x] links
 - [x] about
