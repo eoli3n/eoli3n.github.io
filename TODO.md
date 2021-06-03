@@ -2,7 +2,9 @@
 
 - [x] tree like
   - [x] count articles last line
-  - [ ] subdirs : https://jsfiddle.net/snyzh19v/
+  - [ ] subdirs
+        https://jsfiddle.net/snyzh19v/
+        https://oremilac.tk/vrac/css-tree.m.html
 - [x] links
   - [ ] links as posts style
 - [x] about
