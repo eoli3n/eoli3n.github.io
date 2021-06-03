@@ -9,7 +9,7 @@ I heard about [Void Linux](https://voidlinux.org/), a rolling release distributi
 
 ### No more systemd, use the system D
 
-The Void Linux [documentation](https://docs.voidlinux.org/) is to the point, the wiki is deprecated, but you get everything you need to make your system run perfectly.
+The Void Linux [documentation](https://docs.voidlinux.org/) covers basics, the wiki is deprecated, but you get everything you need to make your system run perfectly.
 A system without systemd is a paradigm that I forgot, it makes me rediscover how many things it manages, sadly.
 
 Without systemd, no systemd-journald, no systemd-resolved, no systemd-networkd, no systemd-boot, no systemd-logind, no systemd-timer...
