@@ -175,7 +175,7 @@ You project with be stored in ``.local/share/gopass/stores/root/``.
 ### Go a bit further
 
 On my desktop hosts, I now need to find an alternative to *rofi-pass* for [Wofi](https://cloudninja.pw/docs/wofi.html).
-*gopass* should be fully compatible with *pass* bu default, expect for totp management which differs a bit.
+*gopass* should be fully compatible with *pass* by default, except for totp generator which differs a bit.
 
 *gopass* has a great plugin to manage passwords from browser: [gopassbridge](https://github.com/gopasspw/gopassbridge).
 It would be a great firefox lockwise replacement.
