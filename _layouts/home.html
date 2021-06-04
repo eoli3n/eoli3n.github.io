@@ -36,10 +36,11 @@ list_title: "_posts"
           {{ post.title | escape }}
           <span class="post-meta">
             <i class="far fa-calendar-alt"></i>
-            {{ post.date | date: date_format }}
-            <i class="fas fa-hourglass-start"></i>
-            {{ words }} words
-            {{ time }} {%if time > 1 %} mins{% else %}min{% endif %}
+            <span class="post-date">{{ post.date | date: date_format }}</span>
+            <span class="post-size">{{ words }} words</span>
+            <i class="fas fa-hourglass-start post-time-icon"></i>
+            <span class="post-time-count">{{ time }}</span>
+            <span class="post-time-string">{%if time > 1 %} mins{% else %}min{% endif %}</span>
           </span>
         </a>
         {%- if site.show_excerpts -%}

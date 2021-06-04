@@ -270,6 +270,33 @@
   color: $grey-color;
   font-style: italic;
   white-space: nowrap;
+  float: right;
+  text-align: right;
+}
+.post-date {
+  width: 100px;
+  display: inline-block;
+}
+
+.post-size {
+  width: 100px;
+  display: inline-block;
+}
+
+.post-time-icon {
+  width: 30px;
+  display: inline-block;
+}
+
+.post-time-count {
+  width: 15px;
+  display: inline-block;
+}
+
+.post-time-string {
+  width: 40px;
+  text-align: left;
+  display: inline-block;
 }
 
 .post-link {

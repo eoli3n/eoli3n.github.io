@@ -35,3 +35,6 @@
 - [ ] nginx: https://fuzzyblog.io/blog/jekyll/2017/10/06/self-hosting-a-jekyll-site.html
 - [ ] gitolite hooks: https://gitolite.com/gitolite/cookbook#hooks
 - [ ] automatic let's encrypt renew: https://github.com/diafygi/acme-tiny
+
+# Fix
+- [ ] css warnings
