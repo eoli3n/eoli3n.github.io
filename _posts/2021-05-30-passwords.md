@@ -6,14 +6,14 @@ icon: fa-key
 
 Password managment is the cornerstone of services security. If you use web, you would create one random password per service, and activate [Time-based One-Time Password](https://en.wikipedia.org/wiki/Time-based_One-Time_Password) for all important one, like mail.
 
-I used firefox lockwise to manage my web passwords, and FreeOTP on Android.  
-Firefox Lockwise can be configured to asks for a master password at every accesses.  
+I used firefox lockwise to manage my web passwords, and FreeOTP on Android.
+Firefox Lockwise can be configured to asks for a master password at every accesses.
 Easy synchronization between multiple hosts, including my phone, sticked me to it.
 
 Problem is that I don't really own my data, that I can't drop Firefox if I would like to, and I can't manage non web passwords.
 
-[Pass](https://www.passwordstore.org/) defines itself like "**the standard unix password manager**".  
-It uses [gnupg](https://gnupg.org/) to encrypt passwords as ``.gpg`` files, and git to distribute.  
+[Pass](https://www.passwordstore.org/) defines itself like "**the standard unix password manager**".
+It uses [gnupg](https://gnupg.org/) to encrypt passwords as ``.gpg`` files, and git to distribute.
 A clever extension lets you use it with [rofi](https://github.com/davatorium/rofi) : [rofi-pass](https://github.com/carnager/rofi-pass)
 But *pass* defaulty miss some comfortable features:
 - Automatic commit/push/pull, if you forget to commit a change, you can't access it on other devices
@@ -70,7 +70,7 @@ Gpg agent is not like SSH agent, it forgets the passphrase token after *600 seco
 
 ### Configure Git with Gnupg
 
-Now, you need a centralised git repository, and the ability to sign your commits.  
+Now, you need a centralised git repository, and the ability to sign your commits.
 I created mine on my nas server with [gitolite](https://gitolite.com/gitolite/index.html), but you can use a Github private repository.
 To make signing work, I needed to edit my git-config to match my gpg binary and my gpg key.
 
@@ -91,7 +91,7 @@ $ mkdir git-gpg-test
 $ cd git-gpg-test/
 $ echo "testing" > README.md
 $ git init
-$ git add README.md 
+$ git add README.md
 $ git commit -S -m "testing to sign this commit"
 [master (commit racine) c8fb990] testing to sign this commit
  1 file changed, 1 insertion(+)
@@ -128,8 +128,8 @@ Please enter the git remote for your shared store []: git@nas.domain.fr:password
 Use ``insert`` subcommand to create password entries
 ```bash
 $ gopass insert work/test
-Enter password for work/test: 
-Retype password for work/test: 
+Enter password for work/test:
+Retype password for work/test:
 ```
 Querying it will prompt for you gpg passphrase.
 ```bash
@@ -152,7 +152,7 @@ $ gopass totp work/vpn
 
 ### Synchronization with Android
 
-On Android, you need [OpenKeychain](https://www.openkeychain.org/), to add your previously exported gpg secret key.  
+On Android, you need [OpenKeychain](https://www.openkeychain.org/), to add your previously exported gpg secret key.
 To be able to use *TOTP* and your password store, use [Password Store](https://github.com/android-password-store/Android-Password-Store) with your ssh key to reach you git *passwords* repository. No need to use *FreeOTP* anymore.
 *Password Store* does not pull/push commit automatically, don't forget to sync from the app !
 
@@ -168,7 +168,7 @@ $ gpg2 --import-ownertrust < trustdb-backup.txt
 Then gopass wrap your *passwords* reporistory git clone
 
 ```bash
-gopass clone git@nas.domain.fr:passwords.git
+$ gopass clone git@nas.domain.fr:passwords.git
 ```
 You project with be stored in ``.local/share/gopass/stores/root/``.
 

@@ -18,11 +18,6 @@
 - [ ] cool custom title text font
 - [ ] remove grey line at top
 
-# Posts
-
-- [ ] fix code quotes
-- [x] post subtitles as links
-
 # Features
 
 - [ ] https://github.com/jekyll/jekyll-seo-tag#usage
