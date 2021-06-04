@@ -48,6 +48,7 @@ reddit_url: https://www.reddit.com/user/eoli3n
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 kramdown:
   input: GFM
