@@ -306,7 +306,7 @@ ul.tree > li:after {
   font-size: $small-font-size;
   color: $grey-color;
   font-style: italic;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   float: right;
   text-align: right;
 }
@@ -318,7 +318,7 @@ ul.tree > li:after {
 }
 
 .post-date {
-  width: 100px;
+  width: 105px;
   display: inline-block;
 }
 
