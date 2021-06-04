@@ -23,11 +23,11 @@ After searching for the [ZFS article](https://wiki.archlinux.org/index.php/ZFS) 
 >
 >As a result:
 >
->    ZFSonLinux project must keep up with Linux kernel versions. After making stable ZFSonLinux release - Arch ZFS maintainers release them.  
->    This situation sometimes locks down the normal rolling update process by unsatisfied dependencies because the new kernel version, proposed by update, is unsupported by ZFSonLinux.  
+>    ZFSonLinux project must keep up with Linux kernel versions. After making stable ZFSonLinux release - Arch ZFS maintainers release them.
+>    This situation sometimes locks down the normal rolling update process by unsatisfied dependencies because the new kernel version, proposed by update, is unsupported by ZFSonLinux.
 
 What a nice start, ZFS needs its kernel module, but you need to install it manually from ``Archzfs`` [unofficial user repository](https://wiki.archlinux.org/index.php/unofficial_user_repositories#archzfs).
-But there is a huge problem: as Arch Linux iso is released at first of each month embeeding the current kernel, at the first kernel upgrade on community list, zfs modules of Archzfs are recompiled for the latest kernel.  
+But there is a huge problem: as Arch Linux iso is released at first of each month embeeding the current kernel, at the first kernel upgrade on community list, zfs modules of Archzfs are recompiled for the latest kernel.
 Then the kernel version that embeed your latest archiso image dismatch your zfs module version.
 
 The workaround is to [build your own archiso](https://wiki.archlinux.org/index.php/Install_Arch_Linux_on_ZFS#Embedding_archzfs_into_archiso) that includes that module.
@@ -35,8 +35,8 @@ What a deception, I just found a way to use [netboot Arch Linux]({{ site.baseurl
 
 ### There's always a way, if you're a committer
 
-Archzfs has a ``zfs-dkms`` package which compile zfs kernel module.  
-In order to build the module, DKMS needs the ``linux-headers`` package for the running kernel.  
+Archzfs has a ``zfs-dkms`` package which compile zfs kernel module.
+In order to build the module, DKMS needs the ``linux-headers`` package for the running kernel.
 Fortunately, [Arch Linux Archive](https://wiki.archlinux.org/index.php/Arch_Linux_Archive#How_to_restore_all_packages_to_a_specific_date) lets you set the mirrorlist to a specific date.
 
 I [wrote a script](https://github.com/eoli3n/archiso-zfs) which automates the whole building process and opened an issue to the maintainer of Archzfs.
@@ -50,12 +50,12 @@ curl -s https://eoli3n.github.io/archzfs/init | bash
 
 Wait and see.
 
-## Less than 10 seconds
+### Less than 10 seconds
 
 
 *06 May 2020*
 
-After some work was done with [ArchZFS maintainer](https://github.com/archzfs/archzfs/issues/337), i changed the script to get precompiled package from ``ArchZFS archives`` repository.  
+After some work was done with [ArchZFS maintainer](https://github.com/archzfs/archzfs/issues/337), i changed the script to get precompiled package from ``ArchZFS archives`` repository.
 The ZFS module is now easily accessible for Archiso. \o/
 
 ![zfs]({{site.baseurl}}/assets/images/archlinux/zfs.png)
