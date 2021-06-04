@@ -317,13 +317,6 @@ ul.tree > li:after {
   font-style: italic;
 }
 
-@media screen and (max-width: 600px) {
-  .post-media-size {
-    visibility: hidden;
-    display: none;
-  }
-}
-
 .post-date {
   width: 105px;
   display: inline-block;
@@ -333,6 +326,15 @@ ul.tree > li:after {
   width: 100px;
   display: inline-block;
 }
+
+/* hide if little screen*/
+@media screen and (max-width: 600px) {
+  .post-size {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 
 .post-time-icon {
   width: 30px;
