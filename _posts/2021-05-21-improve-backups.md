@@ -109,4 +109,4 @@ You should prefer to add a second repository in the yaml config, borgmatic will 
 
 I chose to sync with Syncthing because one of my repository is accessible only from a OTP secured vpn. I can't automate VPN connection on all clients that I backup.
 
-The replication is done in two ways, from ``repository 1`` to ``repository 2`` and vice-versa.
+The replication is done in two ways, from ``server 1`` to ``server 2`` and vice-versa.
