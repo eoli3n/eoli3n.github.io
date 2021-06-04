@@ -1,3 +1,0 @@
-[submodule "archzfs"]
-	path = archzfs
-	url = git@github.com:eoli3n/archiso-zfs.git
