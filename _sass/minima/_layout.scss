@@ -302,7 +302,7 @@ ul.tree > li:after {
   margin-top: 5px;
 }
 
-.post-meta {
+.post-list-meta {
   font-size: $small-font-size;
   color: $grey-color;
   font-style: italic;
@@ -310,6 +310,13 @@ ul.tree > li:after {
   float: right;
   text-align: right;
 }
+
+.post-meta {
+  font-size: $small-font-size;
+  color: $grey-color;
+  font-style: italic;
+}
+
 .post-date {
   width: 100px;
   display: inline-block;
