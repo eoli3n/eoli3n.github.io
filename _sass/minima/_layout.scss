@@ -269,7 +269,7 @@ ul.tree > li:before {
 	border-left: 3px solid $grey-color-light;
 	display: block;
 	position: absolute;
-	top: calc(-0.5em - 2px);
+	top: calc(-0.5em - 3px);
 	height: 100%;
 	left: -1em;
 }
@@ -278,10 +278,10 @@ ul.tree > li:first-child:before {
 	height: 100%;
 }
 ul.tree > li:last-child:before {
-	height: calc(1.3em + 2px);
+	height: calc(1.3em + 3px);
 }
 ul.tree > li:first-child:last-child:before {
-	height: calc(0.8em + 2px);
+	height: calc(0.8em + 3px);
 }
 ul.tree > li:after {
 	content: ' ';
