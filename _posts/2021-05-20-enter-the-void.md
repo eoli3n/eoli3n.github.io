@@ -70,11 +70,11 @@ The first step to know if switching could be a good idea was to check if my appl
 On Void Linux, there is no AUR-like, all packages are validated, this is great as my AUR list on Arch Linux was growing more and more.
 99% of my needs was already packaged, and I used the missing one to learn how to package as [xbps packages](https://github.com/void-linux/void-packages). I sweated a bit trying to package ``x2go`` client and server packages, but the community helped me a lot on IRC and Github, to finish my first [Void Linux Pull Requests](https://github.com/void-linux/void-packages/pulls/eoli3n).
 
-For packages with licensing problem, I use flatpak packages.
+For proprietary softwares, I use flatpak packages.
 
 ### Finish me...
 
-On Arch Linux, defaultly, you cannot upgrade your kernel and load a new kernel module without rebooting, the ``modules`` directory is managed by the package, so the directory is cleaned when upgrading. The workaround exists as an AUR package, [kernel modules hook](https://aur.archlinux.org/packages/kernel-modules-hook/). Void Linux is again smoother.
+On Arch Linux, by default, you cannot upgrade your kernel and load a new kernel module without rebooting, the ``modules`` directory is managed by the package, so the directory is cleaned when upgrading. The workaround exists as an AUR package, [kernel modules hook](https://aur.archlinux.org/packages/kernel-modules-hook/). Void Linux is again smoother.
 
 ```bash
 $ sudo rmmod kvm_intel
