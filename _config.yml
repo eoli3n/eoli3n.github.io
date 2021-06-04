@@ -22,9 +22,8 @@ title: eoli3n
 subtitle: … Blog …
 logo: avatar.png
 email: jonathan.kirszling@runbox.com
-description: >- # this means to ignore newlines until "baseurl:"
-  " A blog that talks about Linux, Pizza, DevOps and more.
-  Reach me on irc.libera.chat #archlinux-fr or #voidlinux "
+description: "A blog that talks about Linux, Pizza, DevOps and more."
+message: "Reach me on irc.libera.chat #archlinux-fr or #voidlinux."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
