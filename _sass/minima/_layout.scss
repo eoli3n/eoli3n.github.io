@@ -317,6 +317,13 @@ ul.tree > li:after {
   font-style: italic;
 }
 
+@media screen and (max-width: 600px) {
+  .post-media-size {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 .post-date {
   width: 105px;
   display: inline-block;
