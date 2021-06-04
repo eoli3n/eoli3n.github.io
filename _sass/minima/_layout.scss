@@ -247,12 +247,50 @@
 
 .post-grid {
   display: grid;
-  grid-template-columns: 50px 42px auto;
+  grid-template-columns: 42px auto;
 }
 
 .post-tree {
-  color: $grey-color-light;
   @include relative-font-size(2);
+}
+
+ul.tree {
+	margin: 0; /* reset*/
+	padding: 0; /* reset */
+}
+ul.tree > li {
+	margin-left: 1.3em;
+	padding-left: 2em;
+	list-style: none;
+	position: relative;
+}
+ul.tree > li:before {
+	content: ' ';
+	border-left: 3px solid $grey-color-light;
+	display: block;
+	position: absolute;
+	top: calc(-0.5em - 2px);
+	height: 100%;
+	left: -1em;
+}
+ul.tree > li:first-child:before {
+	top: 0;
+	height: 100%;
+}
+ul.tree > li:last-child:before {
+	height: calc(1.3em + 2px);
+}
+ul.tree > li:first-child:last-child:before {
+	height: calc(0.5em + 2px);
+}
+ul.tree > li:after {
+	content: ' ';
+	border-top: 3px solid $grey-color-light;
+	display: block;
+	position: absolute;
+	top: 0.8em;
+	width: 3em;
+	left: -1em;
 }
 
 .post-icon {

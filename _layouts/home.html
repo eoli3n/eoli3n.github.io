@@ -12,7 +12,7 @@ list_title: "_posts"
   <h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree -D --du *</h3>
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
+    <ul class="post-list tree">
       {%- for post in site.posts -%}
         {% assign words = post.content | strip_html | strip_newlines | remove: " " | size %}
         {% assign time = post.content | strip_html | strip_newlines | remove: " " | size
@@ -20,11 +20,6 @@ list_title: "_posts"
 
       <li class="post-grid">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {% if forloop.last == false %}
-        <span class="post-tree">├──</span>
-        {% else %}
-        <span class="post-tree">└──</span>
-        {% endif %}
         {% if post.icon %}
         <i class="fa fas fab {{ post.icon }} post-icon"></i>
         {% else %}
