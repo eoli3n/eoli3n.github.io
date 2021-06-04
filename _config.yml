@@ -68,6 +68,7 @@ exclude:
   - vendor
   - INSTALL.md
   - TODO.md
+  - archzfs
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
