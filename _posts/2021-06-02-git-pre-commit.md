@@ -22,10 +22,10 @@ $ git init
 Initialized empty Git repository in /home/user/dev/git-commit-test/.git/
 ```
 
-Choose hooks projects you want to use in [pre-commit hooks list](https://pre-commit.com/hooks.html).  
+Choose hooks projects you want to use in [pre-commit hooks list](https://pre-commit.com/hooks.html).
 For this exemple, we will use yaml and shell checkers.
-- https://github.com/pre-commit/pre-commit-hooks : check-yaml and trailing-whitespace
-- https://github.com/shellcheck-py/shellcheck-py : shellcheck
+- [https://github.com/pre-commit/pre-commit-hooks]() : check-yaml and trailing-whitespace
+- [https://github.com/shellcheck-py/shellcheck-py]() : shellcheck
 
 Pre-commit configuration file is ``.pre-commit-config.yaml``, create it at the project root.
 ```yaml
