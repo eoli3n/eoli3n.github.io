@@ -51,7 +51,7 @@ Install [sysrc](https://docs.ansible.com/ansible/latest/collections/community/ge
 $ ansible-galaxy collection install community.general
 ```
 
-##### Make your project dynamic
+##### Make your project configurable
 Add a configuration file as ``group_vars/all.yml``.
 ```yaml
 # Define the static IP of your jails host
@@ -69,12 +69,13 @@ $ ansible host-test -m raw -a "pkg install -y python37"
 
 Configure your default network interface
 ```bash
-$ ansible host-test -m sysrc -a 'name="ifconfig_{{ ansible_default_ipv4.device }}" value="inet {{ inet }} netmask {{ netmask }}"'
+$ ansible host-test -m sysrc -a 'name="ifconfig_{{ ansible_default_ipv4.interface }}" value="inet {{ inet }} netmask {{ netmask }}"'
 $ ansible host-test -m sysrc -a 'name="defaultrouter" value="{{ gateway }}"'
 ```
-Restart ``netif`` service to read you network configuration for ``rc.conf``.
+Restart ``netif`` and ``routing`` service to read you network configuration for ``rc.conf``.
 ```bash
 $ ansible host-test -m raw -a "service netif restart"
+$ ansible host-test -m raw -a "service routing restart"
 ```
 
 Adapt your inventory with the new static IP and you're ready.
@@ -100,18 +101,20 @@ jails:
 
 ##### Configure IP aliases
 In ``roles/jails/tasks/main.yml``.
-We use ``index.loop`` to increment ``inet`` IP with ``ipmath`` which needs ``netaddr`` python package installed on the controller. ``index.loop1`` starts index at ``1`` instead of ``0``.
+We use [extended loop vars](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#extended-loop-variables) to increment ``inet`` IP with ``ipmath`` which needs ``netaddr`` python package installed on the controller. ``ansible_loop.index0`` starts index at ``0`` instead of ``1``.
 To be sure that the list will always be processed in the same order, it needs to be explicitly sorted.
 
 ```yaml
 ---
 - name: create IP aliases for jails
   vars:
-    alias_ip: "{{ inet | ipmath({{ loop.index1 }}) }}"
+    alias_ip: "{{ inet | ipmath(ansible_loop.index) }}"
   community.general.sysrc:
-    name: 'ifconfig_{{ ansible_default_ipv4.device }}_alias{{ loop.index }}'
-    value: 'inet {{ alias_ip }} netmask {{ netmask }}'
+    name: "ifconfig_{{ ansible_default_ipv4.interface }}_alias{{ ansible_loop.index0 }}"
+    value: "inet {{ alias_ip }} netmask {{ netmask }}"
   loop: "{{ jails | sort | flatten(levels=1) }}"
+  loop_control:
+    extended: yes
   notify: restart netif
 ```
 
@@ -129,16 +132,32 @@ Run your roles, and test.
 ```bash
 $ ansible-playbook playbook.yml
 
+PLAY [host-test] ***************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************
+ok: [host-test]
+
+TASK [network : create IP aliases for jails] ***********************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+RUNNING HANDLER [network : restart netif] **************************************************************************
+changed: [host-test]
+
+PLAY RECAP *********************************************************************************************************
+host-test                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 $ ansible host-test -m shell -a "ifconfig vtnet0 | grep inet"
+host-test | CHANGED | rc=0 >>
 	inet 192.168.0.100 netmask 0xffffff00 broadcast 192.168.0.255
-	inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
 	inet 192.168.0.101 netmask 0xffffff00 broadcast 192.168.0.255
+	inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
 ```
 
 ##### Provision jails environments
 
 ```yaml
-- name: create top zfs jails dataset
+- name: create zfs jails dataset
   community.general.zfs:
     name: zroot/jails
     state: present
@@ -167,9 +186,8 @@ I install ``{{ item }}`` just for the demonstration. Maybe that task should be n
     content: |
       DISTRIBUTIONS="base.txz"
       export nonInteractive="YES"
-
       #!/bin/sh
-      pkg install {{ item }} -y
+      pkg install "{{ item }}" -y
   loop: "{{ jails | sort | flatten(levels=1) }}"
 ```
 
@@ -188,27 +206,33 @@ And then triggers the provisionning with the ``shell`` module and ``args: create
 Last thing we need is to declare jails in ``/etc/jail.conf``.
 
 ```yaml
-- name: declare jails
-  vars:
-    alias_ip: "{{ inet | ipmath({{ loop.index1 }}) }}"
-  copy:
-    dest: /etc/jail.conf
-    content: |
-      # Global settings
+- name: set default jails config
+  blockinfile:
+    path: /etc/jail.conf
+    create: yes
+    marker: "# {mark} ANSIBLE MANAGED: default"
+    block: |
       exec.start = "/bin/sh /etc/rc";
       exec.stop = "/bin/sh /etc/rc.shutdown";
       exec.clean;
       mount.devfs;
 
-      # Jails definition
-      {% for jail in jails %}
-      {{ jail }} {
-          host.hostname = "{{ jail }}.domain.local";
-          path = "/usr/local/jails/{{ jail }}";
-          exec.consolelog = "/var/log/jail_{{ jail }}.log";
-          ip4.add = {{ alias_ip }};
+- name: declare jails
+  vars:
+    alias_ip: "{{ inet | ipmath(ansible_loop.index) }}"
+  blockinfile:
+    path: /etc/jail.conf
+    marker: "# {mark} ANSIBLE MANAGED: {{ item }}"
+    block: |
+      {{ item }} {
+          host.hostname = "{{ item }}.domain.local";
+          path = "/usr/local/jails/{{ item }}";
+          exec.consolelog = "/var/log/jail_{{ item }}.log";
+          ip4.addr = {{ alias_ip }};
       }
   loop: "{{ jails | sort | flatten(levels=1) }}"
+  loop_control:
+    extended: yes
 ```
 Let's tell ``rc.conf`` to run jails at startup.
 ```yaml
@@ -217,29 +241,67 @@ Let's tell ``rc.conf`` to run jails at startup.
     name: "jail_enable"
     value: "YES"
 ```
+Finally, add the tasks to start the jails now. We can't use ``service`` module here, because ``args`` argument don't pass its value to ``service jail $action``. The ``service`` has a rc of ``0`` if the service is already running, so it's not a problem to trigger the start at each playbook run.
+```yaml
+- name: start jails
+  shell: service jail start "{{ item }}"
+  loop: "{{ jails | sort | flatten(levels=1) }}"
+```
 
 ##### Run and test
 
 Run the playbook to provision jails
 ```bash
 $ ansible-playbook playbook.yml
-[ paste result ]
+[...]
+
+TASK [jails : create zfs jails dataset] ****************************************************************************
+changed: [host-test]
+
+TASK [jails : create zfs per jail dataset] *************************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+TASK [jails : template bsdinstall script] **************************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+TASK [jails : bsdinstall jails] ************************************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+TASK [jails : set default jails config] ****************************************************************************
+changed: [host-test]
+
+TASK [jails : declare jails] ***************************************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+TASK [jails : start jails at startup] ******************************************************************************
+changed: [host-test]
+
+TASK [jails : start jails] *****************************************************************************************
+changed: [host-test] => (item=bind)
+changed: [host-test] => (item=nginx)
+
+PLAY RECAP *********************************************************************************************************
+host-test                  : ok=4    changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
+List your running jails and check their IP.
+```bash
+$ ansible host-test -m shell -a "jls"
+host-test | CHANGED | rc=0 >>
+   JID  IP Address      Hostname                      Path
+     1  192.168.0.101   bind.domain.local             /usr/local/jails/bind
+     2  192.168.0.102   nginx.domain.local            /usr/local/jails/nginx
+
+$ ansible host-test -m shell -a "jexec bind ifconfig | grep inet"
+host-test | CHANGED | rc=0 >>
+	inet 192.168.0.101 netmask 0xffffff00 broadcast 192.168.0.255
+
+$ ansible host-test -m shell -a "jexec nginx ifconfig | grep inet"
+host-test | CHANGED | rc=0 >>
+	inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
 ```
 
-[ TEST ]
-
 In the next part, we will see how to provision ``vnet`` jails.
-
-### VNET Jail
-
-``vnet`` gives to jails their own network stacks. Each Jail will have a specific network interface with [epair](https://www.freebsd.org/cgi/man.cgi?query=epair&sektion=4&manpath=freebsd-release-ports) connected to a [bridge](https://www.freebsd.org/cgi/man.cgi?query=bridge&sektion=4&manpath=freebsd-release-ports). Let's quote something I read in a forum which resume well how it works:
-
-> Analogous to a physical network, a bridge(4) interface works like a software switch, an epair(4) works like a virtual network cable and a jail(8) acts as a virtual computer.
-> The network configurations then work almost identically to physical devices.
-
-The bridge create will be automated with FreeBSD ``jib`` script.
-Let's adapt our playbook to create that kind of jail networking.
-
-
-
-### Bastille

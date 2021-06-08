@@ -22,16 +22,27 @@ There is only few steps, but before all, reset our first configurations.
 
 Remove the task which creates aliases, and remove them from your system.
 ```bash
-$ ansible host-test -m lineinfile -a 'path=/etc/rc.conf regexp="{{ ansible_default_ipv4.device }}_alias.*" state=absent'
+$ ansible host-test -m lineinfile -a 'path=/etc/rc.conf regexp="{{ ansible_default_ipv4.interface }}_alias.*" state=absent'
 $ ansible host-test -m raw -a "service netif restart"
 ```
 
-### Declare vnet and jib in jail.conf
+### Install jib script
+Copy ``jib`` script in your path with execution perm.
+```yaml
+- name: install jib script
+  copy:
+    src: /usr/share/examples/jails/jib
+    dest: /usr/local/bin/
+    remote_src: yes
+    mode: 0755
+```
+
+### Configure network stack in jails
 Let's change our task to declare jails as follow.
 ```yaml
 - name: declare jails
   vars:
-    alias_ip: "{{ inet | ipmath({{ loop.index1 }}) }}"
+    alias_ip: "{{ inet | ipmath({{ loop.index }}) }}"
   copy:
     dest: /etc/jail.conf
     content: |
@@ -48,24 +59,28 @@ Let's change our task to declare jails as follow.
           path = "/usr/local/jails/{{ jail }}";
           vnet;
           vnet.interface = "e0b_{{ jail }}";
-          exec.prestart += "jib addm {{ jail }} {{ ansible_default_ipv4.device }}";
+          exec.prestart += "jib addm {{ jail }} {{ ansible_default_ipv4.interface }}";
           exec.poststop += "jib destroy {{ jail }}";
           exec.consolelog = "/var/log/jail_{{ jail }}.log";
       }
   loop: "{{ jails | sort | flatten(levels=1) }}"
+  loop_control:  
+    extended: yes
 ```
 When the jail will start, ``jib`` will create a bridge if non existent, create epairs and automatically attach them to the bridge. Stopping the jail will destroy interfaces but not the bridge.
 
-### Configure jails rc.conf
+### Configure interfaces in jails
 Add that new task to configure network in jails ``rc.conf``.
 ```yaml
 - name: configure jails interfaces
   vars:
-    jail_ip: "{{ inet | ipmath({{ loop.index1 }}) }}"
+    jail_ip: "{{ inet | ipmath({{ loop.index }}) }}"
   copy:
     dest: "/usr/local/jails/{{ item }}/etc/rc.conf"
     content: |
       ifconfig_e0b_{{ jail }}="inet {{ jail_ip }} netmask 255.255.255.0"
       defaultrouter="{{ gateway }}"
   loop: "{{ jails | sort | flatten(levels=1) }}"
+  loop_control:
+    extended: yes
 ```
