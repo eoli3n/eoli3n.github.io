@@ -20,10 +20,10 @@ Using Bastille let you provision a Jail easily, but it does not loop Jails creat
 
 Following Bastille documentation, we will configure the server as if it was in DMZ, using [pf](https://www.openbsd.org/faq/pf/) as firewall to expose containers ports.
 
-Remove all roles in the Ansible project.
+Remove all roles in the Ansible project. As ansible code is pretty clean to read, I will not comment a lot, and this post will be composed of a lot of code.
 
 {% raw %}
-### bastille0 bridge
+### Network role: bastille0 bridge
 
 We need to match [network requirements](https://github.com/BastilleBSD/bastille#network-requirements).
 Create a *network* role.
@@ -51,7 +51,7 @@ Create a *network* role.
   shell: service netif cloneup
 ```
 
-### pf firewall
+### Firewall role: pf firewall
 
 Create a *firewall* role.
 ``roles/firefall/tasks/main.yml``
@@ -129,7 +129,8 @@ We use ``async`` on ``pf`` restart to [keep ansible connection](https://docs.ans
   shell: pfctl -nf /etc/pf.conf && pfctl -f /etc/pf.conf
 ```
 
-### Install Bastille
+### Jails role
+##### Install Bastille
 
 Create a role ``jails``.
 ``roles/jails/tasks/main.yml``
@@ -161,12 +162,16 @@ Create a role ``jails``.
   loop:
     - { name: "bastille_zfs_enable", value: "YES" }
     - { name: "bastille_zfs_zpool", value: "zroot" }
+```
 
+Bootstrap the latest realease.
+```yaml
 - name: bootstrap 13.0 release
   shell: bastille bootstrap 13.0-RELEASE || true
 ```
 
-### Prepare the web template
+### Web role
+##### Prepare the web template
 
 Create a role *web*.
 
@@ -278,9 +283,9 @@ THIS IS A TEST.
 </html>
 ```
 
-From a client.
+From a client in the main subnet.
 ```bash
-$ curl http://10.0.0.1
+$ curl http://192.168.0.100
 <html>
 THIS IS A TEST.
 </html>
