@@ -197,11 +197,12 @@ Create a role *web*.
     src: nginx.conf
     dest: /usr/local/bastille/templates/services/web/usr/local/etc/nginx/
 
-- name: Create data/web dir
-  file:
-    path: /data/web
-    state: directory
-    recurse: yes
+- name: Create data/web dataset
+  community.general.zfs:
+    name: zroot/web
+    state: present
+    extra_zfs_properties:
+      mountpoint: /data/web
 
 - name: Copy index.html
   copy:
