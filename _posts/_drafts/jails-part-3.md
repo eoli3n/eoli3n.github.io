@@ -198,11 +198,8 @@ Create a role *nginx*.
 
 - name: Copy template config files
   copy:
-    src: '{{ item }}'
+    src: Bastillefile
     dest: /usr/local/bastille/templates/services/nginx/
-  loop:
-    - Bastillefile
-    - OVERLAY
 
 - name: Create nginx config path
   file:
@@ -232,16 +229,12 @@ Create a role *nginx*.
 ```
 PKG nginx
 SYSRC nginx_enable=YES
+CMD mkdir -p /data/www
+CP usr .
 CMD nginx -t
 SERVICE nginx restart
-CMD mkdir -p /data/www
 FSTAB /data/www data/www nullfs ro 0 0
 RDR tcp 80 80
-```
-
-``roles/nginx/files/OVERLAY``
-```
-usr
 ```
 
 ``roles/nginx/files/nginx.conf``
@@ -284,10 +277,6 @@ THIS IS A TEST.
 ```yaml
 - name: template nginx jail with nginx template
   shell: bastille template nginx services/nginx
-
-- name: restart nginx jail to read OVERLAY
-  # https://github.com/BastilleBSD/bastille/issues/398
-  shell: bastille restart nginx
 ```
 
 ### Test our jails
