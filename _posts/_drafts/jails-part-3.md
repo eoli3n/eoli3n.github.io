@@ -22,6 +22,7 @@ Following Bastille documentation, we will configure the server as if it was in D
 
 Remove all roles in the Ansible project.
 
+{% raw %}
 ### bastille0 bridge
 
 We need to match [network requirements](https://github.com/BastilleBSD/bastille#network-requirements).
@@ -165,6 +166,123 @@ Create a role ``jails``.
   shell: bastille bootstrap 13.0-RELEASE || true
 ```
 
-{% raw %}
+### Prepare the web template
+
+Create a role *web*.
+
+```yaml
+---
+- name: Create services template dir
+  file:
+    path: /usr/local/bastille/templates/services/web
+    state: directory
+    recurse: yes
+
+- name: Copy template config files
+  copy:
+    src: '{{ item }}'
+    dest: /usr/local/bastille/templates/services/web/
+  loop:
+    - Bastillefile
+    - OVERLAY
+
+- name: Create nginx config path
+  file:
+    path: /usr/local/bastille/templates/services/web/usr/local/etc/nginx/
+    state: directory
+    recurse: yes
+
+- name: Copy nginx config file
+  copy:
+    src: nginx.conf
+    dest: /usr/local/bastille/templates/services/web/usr/local/etc/nginx/
+
+- name: Create data/web dir
+  file:
+    path: /data/web
+    state: directory
+    recurse: yes
+
+- name: Copy index.html
+  copy:
+    src: index.html
+    dest: /data/web/
+```
+
+``roles/web/files/Bastillefile``
+```
+PKG nginx
+SYSRC nginx_enable=YES
+CMD nginx -t
+SERVICE nginx restart
+CMD mkdir -p /data/www
+FSTAB /data/www data/www nullfs ro 0 0
+RDR tcp 80 80
+```
+
+``roles/web/files/OVERLAY``
+```
+usr
+```
+
+``roles/web/files/nginx.conf``
+```
+http {
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location / {
+            root   /data/www;
+            index  index.html index.htm;
+        }
+    }
+}
+```
+
+``roles/web/files/index.html``
+```html
+<html>
+THIS IS A TEST.
+</html>
+```
+
+### Create a web jail
+
+``roles/web/tasks/main.yml
+```yaml
+- name: create web jail
+  shell: bastille create web 13.0-RELEASE 10.0.0.1
+  args:
+    creates: /usr/local/bastille/jails/web
+
+- name: start web jail
+  shell: bastille start web || true
+```
+
+### Template the web jail
+
+```yaml
+- name: template web jail with web template
+  shell: bastille template web services/web
+```
+
+### Test our jails
+
+From the server.
+```bash
+$ curl http://10.0.0.1
+<html>
+THIS IS A TEST.
+</html>
+```
+
+From a client.
+```bash
+$ curl http://10.0.0.1
+<html>
+THIS IS A TEST.
+</html>
+```
 
 {% endraw %}
