@@ -284,6 +284,10 @@ THIS IS A TEST.
 ```yaml
 - name: template nginx jail with nginx template
   shell: bastille template nginx services/nginx
+
+- name: restart nginx jail to read OVERLAY
+  # https://github.com/BastilleBSD/bastille/issues/398
+  shell: bastille restart nginx
 ```
 
 ### Test our jails
