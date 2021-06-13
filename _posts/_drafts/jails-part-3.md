@@ -164,58 +164,71 @@ Create a role ``jails``.
     - { name: "bastille_zfs_zpool", value: "zroot" }
 ```
 
-Bootstrap the latest realease.
+Bootstrap the latest realease and configure it to use latest pkgs.
+Add a var to ``group_vars/all.yml``
+```yaml
+release: 13.0-RELEASE
+```
 ```yaml
 - name: bootstrap 13.0 release
-  shell: bastille bootstrap 13.0-RELEASE || true
+  shell: bastille bootstrap '{{ release }}' || true
+
+- name: configure bootstrap to use latest pkgs
+  replace:
+    path: "/usr/local/bastille/releases/{{ release }}/etc/pkg/FreeBSD.conf"
+    regexp: '^(.*)quarterly(.*)$'
+    replace: '\1latest\2'
+
+- name: update bootstrap
+  shell: "bastille update {{ release }}"
 ```
 
 ### Web role
-##### Prepare the web template
+##### Prepare the nginx template
 
-Create a role *web*.
+Create a role *nginx*.
 
 ```yaml
 ---
 - name: Create services template dir
   file:
-    path: /usr/local/bastille/templates/services/web
+    path: /usr/local/bastille/templates/services/nginx
     state: directory
     recurse: yes
 
 - name: Copy template config files
   copy:
     src: '{{ item }}'
-    dest: /usr/local/bastille/templates/services/web/
+    dest: /usr/local/bastille/templates/services/nginx/
   loop:
     - Bastillefile
     - OVERLAY
 
 - name: Create nginx config path
   file:
-    path: /usr/local/bastille/templates/services/web/usr/local/etc/nginx/
+    path: /usr/local/bastille/templates/services/nginx/usr/local/etc/nginx/
     state: directory
     recurse: yes
 
 - name: Copy nginx config file
   copy:
     src: nginx.conf
-    dest: /usr/local/bastille/templates/services/web/usr/local/etc/nginx/
+    dest: /usr/local/bastille/templates/services/nginx/usr/local/etc/nginx/
 
-- name: Create data/web dataset
+- name: Create data/www dataset
   community.general.zfs:
-    name: zroot/web
+    name: zroot/www
     state: present
     extra_zfs_properties:
-      mountpoint: /data/web
+      mountpoint: /data/www
 
 - name: Copy index.html
   copy:
     src: index.html
-    dest: /data/web/
+    dest: /data/www/
 ```
 
-``roles/web/files/Bastillefile``
+``roles/nginx/files/Bastillefile``
 ```
 PKG nginx
 SYSRC nginx_enable=YES
@@ -226,12 +239,12 @@ FSTAB /data/www data/www nullfs ro 0 0
 RDR tcp 80 80
 ```
 
-``roles/web/files/OVERLAY``
+``roles/nginx/files/OVERLAY``
 ```
 usr
 ```
 
-``roles/web/files/nginx.conf``
+``roles/nginx/files/nginx.conf``
 ```
 http {
     server {
@@ -246,31 +259,31 @@ http {
 }
 ```
 
-``roles/web/files/index.html``
+``roles/nginx/files/index.html``
 ```html
 <html>
 THIS IS A TEST.
 </html>
 ```
 
-### Create a web jail
+### Create a nginx jail
 
-``roles/web/tasks/main.yml
+``roles/nginx/tasks/main.yml
 ```yaml
-- name: create web jail
-  shell: bastille create web 13.0-RELEASE 10.0.0.1
+- name: create nginx jail
+  shell: "bastille create nginx {{ release }} 10.0.0.1"
   args:
-    creates: /usr/local/bastille/jails/web
+    creates: /usr/local/bastille/jails/nginx
 
-- name: start web jail
-  shell: bastille start web || true
+- name: start nginx jail
+  shell: bastille start nginx || true
 ```
 
-### Template the web jail
+### Template the nginx jail
 
 ```yaml
-- name: template web jail with web template
-  shell: bastille template web services/web
+- name: template nginx jail with nginx template
+  shell: bastille template nginx services/nginx
 ```
 
 ### Test our jails
