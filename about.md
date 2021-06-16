@@ -14,4 +14,6 @@ Keep It Simple, Stupid ! to be able to maintain it with minimum effort and maxim
 If I can do something which will benefit others, I like to help, to teach, to share.
 
 Climbing is cool, but not as much as making bread, pizza or cheese.
-This blog runs with [Jekyll](https://jekyllrb.com/), I wrote my theme from [Minima](https://github.com/jekyll/minima) template.
+
+This blog runs with [Jekyll](https://jekyllrb.com/), powered by [FreeBSD](https://www.freebsd.org/).
+I wrote my theme from [Minima](https://github.com/jekyll/minima) template.
