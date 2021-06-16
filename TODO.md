@@ -28,10 +28,9 @@
 
 # Selfhost
 
-- [ ] automatic jekyll build: https://jekyllrb.com/docs/deployment/automated/
-- [ ] nginx: https://fuzzyblog.io/blog/jekyll/2017/10/06/self-hosting-a-jekyll-site.html
-- [ ] gitolite hooks: https://gitolite.com/gitolite/cookbook#hooks
-- [ ] automatic let's encrypt renew: https://github.com/diafygi/acme-tiny
+- [x] automatic jekyll build: https://jekyllrb.com/docs/deployment/automated/
+- [x] automatic let's encrypt renew: https://github.com/diafygi/acme-tiny
+- [ ]  migration in Gemfile from github-pages to jekyll
 
 # Fix
 - [.] css warnings
