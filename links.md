@@ -28,3 +28,4 @@ order: 5
 17. [The Freenode resignation FAQ](https://gist.github.com/joepie91/df80d8d36cd9d1bde46ba018af497409/)
 18. [Oh my git! An open source game about learning Git](https://ohmygit.org/)
 19. [Programming Motherfucker](http://programming-motherfucker.com/)
+20. [fuckitpy](https://github.com/ajalt/fuckitpy) and [fuckitjs](https://github.com/mattdiamond/fuckitjs)
