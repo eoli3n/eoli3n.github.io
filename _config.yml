@@ -22,7 +22,7 @@ title: eoli3n
 subtitle: … Blog …
 logo: avatar.png
 email: jonathan.kirszling@runbox.com
-description: "A blog that talks about Linux, Pizza, DevOps and more."
+description: "A blog that talks about Linux, BSD, Pizza, DevOps and more."
 message: "Reach me on irc.libera.chat #archlinux-fr or #voidlinux."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://eoli3n.github.io" # the base hostname & protocol for your site, e.g. http://example.com
