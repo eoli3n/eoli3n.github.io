@@ -29,4 +29,5 @@ order: 5
 18. [Oh my git! An open source game about learning Git](https://ohmygit.org/)
 19. [Programming Motherfucker](http://programming-motherfucker.com/)
 20. [fuckitpy](https://github.com/ajalt/fuckitpy) and [fuckitjs](https://github.com/mattdiamond/fuckitjs)
-21. [email + git = <3](https://git-send-email.io/)
+21. [The Birth & Death of JavaScript](https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript)
+22. [email + git = <3](https://git-send-email.io/)
