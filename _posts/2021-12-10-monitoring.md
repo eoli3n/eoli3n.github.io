@@ -52,7 +52,7 @@ Netdata seems to be clever, it check a lots of things, but I would like a more d
 
 [Monit](https://mmonit.com/monit/) is a small utility for managing and monitoring processes, files, directories, filesystems, programs, scripts, hosts, system metrics... It conducts automatic maintenance and repair if you ask it to. It also embeed a clean WebUI to keep an eye on all monitored services.
 
-Simply install ``monit`` through your package manager and start writing you ``monitrc`` file.
+Simply install ``monit`` through your package manager and start writing your ``monitrc`` file.
 Here the jinja template I wrote for my server, explained in comments. I don't even need to over-comment it, because the [DSL syntax](https://www.mmonit.com/monit/documentation/monit.html#THE-MONIT-CONTROL-FILE) is human readable.
 
 ```
