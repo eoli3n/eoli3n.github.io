@@ -14,6 +14,7 @@ Those are great solutions when managing large node/service farms.
 ### Turnkey solution : Netdata
 
 [Netdata](https://www.netdata.cloud/) provides a nice dashboard with realtime metrics, and it supervises system health. It can raise a lot of alerts by default and mail it.
+
 ![netdata]({{site.baseurl}}/assets/images/server/netdata.png)
 
 I had to configure [DragonFly Mail Agent](https://github.com/corecode/dma) which is a small Mail Transfert Agent with SMTP authentication over TLS/SSL.
@@ -172,6 +173,6 @@ then
 fi
 ```
 
-Then run ``monit``, and check http://localhost:8080.
+Then run ``monit``, and check http://localhost:8080. You will now receive a mail when a test fails !
 
 ![monit]({{site.baseurl}}/assets/images/server/monit.png)
