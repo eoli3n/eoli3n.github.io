@@ -131,13 +131,11 @@ check program audit with path "/usr/bin/awk '/found/ {v+=$1}END{print v;if (v>=5
     if status == 1 then alert
 
 # Web
-check host photos.eoli3n.eu.org with address photos.eoli3n.eu.org
-    if failed port 443 protocol https content = "Photos" then alert
-check host eoli3n.eu.org with address eoli3n.eu.org
-    if failed port 443 protocol https content = "… Blog …" then alert
 check process nginx with pidfile /usr/local/bastille/jails/nginx/root/var/run/nginx.pid
     start program = "/usr/local/bin/bastille start nginx"
     stop program  = "/usr/local/bin/bastille stop nginx"
+    if failed host photos.eoli3n.eu.org port 443 protocol https content = "Photos" then alert
+    if failed host eoli3n.eu.org port 443 protocol https content = "… Blog …" then alert
 
 # DNS
 check process nsd with pidfile /usr/local/bastille/jails/nsd/root/var/run/nsd/nsd.pid
@@ -151,6 +149,16 @@ check process syncthing with pidfile /usr/local/bastille/jails/syncthing/root/va
     start program = "/usr/local/bin/bastille start syncthing"
     stop program  = "/usr/local/bin/bastille stop syncthing"
     if changed pid then alert
+
+# Backups
+check directory backup-host1 path /data/zfs/backups/host1
+   if timestamp > 24 hour then alert
+check directory backup-host2 path /data/zfs/backups/host2
+   if timestamp > 24 hour then alert
+
+# Snapshots
+check directory zfs-snapshots-slash path /.zfs/snapshot
+    if timestamp > 2 hours then alert
 
 # Sigal
 check file sigal-check path /tmp/sigal-check
@@ -176,3 +184,44 @@ fi
 Then run ``monit``, and check http://localhost:8080. You will now receive a mail when a test fails !
 
 ![monit]({{site.baseurl}}/assets/images/server/monit.png)
+
+### Web server monitoring
+
+Next step is to monitor my web server. Netdata provides a way to [get real-time stats](https://learn.netdata.cloud/docs/agent/collectors/quickstart/#configure-your-application-or-service-for-monitoring) from ``/nginx_status``.
+If you don't use Netdata, [monitorix](https://www.monitorix.org/) could be a good alternative.
+
+Both of those are realtime, I prefer a solution with historization, which would parse ``access.log`` to produce some graphs.
+
+[GoAccess](https://goaccess.io/) can parse logs and do it realtime though its own websocket server, developed by the same guy. The tool is impressive, it can be used cli or generate a html report !
+
+{% include asciinema/goaccess.html %}
+
+To be able to consult the html report, I choose to generate it statically everyday with a cron and spread it with ``Syncthing``.
+
+```yaml
+- name: generate reports everyday at midnight
+  cron:
+    name: goaccess report
+    job: '/usr/local/bin/goaccess /usr/local/bastille/jails/nginx/root/var/log/nginx/access.log --log-format=COMBINED -o /data/zfs/sync/docs/reports/nginx-goaccess.html'
+    hour: '0'
+    minute: '0'
+    user: root
+```
+
+From any client which has the file synced.
+```bash
+$ firefox ~/share/docs/reports/nginx-goaccess.html
+```
+
+![goaccess]({{site.baseurl}}/assets/images/server/goaccess.png)
+
+The site is responsive, I can also consult it with my smartphone.
+To finish, let's add a ``monit`` service to check that the report is well generated everyday.
+
+```
+# GoAccess
+check directory goaccess path /data/zfs/sync/docs/reports
+    if timestamp > 24 hours then alert
+```
+
+The loop is closed.
