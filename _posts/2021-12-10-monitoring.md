@@ -72,7 +72,7 @@ Following [recommendations for performance](https://learn.netdata.cloud/guides/c
      web files group = netdata
 ```
 
-Netdata seems to be clever, it check a lots of things, but I would like a more declarative solution, to check and alert anything I need.
+Netdata seems to be clever, it checks a lots of things, but I would like a more declarative solution, to check and alert anything I need.
 
 ### Declarative and lightweight solution : Monit
 
