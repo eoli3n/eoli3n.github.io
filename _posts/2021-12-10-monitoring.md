@@ -220,7 +220,7 @@ To finish, let's add a ``monit`` service to check that the report is well genera
 
 ```
 # GoAccess
-check directory goaccess path /data/zfs/sync/docs/reports
+check file goaccess path /data/zfs/sync/docs/reports/nginx-goaccess.html
     if timestamp > 24 hours then alert
 ```
 
