@@ -40,10 +40,36 @@ Let's configure mail forwarding from root to external email
 root: jonathan.kirszling@runbox.com
 ```
 
-I can now test netdata mail transfert by running
+I can now test netdata mail transfert by running a test script.
 
 ```bash
 $ /usr/local/libexec/netdata/plugins.d/alarm-notify.sh test
+```
+
+Out of the box, netdata checks metrics every seconds, and stores it to RAM with 2 days of retention. With htop, I have noticed 1.7% of CPU and 0.7% of RAM.
+Following [recommendations for performance](https://learn.netdata.cloud/guides/configure/performance), netdata dropped to 0.0% of CPU, 0.4% of RAM, with 2 weeks of metrics retention.
+
+``/usr/local/etc/netdata/netdata.conf``
+```diff
+ [global]
++    memory mode = dbengine
++    page cache size = 32
++    dbengine multihost disk space = 256
+-    history = 86400
++    update every = 5
++    debug log = none
++    error log = none
++    access log = none
+
+ [plugins]
+     freebsd = yes
+
+ [web]
+     respect do not track policy = yes
+     disconnect idle clients after seconds = 3600
+     bind to = 127.0.0.1
+     web files owner = netdata
+     web files group = netdata
 ```
 
 Netdata seems to be clever, it check a lots of things, but I would like a more declarative solution, to check and alert anything I need.
