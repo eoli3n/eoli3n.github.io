@@ -4,6 +4,8 @@ layout: post
 icon: fa-eye
 icon-style: solid
 ---
+* TOC
+{:toc}
 
 I was searching for a lightweight monitoring solution for my single freebsd home server.
 It should be able to get storage, cpu and memory metrics, look at file changes, check up my services and send alerts.
