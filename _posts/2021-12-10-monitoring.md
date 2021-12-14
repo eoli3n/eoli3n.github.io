@@ -126,6 +126,10 @@ check program usage-zroot with path "/tmp/zpool_usage.sh zroot"
     if status != 0 then alert
 check program usage-dpool with path "/tmp/zpool_usage.sh dpool"
     if status != 0 then alert
+check program scrub-zroot with path "/tmp/zpool_scrub.sh zroot"
+    if status != 0 then alert
+check program scrub-dpool with path "/tmp/zpool_scrub.sh dpool"
+    if status != 0 then alert
 
 # Resources
 check system localhost
@@ -204,6 +208,23 @@ check directory jekyll path /data/zfs/www/blog
 echo "cap: $(zpool list -o cap -H $1) used: $(zpool list -o alloc -H $1) free: $(zpool list -o free -H $1) size: $(zpool list -o size -H $1)"
 cap="$(zpool list -o cap -H $1 | tr -d '%')"
 if [ "$cap" -gt 90 ]
+then
+    exit 1
+fi
+```
+
+``zpool_scrub.sh``
+```bash
+#!/bin/sh
+
+scrub_expire="3110400" # 36days * 24hours * 60minutes * 60seconds
+current_date="$(/bin/date +%s)"
+scrub="$(/sbin/zpool status $1 | grep scrub | awk '{print $15 $12 $13}')"
+scrub_date="$(date -j -f '%Y%b%e-%H%M%S' $scrub'-000000' +%s)"
+
+echo "$(/sbin/zpool status $1 | grep scrub)"
+
+if [ $(($current_date - $scrub_date)) -ge $scrub_expire ]
 then
     exit 1
 fi
