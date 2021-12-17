@@ -31,3 +31,5 @@ order: 5
 20. [fuckitpy](https://github.com/ajalt/fuckitpy) and [fuckitjs](https://github.com/mattdiamond/fuckitjs)
 21. [The Birth & Death of JavaScript](https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript)
 22. [email + git = <3](https://git-send-email.io/)
+23. [BSD for Linux users](https://www.over-yonder.net/~fullermd/rants/bsd4linux/01)
+24. [Modern Unix](https://github.com/ibraheemdev/modern-unix) and [Rewritten in Rust](https://zaiste.net/posts/shell-commands-rust/#)
