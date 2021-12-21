@@ -68,6 +68,7 @@ Google services has been reimplemented open-source by the [MicroG](https://githu
 
 Many apps and features depends on Google services : mainly push notifications with GCM.
 Sadly, I still need those services, to be able to use any app from the regular store.
+You can check compatibility of apps without Google services with [Plexus](https://plexus.techlore.tech/).
 
 LineageOS is great, but you need to find the right hardware to run it, and the hardware support is community-driven.
 The flash process could be tricky, with a significant risk to brick your device.
