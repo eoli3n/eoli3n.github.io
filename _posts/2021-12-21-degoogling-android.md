@@ -39,7 +39,7 @@ Here's a cool app list :
 
 # Data
 
-Google Drive allows you to access data on the cloud from any device. I used [rclone](https://rclone.org/) to sync it on my hosts to be able to sync my data to a local storage. But Google still owns it too and it security is dependant to my Google account.
+Google Drive allows you to access data on the cloud from any device. I used [rclone](https://rclone.org/) to be able to sync my data to a local storage. But Google still owns it too and it security is dependant to my Google account.
 
 [SyncThing](https://syncthing.net/) is a open, trustworthy and decentralized file synchronization. You can install it on any OS, it's easy to configure and fast.
 
