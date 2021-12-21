@@ -119,13 +119,13 @@ Those untrustable applications doesn't need for the most part to be able to acce
 
 To configure it, install ``shelter``, and use it to activate your work profile. Then you can clone ``Aurora`` to the work profile, and use it from here to install untrusted apps.
 
-![shelter]({{site.baseurl}}/assets/images/degoogling/shelter_clone_aurora.png){: width="250" } ![work]({{site.baseurl}}/assets/images/degoogling/work_profile.png){: width="250" }
+![shelter]({{site.baseurl}}/assets/images/degoogling/shelter_clone_aurora.png){: width="300" } ![work]({{site.baseurl}}/assets/images/degoogling/work_profile.png){: width="300" }
 
 ## Datura firewall
 
 To isolate an app from network with ``datura``, start the app ``firewall`` from the main profile.
 
-![firewall]({{site.baseurl}}/assets/images/degoogling/datura_firewall.png){: width="250" }
+![firewall]({{site.baseurl}}/assets/images/degoogling/datura_firewall.png){: width="300" }
 
 ## SeedVault backups
 
@@ -133,7 +133,7 @@ Start ``Backup`` app and configure it to backup apps and its configurations on t
 Backups will be stored encrypted in ``~/.SeedVaultAndroidBackup``.
 Then I use ``SyncThing`` to spread it on my nas which ZFS snapshots it.
 
-![backup]({{site.baseurl}}/assets/images/degoogling/backup.png) ![backup_syncthing]({{site.baseurl}}/assets/images/degoogling/backup_syncthing.png){: width="250" }
+![backup]({{site.baseurl}}/assets/images/degoogling/backup.png){: width="300" } ![backup_syncthing]({{site.baseurl}}/assets/images/degoogling/backup_syncthing.png){: width="300" }
 
 # A good move
 
