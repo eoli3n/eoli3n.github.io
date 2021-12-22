@@ -34,3 +34,4 @@ order: 5
 23. [BSD for Linux users](https://www.over-yonder.net/~fullermd/rants/bsd4linux/01)
 24. [Modern Unix](https://github.com/ibraheemdev/modern-unix) and [Rewritten in Rust](https://zaiste.net/posts/shell-commands-rust/#)
 25. [Privacy Tools](https://www.privacytools.io/) and [Privacy Guides](https://privacyguides.org/)
+26. [The ultimate F-Droid setup](https://alternativeto.net/list/28655/the-ultimate-f-droid-setup/)
