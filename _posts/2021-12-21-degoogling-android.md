@@ -21,6 +21,7 @@ Here's a cool app list :
 
 - [Book Reader](https://f-droid.org/en/packages/com.github.axet.bookreader/) : Simple book reader
 - [Catima](https://f-droid.org/en/packages/me.hackerchick.catima/) : Loyalty Card Wallet
+- [Etar Calendar](https://f-droid.org/en/packages/ws.xsoh.etar/) : Agenda app which supports CalDav
 - [FairEmail](https://f-droid.org/en/packages/eu.faircode.email/) : Fully featured email client. Neat, intuitive user interface. Privacy friendly
 - [Infinity](https://f-droid.org/en/packages/ml.docilealligator.infinityforreddit/) : A beautiful, feature-rich Reddit client.
 - [LibreOffice Viewer](https://f-droid.org/en/packages/org.documentfoundation.libreoffice/) :
@@ -32,7 +33,6 @@ Here's a cool app list :
 - [OsmAnd](https://f-droid.org/en/packages/net.osmand.plus/) : Map Viewing & Navigation for Offline and Online OSM Maps
 - [Password Store](https://f-droid.org/en/packages/dev.msfjarvis.aps/) : Password Manager
 - [Shelter](https://f-droid.org/en/packages/net.typeblog.shelter/) : Provides an isolated space that you can install or clone apps into
-- [Simple Calendar](https://f-droid.org/en/packages/com.simplemobiletools.calendar.pro/) : Agenda app which supports CalDav
 - [Simple Notes](https://f-droid.org/en/packages/com.simplemobiletools.notes.pro/) : Notes app with a clean widget
 - [Termux](https://f-droid.org/en/packages/com.termux/) : Terminal emulator with packages
 - [Voice](https://f-droid.org/en/packages/de.ph1b.audiobook/) : Simple audiobook reader
