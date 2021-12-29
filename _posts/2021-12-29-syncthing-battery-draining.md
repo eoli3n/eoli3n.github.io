@@ -18,7 +18,7 @@ The main [Syncthing](https://f-droid.org/en/packages/com.nutomic.syncthingandroi
 
 [Syncthing fork](https://f-droid.org/en/packages/com.github.catfriend1.syncthingandroid/) is supposed to be a better solution.
 
-The [README](https://github.com/Catfriend1/syncthing-android/tree/ed83b22596eb0b575cda7b3fd5b9a1c5704def14#readme) says that "Battery eater problem is fixed.", so I [asked the dev](https://github.com/Catfriend1/syncthing-android/issues/870) for more explainations, his answer is a kind of light.
+The [README](https://github.com/Catfriend1/syncthing-android/tree/ed83b22596eb0b575cda7b3fd5b9a1c5704def14#readme) says that "Battery eater problem is fixed.", so I [asked the dev](https://github.com/Catfriend1/syncthing-android/issues/870) for more explainations, his answer was a bit light.
 Despite the fact that the fork gives some finer options to deal with battery consumption, it allowed me to save no more than 2 or 3 battery hours.
 
 The solution would be to sync only on specific conditions, to reduce the running syncing window. Lukily, Syncthing has an option to "Respect Android parameter about Data Syncing", and some automation tools exists.
