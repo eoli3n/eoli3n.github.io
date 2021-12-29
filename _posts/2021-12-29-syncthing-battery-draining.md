@@ -6,7 +6,7 @@ icon-style: solid
 ---
 
 In [degoogling]({{ site.baseurl }}{% link _posts/2021-12-21-degoogling-android.md %}) post, I explained how I switch to CalyxOS. One great relief is that, as most google services are not running, I should expect a lower battery consumption and so, a longer battery life.
-It was true, until I install Syncthing to sync my data between my devices instead of using centralized Google Drive.The service was draining my whole battery, beeing the only app which eats it.
+It was true, until I install Syncthing to sync my data between my devices instead of using centralized Google Drive.The service was draining my whole battery, beeing the only app which eat it.
 As I rarely use Wifi networks, I need Syncthing to run over mobile data. The problem is that is runs in background, constantly checking for new data.
 
 ![before]({{site.baseurl}}/assets/images/easer/before.png){: width="300" }
