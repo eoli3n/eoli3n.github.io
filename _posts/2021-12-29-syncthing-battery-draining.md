@@ -60,7 +60,7 @@ Script links events and conditions to profils.
 
 This is the global algorithm.
 
-![pivot]({{site.baseurl}}/assets/images/easer/pivot.png){: width="300" }
+![pivot]({{site.baseurl}}/assets/images/easer/pivot.png){: width="600" }
 
 # For 24 hours to ... 5 days
 
