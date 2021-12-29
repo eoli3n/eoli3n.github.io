@@ -1,5 +1,5 @@
 ---
-title: Stop Syncthing battery draining on Android
+title: Stop battery draining by Syncthing on Android
 layout: post
 icon: fa-battery-empty
 icon-style: solid
