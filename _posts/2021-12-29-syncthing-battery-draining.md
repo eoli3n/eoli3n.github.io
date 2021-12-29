@@ -17,6 +17,7 @@ The main [Syncthing](https://f-droid.org/en/packages/com.nutomic.syncthingandroi
 - ``Running conditions / Disable run on battery`` : It would be a good solution if I would be able to force a run, even on battery, in emergency case.
 
 [Syncthing fork](https://f-droid.org/en/packages/com.github.catfriend1.syncthingandroid/) is supposed to be a better solution.
+
 The [README](https://github.com/Catfriend1/syncthing-android/tree/ed83b22596eb0b575cda7b3fd5b9a1c5704def14#readme) says that "Battery eater problem is fixed.", so I [asked the dev](https://github.com/Catfriend1/syncthing-android/issues/870) for more explaination, his answer is a kind of light.
 Despite the fact that the fork gives some finer options to deal with battery consumption, it allowed me to save no more than 2 or 3 battery hours.
 
@@ -35,29 +36,25 @@ Here's my configuration.
 
 Conditions are long time events, based on state. I used it to check if the screen is unlocked or the battery is discharging.
 
-![conditions]({{site.baseurl}}/assets/images/easer/conditions.png){: width="300" }
-![unlocked]({{site.baseurl}}/assets/images/easer/unlocked.png){: width="300" } ![charging]({{site.baseurl}}/assets/images/easer/charging.png){: width="300" }
+![conditions]({{site.baseurl}}/assets/images/easer/conditions.png){: width="300" } ![unlocked]({{site.baseurl}}/assets/images/easer/unlocked.png){: width="300" } ![charging]({{site.baseurl}}/assets/images/easer/charging.png){: width="300" }
 
 ## Events
 
 Events are what they are, short time changing states, used for exemple for timing.
 
-![events]({{site.baseurl}}/assets/images/easer/events.png){: width="300" }
-![timing]({{site.baseurl}}/assets/images/easer/timing.png){: width="300" }
+![events]({{site.baseurl}}/assets/images/easer/events.png){: width="300" } ![timing]({{site.baseurl}}/assets/images/easer/timing.png){: width="300" }
 
 ## Profils
 
 Profils are set of actions.
 
-![profils]({{site.baseurl}}/assets/images/easer/profils.png){: width="300" }
-![enable_sync]({{site.baseurl}}/assets/images/easer/enable_sync.png){: width="300" } ![disable_wifi]({{site.baseurl}}/assets/images/easer/disable_wifi.png){: width="300" } ![enable_sync_and_wifi]({{site.baseurl}}/assets/images/easer/enable_sync_and_wifi.png){: width="300" } ![disable_sync]({{site.baseurl}}/assets/images/easer/disable_sync.png){: width="300" }
+![profils]({{site.baseurl}}/assets/images/easer/profils.png){: width="300" } ![enable_sync]({{site.baseurl}}/assets/images/easer/enable_sync.png){: width="300" } ![disable_wifi]({{site.baseurl}}/assets/images/easer/disable_wifi.png){: width="300" } ![enable_sync_and_wifi]({{site.baseurl}}/assets/images/easer/enable_sync_and_wifi.png){: width="300" } ![disable_sync]({{site.baseurl}}/assets/images/easer/disable_sync.png){: width="300" }
 
 ## Scripts
 
 Script links events and conditions to profils.
 
-![scripts]({{site.baseurl}}/assets/images/easer/scripts.png){: width="300" }
-![when_charging]({{site.baseurl}}/assets/images/easer/when_charging.png){: width="300" } ![when_not_charging]({{site.baseurl}}/assets/images/easer/when_not_charging.png){: width="300" } ![when_unlocked]({{site.baseurl}}/assets/images/easer/when_unlocked.png){: width="300" } ![disable_sync_when_locked]({{site.baseurl}}/assets/images/easer/disable_sync_when_locked.png){: width="300" } ![disable_sync_1min]({{site.baseurl}}/assets/images/easer/disable_sync_1min.png){: width="300" }
+![scripts]({{site.baseurl}}/assets/images/easer/scripts.png){: width="300" } ![when_charging]({{site.baseurl}}/assets/images/easer/when_charging.png){: width="300" } ![when_not_charging]({{site.baseurl}}/assets/images/easer/when_not_charging.png){: width="300" } ![when_unlocked]({{site.baseurl}}/assets/images/easer/when_unlocked.png){: width="300" } ![disable_sync_when_locked]({{site.baseurl}}/assets/images/easer/disable_sync_when_locked.png){: width="300" } ![disable_sync_1min]({{site.baseurl}}/assets/images/easer/disable_sync_1min.png){: width="300" }
 
 ## Pivot
 
