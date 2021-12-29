@@ -39,9 +39,9 @@ Here's a cool app list :
 
 # Data
 
-Google Drive allows you to access data on the cloud from any device. I used [rclone](https://rclone.org/) to be able to sync my data to a local storage. But Google still owns it too and it security is dependant to my Google account.
+Google Drive allows you to access data on the cloud from any device. I used [rclone](https://rclone.org/) to be able to sync my data to a local storage. But Google still owns it too and its security is dependant to my Google account.
 
-[SyncThing](https://syncthing.net/) is a open, trustworthy and decentralized file synchronization. You can install it on any OS, it's easy to configure and fast.
+[Syncthing](https://syncthing.net/) is a open, trustworthy and decentralized file synchronization. You can install it on any OS, it's easy to configure and fast.
 
 As you can sync any directory, I use it to sync my pictures to my nas and backup it.
 
@@ -73,11 +73,11 @@ You can check compatibility of apps without Google services with [Plexus](https:
 LineageOS is great, but you need to find the right hardware to run it, and the hardware support is community-driven.
 The flash process could be tricky, with a significant risk to brick your device.
 
-Here comes the funny part : The only choice that allows you to unlock the bootloader and install a custom ROM without too much effort/risk are Google phones becausr those are designed for developpers !
+Here comes the funny part : The only choice that allows you to unlock the bootloader and install a custom ROM without too much effort/risk are Google phones because those are designed for developpers !
 
-Choosing a Google smartphone like a Pixel or a Nexus open your choices to [GrapheneOS](https://grapheneos.org/) or [CalyxOS](https://calyxos.org/). Both of them as based on [Android Open Source Project](https://source.android.com/), which is Android whithout the Google commercial overlay.
+Choosing a Google smartphone like a Pixel or a Nexus opens your choices to [GrapheneOS](https://grapheneos.org/) or [CalyxOS](https://calyxos.org/). Both of them as based on [Android Open Source Project](https://source.android.com/), which is Android without the Google commercial overlay.
 
-I will not compare those 2 here, but I chose CalyxOS for thoses features :
+I will not compare those 2 here, but I chose CalyxOS for those features :
 - Project driven by [Calyx Institute](https://calyxinstitute.org/)
 - MicroG included (and can be disabled)
 - Focused on privacy
@@ -103,9 +103,9 @@ On void linux, I needed to install some packages.
 $ xbps-install -S android-tools android-udev-rules
 ```
 
-At first ``device-flasher`` didn't detect the smartphone.
+At first, ``device-flasher`` didn't detect the smartphone.
 I got help on IRC ``libera.chat #calyxos``, the community has been nice and helpful.
-They adviced me to [https://calyxos.org/install/fastboot/](boot it in fastboot mode) and to run ``device-flasher`` with sudo. It worked like a charm, 5 min and the phone rebooter under CalyxOS.
+They adviced me to [boot it in fastboot mode](https://calyxos.org/install/fastboot/) and to run ``device-flasher`` with sudo. It worked like a charm, 5 min and the phone rebooter under CalyxOS.
 
 # Security configurations
 
@@ -131,8 +131,8 @@ To isolate an app from network with ``datura``, start the app ``firewall`` from 
 ## SeedVault backups
 
 Start ``Backup`` app and configure it to backup apps and its configurations on the local storage.
-Backups will be stored encrypted in ``~/.SeedVaultAndroidBackup``.
-Then I use ``SyncThing`` to spread it on my nas which ZFS snapshots it.
+Encrypted backups will be stored in ``~/.SeedVaultAndroidBackup``.
+Then I use ``Syncthing`` to spread it on my nas which snapshots it on ZFS.
 
 ![backup]({{site.baseurl}}/assets/images/degoogling/backup.png){: width="300" } ![backup_syncthing]({{site.baseurl}}/assets/images/degoogling/backup_syncthing.png){: width="300" }
 
