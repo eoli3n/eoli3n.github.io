@@ -34,7 +34,7 @@ Here's my configuration.
 
 ## Conditions
 
-Conditions are long time events, based on state. I used it to check if the screen is unlocked or the battery is discharging.
+Conditions are long time events, based on states. I used it to check if the screen is unlocked or the battery is discharging.
 
 ![conditions]({{site.baseurl}}/assets/images/easer/conditions.png){: width="300" } ![unlocked]({{site.baseurl}}/assets/images/easer/unlocked.png){: width="300" } ![charging]({{site.baseurl}}/assets/images/easer/charging.png){: width="300" }
 
