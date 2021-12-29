@@ -64,6 +64,6 @@ This is the global algorithm.
 
 # For 24 hours to ... 5 days
 
-After one night, here's the estimated battery duration time. Syncthing don't even appears in the list, which is normal because it was not syncing at all.
+After one night, here's the estimated battery duration time. Syncthing doesn't even appear in the list, which is normal because it was not syncing at all.
 
 ![after]({{site.baseurl}}/assets/images/easer/after.png){: width="300" }
