@@ -25,7 +25,7 @@ The solution would be to sync only on specific conditions, to reduce the running
 
 # Easer automation tool
 
-[Easer](https://f-droid.org/fr/packages/ryey.easer/) is an Android event driven automation.
+[Easer](https://f-droid.org/fr/packages/ryey.easer/) is an Android event driven automation tool.
 I want my sync to be disable when the screen is locked. When the screen is unlocked, I want to limit sync to 1 min.
 As my main concern is battery consumption, I want to always sync when battery is charging.
 As bonus, I usually charge at home, which is the only place where I use Wifi, lets trigger it then.
