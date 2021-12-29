@@ -14,7 +14,7 @@ As I rarely use Wifi networks, I need Syncthing to run over mobile data. The pro
 The main [Syncthing](https://f-droid.org/en/packages/com.nutomic.syncthingandroid/) app from f-droid, doesn't provide much battery saving options.
 
 - ``Syncthing Options / Disable RestartOnWakeUp`` : It is supposed to save battery, tried it without success.
-- ``Running conditions / Disable run on battery`` : It would be a good solution if I would be able to force a run, even on battery, in emergency case.
+- ``Running conditions / Disable run on battery`` : It would be a good solution if I could be able to force a run, even on battery, in emergency case.
 
 [Syncthing fork](https://f-droid.org/en/packages/com.github.catfriend1.syncthingandroid/) is supposed to be a better solution.
 
