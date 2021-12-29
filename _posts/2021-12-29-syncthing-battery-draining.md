@@ -52,7 +52,7 @@ Profils are set of actions.
 
 ## Scripts
 
-Script links events and conditions to profils.
+Scripts link events and conditions to profils.
 
 ![scripts]({{site.baseurl}}/assets/images/easer/scripts.png){: width="300" } ![when_charging]({{site.baseurl}}/assets/images/easer/when_charging.png){: width="300" } ![when_not_charging]({{site.baseurl}}/assets/images/easer/when_not_charging.png){: width="300" } ![when_unlocked]({{site.baseurl}}/assets/images/easer/when_unlocked.png){: width="300" } ![disable_sync_when_locked]({{site.baseurl}}/assets/images/easer/disable_sync_when_locked.png){: width="300" } ![disable_sync_1min]({{site.baseurl}}/assets/images/easer/disable_sync_1min.png){: width="300" }
 
