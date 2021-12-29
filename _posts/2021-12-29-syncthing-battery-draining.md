@@ -23,7 +23,7 @@ Despite the fact that the fork gives some finer options to deal with battery con
 
 The solution would be to sync only on specific conditions, to reduce the running syncing window. Luckily, Syncthing has an option to ``Respect Android parameter about Data Syncing``, and some automation tools exists.
 
-# Easer automation tool
+### Easer automation tool
 
 [Easer](https://f-droid.org/fr/packages/ryey.easer/) is an Android event driven automation tool.
 I want my sync to be disabled when the screen is locked. When the screen is unlocked, I want to limit sync to 1 min.
@@ -32,37 +32,37 @@ I usually charge at home, which is the only place where I use Wifi, lets trigger
 
 Here's my configuration.
 
-## Conditions
+#### Conditions
 
 Conditions are long time events, based on states. I used it to check if the screen is unlocked or the battery is discharging.
 
 ![conditions]({{site.baseurl}}/assets/images/easer/conditions.png){: width="300" } ![unlocked]({{site.baseurl}}/assets/images/easer/unlocked.png){: width="300" } ![charging]({{site.baseurl}}/assets/images/easer/charging.png){: width="300" }
 
-## Events
+#### Events
 
 Events are what they are, short time changing states, used for exemple for timing.
 
 ![events]({{site.baseurl}}/assets/images/easer/events.png){: width="300" } ![timing]({{site.baseurl}}/assets/images/easer/timing.png){: width="300" }
 
-## Profils
+#### Profils
 
 Profils are set of actions.
 
 ![profils]({{site.baseurl}}/assets/images/easer/profils.png){: width="300" } ![enable_sync]({{site.baseurl}}/assets/images/easer/enable_sync.png){: width="300" } ![disable_wifi]({{site.baseurl}}/assets/images/easer/disable_wifi.png){: width="300" } ![enable_sync_and_wifi]({{site.baseurl}}/assets/images/easer/enable_sync_and_wifi.png){: width="300" } ![disable_sync]({{site.baseurl}}/assets/images/easer/disable_sync.png){: width="300" }
 
-## Scripts
+#### Scripts
 
 Scripts link events and conditions to profils.
 
 ![scripts]({{site.baseurl}}/assets/images/easer/scripts.png){: width="300" } ![when_charging]({{site.baseurl}}/assets/images/easer/when_charging.png){: width="300" } ![when_not_charging]({{site.baseurl}}/assets/images/easer/when_not_charging.png){: width="300" } ![when_unlocked]({{site.baseurl}}/assets/images/easer/when_unlocked.png){: width="300" } ![disable_sync_when_locked]({{site.baseurl}}/assets/images/easer/disable_sync_when_locked.png){: width="300" } ![disable_sync_1min]({{site.baseurl}}/assets/images/easer/disable_sync_1min.png){: width="300" }
 
-## Pivot
+#### Pivot
 
 This is the global algorithm.
 
 ![pivot]({{site.baseurl}}/assets/images/easer/pivot.png){: width="600" }
 
-# For 24 hours to ... 5 days
+### For 24 hours to ... 5 days
 
 After one night, here's the estimated battery duration time. Syncthing doesn't even appear in the list, which is normal because it was not syncing at all.
 

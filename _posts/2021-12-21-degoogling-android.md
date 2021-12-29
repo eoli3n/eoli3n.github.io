@@ -12,7 +12,7 @@ Another problem is that you can't use Android without a google account.
 
 So I started degoogling, step by step, which was a one year trip...
 
-# Apps
+### Apps
 
 I started by trying to find FOSS alternatives for each apps I use.
 [F-droid](https://f-droid.org/) is a application store for FOSS on Android and you can find some alternative on [Degoogle](https://degoogle.jmoore.dev/).
@@ -37,7 +37,7 @@ Here's a cool app list :
 - [Termux](https://f-droid.org/en/packages/com.termux/) : Terminal emulator with packages
 - [Voice](https://f-droid.org/en/packages/de.ph1b.audiobook/) : Simple audiobook reader
 
-# Data
+### Data
 
 Google Drive allows you to access data on the cloud from any device. I used [rclone](https://rclone.org/) to be able to sync my data to a local storage. But Google still owns it too and its security is dependant to my Google account.
 
@@ -47,7 +47,7 @@ As you can sync any directory, I use it to sync my pictures to my nas and backup
 
 ![syncthing]({{site.baseurl}}/assets/images/degoogling/syncthing.png)
 
-# Emails, contacts, and agenda
+### Emails, contacts, and agenda
 
 Fashion is to end-to-end encryption services, like [Protonmail](https://protonmail.com/), or [Tutanota](https://tutanota.com).
 Both of them are known backdoored, you can share encrypted mails only with users of the same service (if you don't use gpg manually) and on Android, you need to use specific apps to access your synced contacts and agendas.
@@ -57,11 +57,11 @@ For mail hosting, I chose [runbox.com](runbox.com). The [last version](https://g
 
 I use the f-droid app [Davx5](https://f-droid.org/fr/packages/at.bitfire.davdroid/) as Cal/Card Dav sync client.
 
-# Maps and navigation
+### Maps and navigation
 
 FOSS alternative for Google Maps is OsmAnd. I tried to switch for my daily use, and I quickly realized that google maps was not only a simple navigation service. I use it to find opening hours of shops, phone numbers, shop based on a "meta" search... OsmAnd is based on [openstreetmap](https://www.openstreetmap.org/) which is a great service, if you know the full (and well typed) address. Another problem is that route calculation is done on the device, so it doesn't know for the traffic, accidents, etc. To be honest, I think Google Maps as I use it, cannot be replaced for now by a FOSS app, so I would continue to use it.
 
-# OS
+### OS
 
 The main alternative OS is [LineageOS](https://lineageos.org/). It is shipped defaultly without Google services.
 Google services has been reimplemented open-source by the [MicroG](https://github.com/microg) project.
@@ -86,12 +86,12 @@ I will not compare those 2 here, but I chose CalyxOS for those features :
 
 To go further : [privacyguides.org/android](https://privacyguides.org/android/#aosp-derivatives)
 
-# Hardware
+### Hardware
 
 I just switch to a 5G subscription, so the choice is pretty limited.
 Despite the fact that the Google Pixel 6 is out since 4 month, I went for a Google Pixel 4a 5g, because it's cheaper, the screen is smaller and it stills have a minijack :) I also wanted to be able to directly install CalyxOs without beeing stuck on the Google Pixel ROM. When I write those lines, CalyxOS doesn't support Google Pixel 6 still.
 
-# CalyxOS installation
+### CalyxOS installation
 
 As said, a benefit for using a developer phone is that the flash procedure is pretty simple, and stressless.
 You just need to download the flasher binary and the OS archive.
@@ -107,13 +107,13 @@ At first, ``device-flasher`` didn't detect the smartphone.
 I got help on IRC ``libera.chat #calyxos``, the community has been nice and helpful.
 They adviced me to [boot it in fastboot mode](https://calyxos.org/install/fastboot/) and to run ``device-flasher`` with sudo. It worked like a charm, 5 min and the phone rebooter under CalyxOS.
 
-# Security configurations
+### Security configurations
 
-## Aurora store
+#### Aurora store
 
 After the first boot, a configuration menu let you enable ``microG`` and it doesn't ask you to attach a google account. To be able to install Play Store apps without account, it uses [Aurora Store](https://aurora-store.fr.uptodown.com/android). It supports anonymous apk downloads and installations, and can silently auto upgrade for apps in background.
 
-## Shelter isolation
+#### Shelter isolation
 
 Those untrustable applications doesn't need for the most part to be able to access my data, or network.
 [Shelter](https://f-droid.org/fr/packages/net.typeblog.shelter/) use the Android work profile feature to allow you to isolate apps from your data, disabling the ability to use or leak you contacts, for exemple.
@@ -122,13 +122,13 @@ To configure it, install ``shelter``, and use it to activate your work profile. 
 
 ![shelter]({{site.baseurl}}/assets/images/degoogling/shelter_clone_aurora.png){: width="300" } ![work]({{site.baseurl}}/assets/images/degoogling/work_profile.png){: width="300" }
 
-## Datura firewall
+#### Datura firewall
 
 To isolate an app from network with ``datura``, start the app ``firewall`` from the main profile.
 
 ![firewall]({{site.baseurl}}/assets/images/degoogling/datura_firewall.png){: width="300" }
 
-## SeedVault backups
+#### SeedVault backups
 
 Start ``Backup`` app and configure it to backup apps and its configurations on the local storage.
 Encrypted backups will be stored in ``~/.SeedVaultAndroidBackup``.
@@ -136,7 +136,7 @@ Then I use ``Syncthing`` to spread it on my nas which snapshots it on ZFS.
 
 ![backup]({{site.baseurl}}/assets/images/degoogling/backup.png){: width="300" } ![backup_syncthing]({{site.baseurl}}/assets/images/degoogling/backup_syncthing.png){: width="300" }
 
-# A good move
+### A good move
 
 For now, I didn't face any issue, let's see in daily use.
 I still have many things to test :
