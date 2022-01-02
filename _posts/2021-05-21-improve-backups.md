@@ -110,3 +110,28 @@ You should prefer to add a second repository in the yaml config, borgmatic will 
 I chose to sync with Syncthing because one of my repository is accessible only from a OTP secured vpn. I can't automate VPN connection on all clients that I backup.
 
 The replication is done in two ways, from ``server 1`` to ``server 2`` and vice-versa.
+
+_02/01/22 edit_
+
+As borg [documentation says](https://borgbackup.readthedocs.io/en/stable/faq.html#can-i-copy-or-synchronize-my-repo-to-another-location), borg repositories are not designed to be sync.
+When I switched to redundent backups, I had to debug my repositories for few hours, so, don't.
+Just use two backup locations in borgmatic config like.
+```yaml
+  repositories:
+    - root@nas:/data/backups/osz
+    - root@borgbase:/repo
+```
+
+### Online Backups
+
+If you backup at home and at a different location, that's pretty solid. I was annoyed by the fact that I backup my personnal data at work as second place, and wanted, for my most important data, to be safe to move in another city, and changing work without to be worried about my backups.
+
+[BorgBase](https://www.borgbase.com/) describe itself as "Simple and Secure Offsite Backups".
+To use it, simply open an account for free, to test. Then you will be able to upgrade your plan to the 100G small plan. That's enough for me, for my most important data, and only costs 2€/month under 100G, and then 0.01€/Go/month.
+
+![borgbase]({{site.baseurl}}/assets/images/server/borgbase.png)
+
+Repositories support encryption, and the web UI is secured with 2fa TOTP authentication.
+I upload my backups at 12Mo/s, so I'm fully satisfied with the service.
+You can enable alerts when repositories didn't get any backup since some days.
+Let's see with time.
