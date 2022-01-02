@@ -21,6 +21,7 @@ location:
   repositories:
     - root@nas:/data/backups/osz
 
+  exclude_caches: true
   exclude_patterns:
     - /dev/*
     - /proc/*
@@ -33,6 +34,8 @@ location:
     - /root/.cache/*
     - /home/*/.cache/
     - '*.iso'
+    - '*.mkv'
+    - '*.pyc'
     - lost+found
 
 storage:
@@ -47,6 +50,10 @@ retention:
   keep_daily: 7
   keep_weekly: 4
   keep_monthly: 6
+  keep_yearly: 2
+
+consistency:
+  check_last: 3
 ```
 
 On the repository server, you need to add a restricted authorized_key as explained in my previous post.
