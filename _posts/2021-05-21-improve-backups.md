@@ -113,9 +113,9 @@ The replication is done in two ways, from ``server 1`` to ``server 2`` and vice-
 
 _02/01/22 edit_
 
-As borg [documentation says](https://borgbackup.readthedocs.io/en/stable/faq.html#can-i-copy-or-synchronize-my-repo-to-another-location), borg repositories are not designed to be sync.
-When I switched to redundent backups, I had to debug my repositories for few hours, so, don't.
-Just use two backup locations in borgmatic config like.
+As borg [documentation says](https://borgbackup.readthedocs.io/en/stable/faq.html#can-i-copy-or-synchronize-my-repo-to-another-location), borg repositories are not designed to be synced.
+When I switched to redundant backups, I had to debug my repositories for few hours... So, just ,don't.
+Using two backup locations in borgmatic config will took twice the time, but security worth it.
 ```yaml
   repositories:
     - root@nas:/data/backups/osz
@@ -126,7 +126,7 @@ Just use two backup locations in borgmatic config like.
 
 If you backup at home and at a different location, that's pretty solid. I was annoyed by the fact that I backup my personnal data at work as second place, and wanted, for my most important data, to be safe to move in another city, and changing work without to be worried about my backups.
 
-[BorgBase](https://www.borgbase.com/) describe itself as "Simple and Secure Offsite Backups".
+[BorgBase](https://www.borgbase.com/) describes itself as "Simple and Secure Offsite Backups" service.
 To use it, simply open an account for free, to test. Then you will be able to upgrade your plan to the 100G small plan. That's enough for me, for my most important data, and only costs 2€/month under 100G, and then 0.01€/Go/month.
 
 ![borgbase]({{site.baseurl}}/assets/images/server/borgbase.png)
