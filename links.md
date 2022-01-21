@@ -37,3 +37,4 @@ order: 5
 25. [Privacy Tools](https://www.privacytools.io/) and [Privacy Guides](https://privacyguides.org/)
 26. [The ultimate F-Droid setup](https://alternativeto.net/list/28655/the-ultimate-f-droid-setup/)
 27. [F-Droid: how is it weakening the Android security model?](https://wonderfall.github.io/fdroid-issues/)
+28. [Guided DevOps Meditation](https://www.youtube.com/watch?v=epcbx5HkCbM)
