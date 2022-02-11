@@ -24,7 +24,7 @@ Here's a cool app list :
 - [Etar Calendar](https://f-droid.org/en/packages/ws.xsoh.etar/) : Agenda app which supports CalDav
 - [FairEmail](https://f-droid.org/en/packages/eu.faircode.email/) : Fully featured email client. Neat, intuitive user interface. Privacy friendly
 - [Infinity](https://f-droid.org/en/packages/ml.docilealligator.infinityforreddit/) : A beautiful, feature-rich Reddit client.
-- [LibreOffice Viewer](https://f-droid.org/en/packages/org.documentfoundation.libreoffice/) :
+- [LibreOffice Viewer](https://f-droid.org/en/packages/org.documentfoundation.libreoffice/)
 - [Markor](https://f-droid.org/en/packages/net.gsantner.markor/) : Lightweight text editor, Markdown Notes & ToDo.
 - [MuPDF](https://f-droid.org/en/packages/com.artifex.mupdf.viewer.app/) : Minimalist PDF viewer
 - [NewPipe](https://f-droid.org/en/packages/org.schabi.newpipe/) : Lightweight YouTube frontend
