@@ -39,3 +39,4 @@ order: 5
 26. [The ultimate F-Droid setup](https://alternativeto.net/list/28655/the-ultimate-f-droid-setup/)
 27. [F-Droid: how is it weakening the Android security model?](https://wonderfall.github.io/fdroid-issues/)
 28. [Guided DevOps Meditation](https://www.youtube.com/watch?v=epcbx5HkCbM)
+29. [KISS principle explained](https://thevaluable.dev/kiss-principle-explained/)
