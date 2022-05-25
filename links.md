@@ -40,3 +40,4 @@ order: 5
 27. [F-Droid: how is it weakening the Android security model?](https://wonderfall.github.io/fdroid-issues/)
 28. [Guided DevOps Meditation](https://www.youtube.com/watch?v=epcbx5HkCbM)
 29. [KISS principle explained](https://thevaluable.dev/kiss-principle-explained/)
+30. [No systemd](https://nosystemd.org/)
