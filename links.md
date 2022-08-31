@@ -9,7 +9,7 @@ auto-header: none
 order: 5
 ---
 
-1. [Font Awesome 4 icons](https://fontawesome.com/v4.7.0/icons/) - [Font Awesome 5 free icons](https://fontawesome.com/icons?d=gallery&m=free) - [List of Github Emojis](https://gist.github.com/rxaviers/7360908)
+1. [Font Awesome 4 icons](https://fontawesome.com/v4.7.0/icons/) - [Font Awesome 5 free icons](https://fontawesome.com/icons?d=gallery&m=free) - [Font Awesome 6 icons](https://fontawesome.com/search?m=free&s=solid%2Cbrands) - [List of Github Emojis](https://gist.github.com/rxaviers/7360908)
 2. [Github does dotfiles](https://dotfiles.github.io/)
 3. [Docker Swarm is not dead](https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/)
 4. [Cool Hack game](https://overthewire.org/wargames/)
