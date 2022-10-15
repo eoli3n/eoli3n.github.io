@@ -3,6 +3,7 @@ https://surdu.me/2020/02/04/jekyll-git-hook.html
 
 ### Install
 ```bash
+$ sudo gem install jekyll bundler
 $ git checkout gh-pages
 $ rm -rf *
 $ git add -A
