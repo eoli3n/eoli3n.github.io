@@ -9,7 +9,7 @@ $ git add -A
 $ git commit -m "Initialized gh-pages branch"
 $ git push
 $ cat < EOF > .git/hooks/pre-push
-#!/bin/sh
+#!/bin/bash
 
 # If any command fails in the bellow script, exit with error
 set -e
@@ -20,7 +20,8 @@ set -e
 temp_folder="_gh-pages-temp"
 
 # Make sure our main code runs only if we push the main branch
-if [ "$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)" == "main" ]; then
+if [ "$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)" == "main" ]
+then
     # Store the last commit message from main branch
     last_message=$(git show -s --format=%s main)
 
