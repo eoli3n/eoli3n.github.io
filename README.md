@@ -50,4 +50,5 @@ then
 else
     echo "Not main branch. Skipping build"
 fi
+EOF
 ```
