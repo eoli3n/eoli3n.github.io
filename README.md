@@ -3,7 +3,7 @@ https://surdu.me/2020/02/04/jekyll-git-hook.html
 
 ### Install
 ```bash
-$ sudo gem install jekyll bundler
+$ bundler install
 $ git checkout gh-pages
 $ rm -rf *
 $ git add -A
@@ -27,7 +27,7 @@ then
     last_message=$(git show -s --format=%s main)
 
     # Build our Jekyll site
-    jekyll build
+    bundle exec jekyll build
 
     # Move the generated site in our temp folder
     mv _site ../${temp_folder}
