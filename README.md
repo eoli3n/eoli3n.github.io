@@ -53,16 +53,15 @@ then
     bundle exec jekyll build
 
     # Move the generated site in our temp folder
-    rsync -avp _site/ ${temp_folder}
+    rsync -avp --delete _site/ ${temp_folder}
 
     # Checkout the gh-pages branch and clean it's contents
     git checkout gh-pages
 
     # Sync the site content from the temp folder and remove the temp folder
-    rsync -avp --exclude '.*' ${temp_folder}/* .
+    rsync -avp --delete --exclude '.*' ${temp_folder}/* .
 
-    # trigger
-    #rm -rf ${temp_folder}
+    rm -rf ${temp_folder}
 
     # Commit and push our generated site to GitHub
     git add -A
