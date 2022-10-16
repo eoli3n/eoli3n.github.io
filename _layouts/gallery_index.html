@@ -3,14 +3,20 @@ layout: default
 list_title: "_galleries"
 exclude: true
 ---
-<h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree -D --du photos/</h3>
-<h2 class="post-list-heading">{{ page.list_title }}</h2>
+<h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree --du photos/</h3>
+
+{% for section in site.gallery["sections"] %}
+
+<h2 class="post-list-heading">{{ section["name"] }}</h2>
   <ul class="post-list tree">
 
+    {% for dossier in section["dossiers"] %}
     {% for gallery in page.galleries %}
+    {% if gallery["gallery"] == dossier %}
+
     <li class="post-grid">
-      {% if gallery['icon'] %}
-      <i class="fa fas fab {{ post.icon }} post-icon"></i>
+      {% if section["icon"] %}
+      <i class="fa fas fab {{ section["icon"] }} post-icon"></i>
       {% else %}
       <i class="fas fa-images post-icon"></i>
       {% endif %}
@@ -22,6 +28,9 @@ exclude: true
         </span>
       </a>
     </li>
+    {% endif %}
+    {% endfor %}
     {% endfor %}
   </ul>
-  <h3 class="post-list-heading" style="padding-top: 15px; padding-bottom: 15px;">{{ page.galleries | size }} galleries</h3>
+  <h3 class="post-list-heading" style="padding-top: 15px; padding-bottom: 15px;">{{ section["dossiers"] | size }} galleries</h3>
+{% endfor %}

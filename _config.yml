@@ -83,6 +83,34 @@ exclude:
 
 gallery:
   dir: photos               # Path to the gallery
+  sections:
+    - name: pain
+      icon: fa-bread-slice
+      dossiers:
+        - petit_epeautre
+        - respectus_panis
+        - bles_anciens
+        - bles_modernes
+    - name: fromage
+      icon: fa-cheese
+      dossiers:
+        - camembert_1er_essai
+        - camembert_2eme_essai
+        - fromage_bleu
+        - fromage_de_kefir
+        - fromage_frais
+        - mozzarella
+    - name: pizza
+      icon: fa-pizza-slice
+      dossiers:
+        - pizzas
+        - oven
+  galleries:
+    bles_anciens:
+      name: "Blés anciens"
+    bles_modernes:
+      name: "Blés modernes"
+
   symlink: false            # false: copy images into _site. true: create symbolic links (saves disk space)
   title: "Photos"           # Title for gallery index page
   title_prefix: "Photos: "  # Title prefix for gallery pages. Gallery title = title_prefix + gallery_name
