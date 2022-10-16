@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.1.2-web/css/all.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="/assets/images/avatar.png">
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/assets/js/jquery-3.6.0.slim.min.js"></script>
+
+  <!-- Auto headings -->
+  <!-- https://github.com/jekyll/jekyll/issues/2690 -->
+  <script type="text/javascript" src="/assets/js/headings.js"></script><link type="application/atom+xml" rel="alternate" href="https://eoli3n.eu.org/feed.xml" title="eoli3n" /><!-- SEO tag https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/installation.md -->
+  <meta property="og:image" content="https://eoli3n.eu.org/assets/images/avatar.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nas project - part 2 | eoli3n</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Nas project - part 2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In part 1, I chose some hardware for my NAS, but before putting some money in the project, I wanted a lighter version, as cheap as possible. I had the opportunity to get an old Optiplex from work, lets start with this." />
+<meta property="og:description" content="In part 1, I chose some hardware for my NAS, but before putting some money in the project, I wanted a lighter version, as cheap as possible. I had the opportunity to get an old Optiplex from work, lets start with this." />
+<link rel="canonical" href="https://eoli3n.eu.org/2021/05/21/nas-part-2.html" />
+<meta property="og:url" content="https://eoli3n.eu.org/2021/05/21/nas-part-2.html" />
+<meta property="og:site_name" content="eoli3n" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-21T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nas project - part 2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-21T00:00:00+02:00","datePublished":"2021-05-21T00:00:00+02:00","description":"In part 1, I chose some hardware for my NAS, but before putting some money in the project, I wanted a lighter version, as cheap as possible. I had the opportunity to get an old Optiplex from work, lets start with this.","headline":"Nas project - part 2","mainEntityOfPage":{"@type":"WebPage","@id":"https://eoli3n.eu.org/2021/05/21/nas-part-2.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://eoli3n.eu.org/avatar.png"}},"url":"https://eoli3n.eu.org/2021/05/21/nas-part-2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body><header class="site-header">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">
+      <img src="/assets/images/avatar.png" alt="logo" width="40">
+      eoli3n
+      <span class="site-subtitle"> … Blog …</span>
+    </a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/links.html">Links</a><a class="page-link" href="/photos/camembert/">Photos: Camembert</a><a class="page-link" href="/photos/">Photos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Nas project - part 2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-05-21T00:00:00+02:00" itemprop="datePublished"><i class="far fa-calendar-alt"></i>
+        <span class="post-date" style="width: 90px;">May 21, 2021</span>
+        
+        
+        <span class="post-size" style="width: 90px;">2769 words</span>
+        <i class="fas fa-hourglass-start"></i>
+        <span>7</span>
+        <span> mins</span>
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In <a href="/2020/11/08/nas-project.html">part 1</a>, I chose some hardware for my NAS, but before putting some money in the project, I wanted a lighter version, as cheap as possible.<br />
+I had the opportunity to get an old Optiplex from work, lets start with this.</p>
+
+<h3 id="hardware-setup">Hardware Setup</h3>
+
+<p>I first try to find a solution to put 4 disks in the specific case without success.<br />
+As there is only one place for a 3,5” HDD, I found a sub case to install two 2,5”.</p>
+
+<p><img src="/assets/images/server/disks_case.png" alt="disk_case" /></p>
+
+<p>The solution to separate system and data disks was to use an hard drive adapter for the dvd drive place.</p>
+
+<p><img src="/assets/images/server/dvd_case.png" alt="dvd_case" /></p>
+
+<p>I chose to store the system on a <em>Samsung SSD 870 Evo, 250 Go</em>, and datas on two <em>WD Blue 2,5” 5400 RPM, 2To</em></p>
+
+<h3 id="is-proxmox-a-good-choice-">Is Proxmox a good choice ?</h3>
+
+<p>I wanted to use <em>Proxmox</em> for the main reason that it supports ZFS nativly and it is <em>Debian</em> based. After some questions on IRC, I realised that I didn’t need all the features it gives, and that it differs too much for a real <em>Debian</em> OS. The <em>#debian</em> channel on IRC can’t help, and <em>#proxmox</em> one is less active.</p>
+
+<p>The solution came from IRC too.</p>
+
+<blockquote>
+  <p>Why don’t you use Debian 10 with a backport ?</p>
+  <ul>
+    <li>… because I don’t know what it is.</li>
+  </ul>
+</blockquote>
+
+<p><a href="https://backports.debian.org/">Debian backports</a> allow you to use a package from next Debian release on the stable one.<br />
+Great news, current ZFS version in <em>Debian Buster</em> is <code class="language-bash highlighter-rouge">0.8</code> and in <em>Debian Bullseye</em>, it is <code class="language-bash highlighter-rouge">2.0</code> which comes with the ability to use <code class="language-bash highlighter-rouge">zstd</code> compression.</p>
+
+<h3 id="the-only-source-of-knowledge-is-experience">The only source of knowledge is experience</h3>
+
+<p>After a quick Debian install, the first service I setup is <code class="language-bash highlighter-rouge">sshd</code>, it should be easy to reach my server, lets test from outside.<br />
+My ISP router doesn’t gave me a router that had an important feature: <a href="https://en.wikipedia.org/wiki/Hairpinning">the NAT Loopback</a>. It allows you to reach a server from its public IP when source and destination are the same IP.<br />
+With my current ISP, the only workaround was to use alternativly public or private IP if I’m at home or not.</p>
+
+<p>Two weeks later, and after some usual problems with my new ISP and line activation, I get my new router working and the ability to reach it with public IP from my local network.</p>
+
+<h3 id="data-managment">Data managment</h3>
+
+<p>Data on a mirrored storage is reliable only in case of physical problem on the pool. To be completely safe, I still need to replicate that data outside of home. Not all the data needs replication, nor sync, lets define how to manage all kind of data.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Sensitivity</th>
+      <th>Incremental backup</th>
+      <th>Replication</th>
+      <th>Daily access</th>
+      <th>Access type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Archives: pictures, videos</td>
+      <td>+</td>
+      <td>++</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>mount</td>
+    </tr>
+    <tr>
+      <td>Administrative docs</td>
+      <td>-</td>
+      <td>++</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>sync</td>
+    </tr>
+    <tr>
+      <td>Systems and homes backups</td>
+      <td>++</td>
+      <td>+</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>mount-sync</td>
+    </tr>
+    <tr>
+      <td>Phone Pictures, contacts</td>
+      <td>-</td>
+      <td>-</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>sync</td>
+    </tr>
+    <tr>
+      <td>Others</td>
+      <td>++</td>
+      <td>-</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>mount</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The solution for data which needs Replication is <a href="https://github.com/syncthing/syncthing">syncthing</a>.<br />
+Backups will be done with <a href="/2020/04/30/backup.html">borgbackup</a>.</p>
+
+<h3 id="zpool-creation">Zpool creation</h3>
+
+<p>Let’s create the pool</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>zpool create <span class="nt">-f</span> <span class="nt">-o</span> <span class="nv">ashift</span><span class="o">=</span>12                        <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">acltype</span><span class="o">=</span>posixacl                      <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">compression</span><span class="o">=</span>zstd                      <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">relatime</span><span class="o">=</span>on                           <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">xattr</span><span class="o">=</span>sa                              <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">dnodesize</span><span class="o">=</span>legacy                      <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">normalization</span><span class="o">=</span>formD                   <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">mountpoint</span><span class="o">=</span>none                       <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">canmount</span><span class="o">=</span>off                          <span class="se">\</span>
+             <span class="nt">-O</span> <span class="nv">devices</span><span class="o">=</span>off                           <span class="se">\</span>
+             dpool /dev/sdb /dev/sdc
+</code></pre></div></div>
+
+<p>And some datasets</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>zfs create –o <span class="nv">mountpoint</span><span class="o">=</span>/data/zfs/backups dpool/backups
+<span class="nv">$ </span>zfs create –o <span class="nv">mountpoint</span><span class="o">=</span>/data/zfs/sync dpool/sync
+<span class="nv">$ </span>zfs create –o <span class="nv">mountpoint</span><span class="o">=</span>/data/zfs/vms dpool/vms
+<span class="nv">$ </span>zfs create –o <span class="nv">mountpoint</span><span class="o">=</span>/data/zfs/docker dpool/docker
+</code></pre></div></div>
+<p>After copying some data</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>zfs list <span class="nt">-o</span> name,used,compressratio,logicalused,avail
+NAME            USED  RATIO  LUSED  AVAIL
+dpool           404G  1.06x   427G  1.36T
+dpool/backups   275G  1.00x   275G  1.36T
+dpool/docker    176M  2.66x   415M  1.36T
+dpool/sync      723M  1.07x   765M  1.36T
+dpool/vms        96K  1.00x    42K  1.36T
+<span class="o">[</span>...]
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/05/21/nas-part-2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+      </div>
+
+      <div class="footer-col footer-col-2">
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>A blog that talks about Linux, BSD, Pizza, DevOps and more.&nbspReach me on irc.libera.chat #archlinux-fr or #voidlinux.</p><!-- Social Icons -->
+<div class="social-media-wrapper">
+  <ul class="social-media-list"><li><a href="https://github.com/eoli3n" class="fab fa-github"><span class="label">GitHub</span></a></li><li><a href="https://stackoverflow.com/users/11061370/eoli3n" class="fab fa-stack-overflow"><span class="label">StackOverflow</span></a></li><li><a href="mailto:jonathan.kirszling@runbox.com" class="fas fa-envelope"><span class="label">Email</span></a></li><li><a href="https://photos.eoli3n.eu.org/pizzas" class="fas fa-pizza-slice"><span class="label">Pizza</span></a></li><li><a href="https://photos.eoli3n.eu.org/pains" class="fas fa-bread-slice"><span class="label">Bread</span></a></li><li><a href="https://asciinema.org/~eoli3n" class="fas fa-play"><span class="label">Asciinema</span></a></li><li><a href="https://www.reddit.com/user/eoli3n" class="fab fa-reddit"><span class="label">Reddit</span></a></li><li><a href="https://www.betrail.run/runner/kirszling.jonathan.0/overview" class="fas fa-person-running"><span class="label">Running</span></a></li></ul>
+</div>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>
