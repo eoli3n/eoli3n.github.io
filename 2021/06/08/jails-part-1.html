@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.1.2-web/css/all.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="/assets/images/avatar.png">
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/assets/js/jquery-3.6.0.slim.min.js"></script>
+
+  <!-- Auto headings -->
+  <!-- https://github.com/jekyll/jekyll/issues/2690 -->
+  <script type="text/javascript" src="/assets/js/headings.js"></script><link type="application/atom+xml" rel="alternate" href="https://eoli3n.eu.org/feed.xml" title="eoli3n" /><!-- SEO tag https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/installation.md -->
+  <meta property="og:image" content="https://eoli3n.eu.org/assets/images/avatar.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Managing FreeBSD Jails with Ansible - part 1 | eoli3n</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Managing FreeBSD Jails with Ansible - part 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blog that talks about Linux, BSD, Pizza, DevOps and more." />
+<meta property="og:description" content="A blog that talks about Linux, BSD, Pizza, DevOps and more." />
+<link rel="canonical" href="https://eoli3n.eu.org/2021/06/08/jails-part-1.html" />
+<meta property="og:url" content="https://eoli3n.eu.org/2021/06/08/jails-part-1.html" />
+<meta property="og:site_name" content="eoli3n" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-08T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Managing FreeBSD Jails with Ansible - part 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-06-08T00:00:00+02:00","datePublished":"2021-06-08T00:00:00+02:00","description":"A blog that talks about Linux, BSD, Pizza, DevOps and more.","headline":"Managing FreeBSD Jails with Ansible - part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://eoli3n.eu.org/2021/06/08/jails-part-1.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://eoli3n.eu.org/avatar.png"}},"url":"https://eoli3n.eu.org/2021/06/08/jails-part-1.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body><header class="site-header">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">
+      <img src="/assets/images/avatar.png" alt="logo" width="40">
+      eoli3n
+      <span class="site-subtitle"> … Blog …</span>
+    </a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/links.html">Links</a><a class="page-link" href="/photos/camembert/">Photos: Camembert</a><a class="page-link" href="/photos/">Photos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Managing FreeBSD Jails with Ansible - part 1</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-06-08T00:00:00+02:00" itemprop="datePublished"><i class="far fa-calendar-alt"></i>
+        <span class="post-date" style="width: 90px;">Jun 8, 2021</span>
+        
+        
+        <span class="post-size" style="width: 90px;">9674 words</span>
+        <i class="fas fa-hourglass-start"></i>
+        <span>25</span>
+        <span> mins</span>
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="markdown-toc">
+  <li><a href="#init-ansible" id="markdown-toc-init-ansible">Init Ansible</a>    <ul>
+      <li><a href="#create-project-and-configure" id="markdown-toc-create-project-and-configure">Create project and configure</a></li>
+      <li><a href="#make-your-project-configurable" id="markdown-toc-make-your-project-configurable">Make your project configurable</a></li>
+      <li><a href="#prepare-the-jails-host" id="markdown-toc-prepare-the-jails-host">Prepare the jails host</a></li>
+    </ul>
+  </li>
+  <li><a href="#shared-ip-jail" id="markdown-toc-shared-ip-jail">Shared IP Jail</a>    <ul>
+      <li><a href="#configure-ip-aliases" id="markdown-toc-configure-ip-aliases">Configure IP aliases</a></li>
+      <li><a href="#provision-jails-environments" id="markdown-toc-provision-jails-environments">Provision jails environments</a></li>
+      <li><a href="#declare-your-jails" id="markdown-toc-declare-your-jails">Declare your jails</a></li>
+      <li><a href="#run-and-test" id="markdown-toc-run-and-test">Run and test</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>When it comes to manage an OS configuration, I always fully automate the process, it is a oneshot work, you write it, test it, forget it, until you need to modify the process. I kind of use Ansible to make the work concrete as I use my blog to clarify my ideas.</p>
+
+<p><a href="https://docs.freebsd.org/en/books/handbook/jails/">Jails</a> are like containers for FreeBSD, it lets you isolate your services from each others. Each Jail has its own IP, there are different ways to manage networking, let’s explore automation for each.</p>
+
+<h3 id="init-ansible">Init Ansible</h3>
+
+<h4 id="create-project-and-configure">Create project and configure</h4>
+<p>Create your Ansible project root and git it.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>jails <span class="o">&amp;&amp;</span> <span class="nb">cd </span>jails
+<span class="nv">$ </span>git init
+<span class="nv">$ </span><span class="nb">mkdir </span>roles group_vars
+</code></pre></div></div>
+<p>Create inventory, if your host is configured with DHCP, check its IP.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"host-test ansible_host=192.168.0.44"</span> <span class="o">&gt;</span> hosts
+</code></pre></div></div>
+<p>Configure Ansible.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt; ansible.cfg
+[defaults]
+stdout_callback = yaml
+inventory = hosts
+remote_user = root
+interpreter_python = auto_silent
+</span><span class="no">EOF
+</span></code></pre></div></div>
+<p>And create the playbook, with a role <code class="language-bash highlighter-rouge">jails</code>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt; playbook.yml
+---
+- hosts: host-test
+  roles:
+    - { role: jails, tags: jails }
+</span><span class="no">EOF
+
+</span><span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> roles/jails/tasks
+</code></pre></div></div>
+
+<p>Install <code class="language-bash highlighter-rouge">community.general</code> collection, it contains <a href="https://docs.ansible.com/ansible/latest/collections/community/general/sysrc_module.html">sysrc</a> ansible module to safely edit <code class="language-bash highlighter-rouge">rc.conf</code></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible-galaxy collection <span class="nb">install </span>community.general
+</code></pre></div></div>
+
+<h4 id="make-your-project-configurable">Make your project configurable</h4>
+<p>Add a configuration file as <code class="language-bash highlighter-rouge">group_vars/all.yml</code>, with 3 vars. We will increment the static IP of the host in tasks, so choose an IP which can be incremented as many time as you have jails.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">inet</span><span class="pi">:</span> <span class="s">192.168.0.100</span>
+<span class="na">netmask</span><span class="pi">:</span> <span class="s">255.255.255.0</span>
+<span class="na">gateway</span><span class="pi">:</span> <span class="s">192.168.0.254</span>
+</code></pre></div></div>
+
+<h4 id="prepare-the-jails-host">Prepare the jails host</h4>
+<p>Bootstrap <a href="https://docs.ansible.com/ansible/latest/user_guide/intro_bsd.html#bootstrapping-bsd">FreeBSD for Ansible</a>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible host-test <span class="nt">-m</span> raw <span class="nt">-a</span> <span class="s2">"pkg install -y python37"</span>
+</code></pre></div></div>
+
+<p>Configure your default network interface.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible host-test <span class="nt">-m</span> sysrc <span class="nt">-a</span> <span class="s1">'name="ifconfig_{{ ansible_default_ipv4.interface }}" value="inet {{ inet }} netmask {{ netmask }}"'</span>
+<span class="nv">$ </span>ansible host-test <span class="nt">-m</span> sysrc <span class="nt">-a</span> <span class="s1">'name="defaultrouter" value="{{ gateway }}"'</span>
+</code></pre></div></div>
+<p>Restart <code class="language-bash highlighter-rouge">netif</code> and <code class="language-bash highlighter-rouge">routing</code> services to read you network configuration for <code class="language-bash highlighter-rouge">rc.conf</code>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible host-test <span class="nt">-m</span> raw <span class="nt">-a</span> <span class="s2">"service netif restart"</span>
+<span class="nv">$ </span>ansible host-test <span class="nt">-m</span> raw <span class="nt">-a</span> <span class="s2">"service routing restart"</span>
+</code></pre></div></div>
+
+<p>Adapt your inventory with the new static IP and you’re ready.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"host-test ansible_host=192.168.0.100"</span> <span class="o">&gt;</span> hosts
+</code></pre></div></div>
+
+<h3 id="shared-ip-jail">Shared IP Jail</h3>
+
+<p>The simpler way to create a Jail is to add IP alias to you network interface and then bind that IP to your Jail.<br />
+For the exemple, let’s create 2 jails, <code class="language-bash highlighter-rouge"><span class="nb">bind</span></code> and <code class="language-bash highlighter-rouge">nginx</code>.<br />
+First we need to create two IP aliases, default IP is incremented with <code class="language-bash highlighter-rouge">ipmath</code> which needs <code class="language-bash highlighter-rouge">netaddr</code> python package installed on the controller.</p>
+
+<p>Let’s declare our jails in a list in <code class="language-bash highlighter-rouge">group_vars/all.yml</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jails</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">bind</span>
+  <span class="pi">-</span> <span class="s">nginx</span>
+</code></pre></div></div>
+
+<h4 id="configure-ip-aliases">Configure IP aliases</h4>
+<p>We use <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#extended-loop-variables">extended loop vars</a> to increment <code class="language-bash highlighter-rouge">inet</code> IP with <code class="language-bash highlighter-rouge">ipmath</code> which needs <code class="language-bash highlighter-rouge">netaddr</code> python package installed on the controller. <code class="language-bash highlighter-rouge">ansible_loop.index0</code> starts index at <code class="language-bash highlighter-rouge">0</code> instead of <code class="language-bash highlighter-rouge">1</code>.<br />
+To be sure that the list will always be processed in the same order, it needs to be explicitly sorted.</p>
+
+<p>In <code class="language-bash highlighter-rouge">roles/jails/tasks/main.yml</code>.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">create IP aliases for jails</span>
+  <span class="na">vars</span><span class="pi">:</span>
+    <span class="na">alias_ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">inet</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">ipmath(ansible_loop.index)</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="s">community.general.sysrc</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ifconfig_{{</span><span class="nv"> </span><span class="s">ansible_default_ipv4.interface</span><span class="nv"> </span><span class="s">}}_alias{{</span><span class="nv"> </span><span class="s">ansible_loop.index0</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">inet</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">alias_ip</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">netmask</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">netmask</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="na">loop_control</span><span class="pi">:</span>
+    <span class="na">extended</span><span class="pi">:</span> <span class="s">yes</span>
+  <span class="na">notify</span><span class="pi">:</span> <span class="s">restart netif</span>
+</code></pre></div></div>
+
+<p>You need a handler to trigger the <code class="language-bash highlighter-rouge">netif</code> service restart on configuration update.</p>
+
+<p>In <code class="language-bash highlighter-rouge">roles/jails/handlers/main.yml</code>.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">restart netif</span>
+  <span class="na">service</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">netif</span>
+    <span class="na">state</span><span class="pi">:</span> <span class="s">restarted</span>
+</code></pre></div></div>
+
+<p>Run your playbook, and test.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible-playbook playbook.yml
+
+PLAY <span class="o">[</span>host-test] <span class="k">***************************************************************************************************</span>
+
+TASK <span class="o">[</span>Gathering Facts] <span class="k">*********************************************************************************************</span>
+ok: <span class="o">[</span>host-test]
+
+TASK <span class="o">[</span>network : create IP aliases <span class="k">for </span>jails] <span class="k">***********************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+RUNNING HANDLER <span class="o">[</span>network : restart netif] <span class="k">**************************************************************************</span>
+changed: <span class="o">[</span>host-test]
+
+PLAY RECAP <span class="k">*********************************************************************************************************</span>
+host-test                  : <span class="nv">ok</span><span class="o">=</span>3    <span class="nv">changed</span><span class="o">=</span>2    <span class="nv">unreachable</span><span class="o">=</span>0    <span class="nv">failed</span><span class="o">=</span>0    <span class="nv">skipped</span><span class="o">=</span>0    <span class="nv">rescued</span><span class="o">=</span>0    <span class="nv">ignored</span><span class="o">=</span>0
+</code></pre></div></div>
+
+<p>Your host now has two aliases configured.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible host-test <span class="nt">-m</span> shell <span class="nt">-a</span> <span class="s2">"ifconfig vtnet0 | grep inet"</span>
+host-test | CHANGED | <span class="nv">rc</span><span class="o">=</span>0 <span class="o">&gt;&gt;</span>
+	inet 192.168.0.100 netmask 0xffffff00 broadcast 192.168.0.255
+	inet 192.168.0.101 netmask 0xffffff00 broadcast 192.168.0.255
+	inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
+</code></pre></div></div>
+
+<h4 id="provision-jails-environments">Provision jails environments</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">create zfs jails dataset</span>
+  <span class="s">community.general.zfs</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">zroot/jails</span>
+    <span class="na">state</span><span class="pi">:</span> <span class="s">present</span>
+    <span class="na">extra_zfs_properties</span><span class="pi">:</span>
+      <span class="na">mountpoint</span><span class="pi">:</span> <span class="s">/usr/local/jails</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">create zfs per jail dataset</span>
+  <span class="s">community.general.zfs</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">zroot/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">state</span><span class="pi">:</span> <span class="s">present</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<p>Install FreeBSD on the jails with a custom <code class="language-bash highlighter-rouge">bsdinstall</code> script.<br />
+I faced an issue here, <code class="language-bash highlighter-rouge">bsdinstall</code> uses its <code class="language-bash highlighter-rouge">jail</code> argument to target the specific environment, and its <code class="language-bash highlighter-rouge">script</code> argument to automate the process. Using both make it ignore the second one.</p>
+
+<p>I improved the <code class="language-bash highlighter-rouge">jail</code> script to be able to use a <code class="language-bash highlighter-rouge">SCRIPT</code> env var with the script path, to automate in jail provisionning and <a href="https://github.com/freebsd/freebsd-src/pull/473">created a PR</a>.</p>
+
+<p>Now let’s create templates for automated provisionning.<br />
+Let’s install python3 and enable <code class="language-bash highlighter-rouge">sshd</code> to be able to use Ansible on our jails.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">template bsdinstall script</span>
+  <span class="na">copy</span><span class="pi">:</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/usr/local/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}.template"</span>
+    <span class="na">content</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">DISTRIBUTIONS="base.txz"</span>
+      <span class="s">export nonInteractive="YES"</span>
+      <span class="s">#!/bin/sh</span>
+      <span class="s">pkg install -y python37</span>
+      <span class="s">sysrc sshd_enable="YES"</span>
+      <span class="s">mkdir /root/.ssh</span>
+      <span class="s">chmod 600 /root/.ssh</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<p>Trigger the provisionning with the <code class="language-bash highlighter-rouge">shell</code> module and <code class="language-bash highlighter-rouge">args: creates:</code> to make it idempotent.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">bsdinstall jails</span>
+  <span class="na">shell</span><span class="pi">:</span> <span class="s">bsdinstall jail /usr/local/jails/"{{ item }}"</span>
+  <span class="na">environment</span><span class="pi">:</span>
+    <span class="na">SCRIPT</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/usr/local/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}.template"</span>
+  <span class="na">args</span><span class="pi">:</span>
+    <span class="na">creates</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/usr/local/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}/bin"</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<p>Authorize your ssh public key in jails.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">authorize your ssh key</span>
+  <span class="na">copy</span><span class="pi">:</span>
+    <span class="na">src</span><span class="pi">:</span> <span class="s">~/.ssh/id_rsa.pub</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/usr/local/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}/root/.ssh/authorized_keys"</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="m">0600</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<p>We finally need to permit root login.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">permit root login</span>
+  <span class="na">replace</span><span class="pi">:</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/usr/local/jails/{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}/etc/ssh/sshd_config"</span>
+    <span class="na">regexp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">^#(PermitRootLogin).*'</span>
+    <span class="na">replace</span><span class="pi">:</span> <span class="s1">'</span><span class="s">\1</span><span class="nv"> </span><span class="s">yes'</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<h4 id="declare-your-jails">Declare your jails</h4>
+<p>Last thing we need is to declare jails in <code class="language-bash highlighter-rouge">/etc/jail.conf</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">set default jails config</span>
+  <span class="na">blockinfile</span><span class="pi">:</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s">/etc/jail.conf</span>
+    <span class="na">create</span><span class="pi">:</span> <span class="s">yes</span>
+    <span class="na">marker</span><span class="pi">:</span> <span class="s2">"</span><span class="s">#</span><span class="nv"> </span><span class="s">{mark}</span><span class="nv"> </span><span class="s">ANSIBLE</span><span class="nv"> </span><span class="s">MANAGED:</span><span class="nv"> </span><span class="s">default"</span>
+    <span class="na">block</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">exec.start = "/bin/sh /etc/rc";</span>
+      <span class="s">exec.stop = "/bin/sh /etc/rc.shutdown";</span>
+      <span class="s">exec.clean;</span>
+      <span class="s">mount.devfs;</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">declare jails</span>
+  <span class="na">vars</span><span class="pi">:</span>
+    <span class="na">alias_ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">inet</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">ipmath(ansible_loop.index)</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="na">blockinfile</span><span class="pi">:</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s">/etc/jail.conf</span>
+    <span class="na">marker</span><span class="pi">:</span> <span class="s2">"</span><span class="s">#</span><span class="nv"> </span><span class="s">{mark}</span><span class="nv"> </span><span class="s">ANSIBLE</span><span class="nv"> </span><span class="s">MANAGED:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">block</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">{{ item }} {</span>
+          <span class="s">host.hostname = "{{ item }}.domain.local";</span>
+          <span class="s">path = "/usr/local/jails/{{ item }}";</span>
+          <span class="s">exec.consolelog = "/var/log/jail_{{ item }}.log";</span>
+          <span class="s">ip4.addr = {{ alias_ip }};</span>
+      <span class="s">}</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="na">loop_control</span><span class="pi">:</span>
+    <span class="na">extended</span><span class="pi">:</span> <span class="s">yes</span>
+</code></pre></div></div>
+<p>Let’s tell <code class="language-bash highlighter-rouge">rc.conf</code> to run jails at startup.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">start jails at startup</span>
+  <span class="s">community.general.sysrc</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jail_enable"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YES"</span>
+</code></pre></div></div>
+<p>Finally, add the tasks to start the jails now. We can’t use <code class="language-bash highlighter-rouge">service</code> module here, because <code class="language-bash highlighter-rouge">args</code> argument don’t pass its value to <code class="language-bash highlighter-rouge">service jail <span class="nv">$action</span></code>. The <code class="language-bash highlighter-rouge">service</code> has a rc of <code class="language-bash highlighter-rouge">0</code> if the service is already running, so it’s not a problem to trigger the start at each playbook run.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">start jails</span>
+  <span class="na">shell</span><span class="pi">:</span> <span class="s">service jail start "{{ item }}"</span>
+  <span class="na">loop</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">jails</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">flatten(levels=1)</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<h4 id="run-and-test">Run and test</h4>
+
+<p>Run the playbook to provision jails.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible-playbook playbook.yml
+<span class="o">[</span>...]
+
+TASK <span class="o">[</span>jails : create zfs jails dataset] <span class="k">****************************************************************************</span>
+changed: <span class="o">[</span>host-test]
+
+TASK <span class="o">[</span>jails : create zfs per jail dataset] <span class="k">*************************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : template bsdinstall script] <span class="k">**************************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : bsdinstall jails] <span class="k">************************************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : authorize your ssh key] <span class="k">********************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : permit root login] <span class="k">*************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : <span class="nb">set </span>default jails config] <span class="k">****************************************************************************</span>
+changed: <span class="o">[</span>host-test]
+
+TASK <span class="o">[</span>jails : <span class="nb">declare </span>jails] <span class="k">***************************************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+TASK <span class="o">[</span>jails : start jails at startup] <span class="k">******************************************************************************</span>
+changed: <span class="o">[</span>host-test]
+
+TASK <span class="o">[</span>jails : start jails] <span class="k">*****************************************************************************************</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span><span class="nb">bind</span><span class="o">)</span>
+changed: <span class="o">[</span>host-test] <span class="o">=&gt;</span> <span class="o">(</span><span class="nv">item</span><span class="o">=</span>nginx<span class="o">)</span>
+
+PLAY RECAP <span class="k">*********************************************************************************************************</span>
+host-test                  : <span class="nv">ok</span><span class="o">=</span>4    <span class="nv">changed</span><span class="o">=</span>10    <span class="nv">unreachable</span><span class="o">=</span>0    <span class="nv">failed</span><span class="o">=</span>0    <span class="nv">skipped</span><span class="o">=</span>0    <span class="nv">rescued</span><span class="o">=</span>0    <span class="nv">ignored</span><span class="o">=</span>0
+</code></pre></div></div>
+<p>List your running jails and check their IP.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ansible host-test <span class="nt">-m</span> shell <span class="nt">-a</span> <span class="s2">"jls"</span>
+host-test | CHANGED | <span class="nv">rc</span><span class="o">=</span>0 <span class="o">&gt;&gt;</span>
+   JID  IP Address      Hostname                      Path
+     1  192.168.0.101   bind.domain.local             /usr/local/jails/bind
+     2  192.168.0.102   nginx.domain.local            /usr/local/jails/nginx
+
+<span class="nv">$ </span>ansible host-test <span class="nt">-m</span> shell <span class="nt">-a</span> <span class="s2">"jexec bind ifconfig | grep inet"</span>
+host-test | CHANGED | <span class="nv">rc</span><span class="o">=</span>0 <span class="o">&gt;&gt;</span>
+	inet 192.168.0.101 netmask 0xffffff00 broadcast 192.168.0.255
+
+<span class="nv">$ </span>ansible host-test <span class="nt">-m</span> shell <span class="nt">-a</span> <span class="s2">"jexec nginx ifconfig | grep inet"</span>
+host-test | CHANGED | <span class="nv">rc</span><span class="o">=</span>0 <span class="o">&gt;&gt;</span>
+	inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
+</code></pre></div></div>
+
+<p>You can now reach your jails with Ansible, just add their entries in your inventory.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt;&gt; hosts
+bind ansible_host=192.168.0.101
+nginx ansible_host=192.168.0.102
+</span><span class="no">EOF
+
+</span><span class="nv">$ </span>ansible nginx:bind <span class="nt">-m</span> ping
+<span class="nb">bind</span> | SUCCESS <span class="o">=&gt;</span> <span class="o">{</span>
+    <span class="s2">"ansible_facts"</span>: <span class="o">{</span>
+        <span class="s2">"discovered_interpreter_python"</span>: <span class="s2">"/usr/local/bin/python3.7"</span>
+    <span class="o">}</span>,
+    <span class="s2">"changed"</span>: <span class="nb">false</span>,
+    <span class="s2">"ping"</span>: <span class="s2">"pong"</span>
+<span class="o">}</span>
+nginx | SUCCESS <span class="o">=&gt;</span> <span class="o">{</span>
+    <span class="s2">"ansible_facts"</span>: <span class="o">{</span>
+        <span class="s2">"discovered_interpreter_python"</span>: <span class="s2">"/usr/local/bin/python3.7"</span>
+    <span class="o">}</span>,
+    <span class="s2">"changed"</span>: <span class="nb">false</span>,
+    <span class="s2">"ping"</span>: <span class="s2">"pong"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the <a href="/2021/06/09/jails-part-2.html">next part</a>, we will see how to provision <code class="language-bash highlighter-rouge">vnet</code> jails.</p>
+
+  </div><a class="u-url" href="/2021/06/08/jails-part-1.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+      </div>
+
+      <div class="footer-col footer-col-2">
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>A blog that talks about Linux, BSD, Pizza, DevOps and more.&nbspReach me on irc.libera.chat #archlinux-fr or #voidlinux.</p><!-- Social Icons -->
+<div class="social-media-wrapper">
+  <ul class="social-media-list"><li><a href="https://github.com/eoli3n" class="fab fa-github"><span class="label">GitHub</span></a></li><li><a href="https://stackoverflow.com/users/11061370/eoli3n" class="fab fa-stack-overflow"><span class="label">StackOverflow</span></a></li><li><a href="mailto:jonathan.kirszling@runbox.com" class="fas fa-envelope"><span class="label">Email</span></a></li><li><a href="https://photos.eoli3n.eu.org/pizzas" class="fas fa-pizza-slice"><span class="label">Pizza</span></a></li><li><a href="https://photos.eoli3n.eu.org/pains" class="fas fa-bread-slice"><span class="label">Bread</span></a></li><li><a href="https://asciinema.org/~eoli3n" class="fas fa-play"><span class="label">Asciinema</span></a></li><li><a href="https://www.reddit.com/user/eoli3n" class="fab fa-reddit"><span class="label">Reddit</span></a></li><li><a href="https://www.betrail.run/runner/kirszling.jonathan.0/overview" class="fas fa-person-running"><span class="label">Running</span></a></li></ul>
+</div>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>
