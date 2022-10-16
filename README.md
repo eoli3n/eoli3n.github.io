@@ -36,9 +36,6 @@ $ git add .nojekyll
 $ cat < EOF > .git/hooks/pre-push
 #!/bin/bash
 
-# If any command fails in the bellow script, exit with error
-set -e
-
 # Set the name of the folder that will be created in the parent
 # folder of your repo folder, and which will temporarily
 # hold the generated content.
@@ -69,8 +66,12 @@ then
 
     # Commit and push our generated site to GitHub
     git add -A
-    git commit -m "Built '$last_message'"
-    git push
+
+    # If something to commit related to the site, commit then push
+    if git commit -m "Built '$last_message'"
+    then
+        git push
+    fi
 
     # Go back to the main branch
     git checkout main
