@@ -34,7 +34,7 @@ set -e
 # Set the name of the folder that will be created in the parent
 # folder of your repo folder, and which will temporarily
 # hold the generated content.
-temp_folder="_gh-pages-temp"
+temp_folder="/tmp/_gh-pages-temp"
 
 # Make sure our main code runs only if we push the main branch
 if [ "$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)" == "main" ]
@@ -49,19 +49,19 @@ then
     bundle exec jekyll build
 
     # Move the generated site in our temp folder
-    mv _site ../${temp_folder}
+    mv _site ${temp_folder}
 
     # Checkout the gh-pages branch and clean it's contents
     git checkout gh-pages
-    rm -rf *
 
-    # Copy the site content from the temp folder and remove the temp folder
-    cp -r ../${temp_folder}/* .
-    rm -rf ../${temp_folder}
+    # Sync the site content from the temp folder and remove the temp folder
+    rsync -avp --exclude '.*' ${temp_folder}/* .
+
+    rm -rf ${temp_folder}
 
     # Commit and push our generated site to GitHub
     git add -A
-    git commit -m "Built \`$last_message\`"
+    git commit -m "Built $($last_message)"
     git push
 
     # Go back to the main branch
