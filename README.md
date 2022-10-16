@@ -1,8 +1,10 @@
 # Use jekyll on github with custom plugins
 https://surdu.me/2020/02/04/jekyll-git-hook.html
+https://talk.jekyllrb.com/t/error-no-implicit-conversion-of-hash-into-integer/5890/11
 
 ### Install
 ```bash
+$ bundle add webrick
 $ bundler install
 $ git checkout gh-pages
 $ rm -rf *
