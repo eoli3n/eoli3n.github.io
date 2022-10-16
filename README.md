@@ -24,6 +24,10 @@ $ git add -A
 $ git commit -m "Initialized gh-pages branch"
 $ git push
 
+# Disable jekyll build
+$ touch .nojekyll
+$ git add .nojekyll
+
 # Create git pre-push hook to automate publication
 $ cat < EOF > .git/hooks/pre-push
 #!/bin/bash
