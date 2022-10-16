@@ -33,7 +33,7 @@ $ git add .nojekyll
 # Set "gh-pages" branch "/ (root)"
 
 # Create git pre-push hook to automate publication
-$ cat << EOF > .git/hooks/pre-push
+$ cat << "EOF" > .git/hooks/pre-push
 #!/bin/bash
 
 # Set the name of the folder that will be created in the parent
