@@ -84,14 +84,14 @@ exclude:
 gallery:
   dir: photos               # Path to the gallery
   sections:
-    - name: pain
+    - name: _pain
       icon: fa-bread-slice
       dossiers:
         - petit_epeautre
         - respectus_panis
         - bles_anciens
         - bles_modernes
-    - name: fromage
+    - name: _fromage
       icon: fa-cheese
       dossiers:
         - camembert_1er_essai
@@ -100,7 +100,7 @@ gallery:
         - fromage_de_kefir
         - fromage_frais
         - mozzarella
-    - name: pizza
+    - name: _pizza
       icon: fa-pizza-slice
       dossiers:
         - pizzas
