@@ -65,7 +65,7 @@ then
 
     # Commit and push our generated site to GitHub
     git add -A
-    git commit -m "Built $($last_message)"
+    git commit -m "Built '$last_message'"
     git push
 
     # Go back to the main branch
