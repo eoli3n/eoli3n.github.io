@@ -33,7 +33,7 @@ $ git add .nojekyll
 # Set "gh-pages" branch "/ (root)"
 
 # Create git pre-push hook to automate publication
-$ cat < EOF > .git/hooks/pre-push
+$ cat << EOF > .git/hooks/pre-push
 #!/bin/bash
 
 # Set the name of the folder that will be created in the parent
@@ -60,7 +60,10 @@ then
     git checkout gh-pages
 
     # Sync the site content from the temp folder and remove the temp folder
-    rsync -avp --delete --include '/.nojekyll' --exclude '/.*' ${temp_folder}/* .
+    rsync -avp --delete --exclude '/.*' ${temp_folder}/* .
+
+    # Disable jekyll build on github actions
+    touch .nojekyll
 
     rm -rf ${temp_folder}
 
