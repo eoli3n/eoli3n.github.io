@@ -1,24 +1,27 @@
 ---
-layout: page
+layout: default
+list_title: "_galleries"
 exclude: true
 ---
-<style TYPE="text/css">
-.gallery-wrapper {
-  width: 35em;
-  text-align: center;
-  padding: 1em 0 4em 0;
-}
-.gallery-best-image{
-  max-height: 20em;
-  max-width: 20em;
-}
-</style>
-{% for gallery in page.galleries %}
-<div class="gallery-wrapper">
-    <a href="{{ gallery['gallery'] }}">
-        <img class="gallery-best-image" src="{{ gallery['gallery'] }}/thumbs/{{ gallery['best_image'] }}">
-    </a>
-    <h3><a href="{{ gallery['gallery'] }}">{{ gallery["name"] }}</a></h3>
-    {{ gallery["images"] | size }} image{% if gallery["images"].size != 1 %}s{% endif %}
-</div>
-{% endfor %}
+<h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree -D --du photos/</h3>
+<h2 class="post-list-heading">{{ page.list_title }}</h2>
+  <ul class="post-list tree">
+
+    {% for gallery in page.galleries %}
+    <li class="post-grid">
+      {% if gallery['icon'] %}
+      <i class="fa fas fab {{ post.icon }} post-icon"></i>
+      {% else %}
+      <i class="fas fa-images post-icon"></i>
+      {% endif %}
+      <a class="post-link" href="{{ gallery['gallery'] }}">
+        {{ gallery['name'] }}
+        <span class="post-list-meta">
+          <i class="far fa-image"></i>
+          <span class="post-size">{{ gallery["images"] | size }} pictures</span>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <h3 class="post-list-heading" style="padding-top: 15px; padding-bottom: 15px;">{{ page.galleries | size }} galleries</h3>
