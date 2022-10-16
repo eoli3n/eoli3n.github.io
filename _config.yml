@@ -91,3 +91,12 @@ gallery:
   thumbnail_size:
     x: 400                  # max width of thumbnails (in pixels)
     y: 400                  # max height of thumbnails (in pixels)
+  galleries:
+    fromages:
+      hidden: true
+    oven:
+      hidden: true
+    pains:
+      hidden: true
+    pizzas:
+      hidden: true
