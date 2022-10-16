@@ -70,7 +70,6 @@ exclude:
   - INSTALL.md
   - TODO.md
   - README.md
-  - photos
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
