@@ -6,6 +6,7 @@ https://talk.jekyllrb.com/t/error-no-implicit-conversion-of-hash-into-integer/58
 ```bash
 # Install ruby 2.7
 $ rbenv install 2.7.5
+
 # Run this in the project dir
 $ rbenv local 2.7.5
 $ ruby -v
