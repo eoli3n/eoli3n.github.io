@@ -42,6 +42,9 @@ then
     # Store the last commit message from main branch
     last_message=$(git show -s --format=%s main)
 
+    # Each time gh-pages are pushed, as vendor directory is ignored and contains gems, it needs to be retriggered
+    bundle install
+
     # Build our Jekyll site
     bundle exec jekyll build
 
