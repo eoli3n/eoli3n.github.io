@@ -53,7 +53,7 @@ then
     bundle exec jekyll build
 
     # Move the generated site in our temp folder
-    mv _site ${temp_folder}
+    rsync -avp _site ${temp_folder}
 
     # Checkout the gh-pages branch and clean it's contents
     git checkout gh-pages
