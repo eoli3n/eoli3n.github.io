@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.1.2-web/css/all.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="/assets/images/avatar.png">
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/assets/js/jquery-3.6.0.slim.min.js"></script>
+
+  <!-- Auto headings -->
+  <!-- https://github.com/jekyll/jekyll/issues/2690 -->
+  <script type="text/javascript" src="/assets/js/headings.js"></script><link type="application/atom+xml" rel="alternate" href="https://eoli3n.eu.org/feed.xml" title="eoli3n" /><!-- SEO tag https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/installation.md -->
+  <meta property="og:image" content="https://eoli3n.eu.org/assets/images/avatar.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nas project - part 3 | eoli3n</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Nas project - part 3" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In part 2, I setup my nas, but I didn’t notice that I created ZFS pool without mirroring." />
+<meta property="og:description" content="In part 2, I setup my nas, but I didn’t notice that I created ZFS pool without mirroring." />
+<link rel="canonical" href="https://eoli3n.eu.org/2021/05/30/nas-part-3.html" />
+<meta property="og:url" content="https://eoli3n.eu.org/2021/05/30/nas-part-3.html" />
+<meta property="og:site_name" content="eoli3n" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-30T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nas project - part 3" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-30T00:00:00+02:00","datePublished":"2021-05-30T00:00:00+02:00","description":"In part 2, I setup my nas, but I didn’t notice that I created ZFS pool without mirroring.","headline":"Nas project - part 3","mainEntityOfPage":{"@type":"WebPage","@id":"https://eoli3n.eu.org/2021/05/30/nas-part-3.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://eoli3n.eu.org/avatar.png"}},"url":"https://eoli3n.eu.org/2021/05/30/nas-part-3.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body><header class="site-header">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">
+      <img src="/assets/images/avatar.png" alt="logo" width="40">
+      eoli3n
+      <span class="site-subtitle"> … Blog …</span>
+    </a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/links.html">Links</a><a class="page-link" href="/photos/camembert/">Photos: Camembert</a><a class="page-link" href="/photos/">Photos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Nas project - part 3</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-05-30T00:00:00+02:00" itemprop="datePublished"><i class="far fa-calendar-alt"></i>
+        <span class="post-date" style="width: 90px;">May 30, 2021</span>
+        
+        
+        <span class="post-size" style="width: 90px;">2362 words</span>
+        <i class="fas fa-hourglass-start"></i>
+        <span>6</span>
+        <span> mins</span>
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In <a href="/2021/05/21/nas-part-2.html">part 2</a>, I setup my nas, but I didn’t notice that I created ZFS pool without mirroring.</p>
+
+<p>Let’s try to fix this.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>zpool remove dpool sdc
+<span class="nv">$ </span>zpool status
+  pool: dpool
+ state: ONLINE
+ remove: Evacuation of /dev/sdc1 <span class="k">in </span>progress since Sun May 30 08:51:38 2021
+ 4.23G copied out of 202G at 80.1M/s, 2.10% <span class="k">done</span>, 0h42m to go
+    566K memory used <span class="k">for </span>removed device mappings
+config:
+
+        NAME          STATE     READ WRITE CKSUM
+        dpool         ONLINE       0     0     0
+          sdb         ONLINE       0     0     0
+          sdc         ONLINE       0     0     0
+
+errors: No known data errors
+</code></pre></div></div>
+<p>After it completes, I attach now the newly free disk to mirror the first one.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>zpool attach dpool sdb sdc
+<span class="nv">$ </span>zpool status
+  pool: dpool
+ state: ONLINE
+status: One or more devices is currently being resilvered.  The pool will
+        <span class="k">continue </span>to <span class="k">function</span>, possibly <span class="k">in </span>a degraded state.
+action: Wait <span class="k">for </span>the resilver to complete.
+  scan: resilver <span class="k">in </span>progress since Sun May 30 09:38:12 2021
+        404G scanned at 2.43G/s, 1.52G issued at 9.41M/s, 404G total
+        1.53G resilvered, 0.38% <span class="k">done</span>, no estimated completion <span class="nb">time
+</span>remove: Removal of vdev 1 copied 202G <span class="k">in </span>0h44m, completed on Sun May 30 09:36:27 2021
+    566K memory used <span class="k">for </span>removed device mappings
+config:
+
+        NAME          STATE     READ WRITE CKSUM
+        dpool         ONLINE       0     0     0
+          mirror-0    ONLINE       0     0     0
+            sdb       ONLINE       0     0     0
+            sdc       ONLINE       0     0     0  <span class="o">(</span>resilvering<span class="o">)</span>
+
+errors: No known data errors
+</code></pre></div></div>
+
+<p>It ended without any stress/warning/error… how much do <strong>I love ZFS</strong> !</p>
+
+<h3 id="dns-day">DNS day</h3>
+
+<p>I want to configure a authoritative DNS for my <code class="language-bash highlighter-rouge">eoli3n.eu.org</code> domain.<br />
+This DNS server will not be used as a recursive one, even locally, I just want it to resolv <code class="language-bash highlighter-rouge"><span class="k">*</span>.eoli3n.eu.org</code>.<br />
+Following <a href="https://wiki.debian.org/Bind9#Debian_Jessie_and_later">bind9 debian wiki page</a>, I setup a bind authoritative server in a chroot. Here’s the bind config</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/bind/named.conf.options
+options <span class="o">{</span>
+    directory <span class="s2">"/var/cache/bind"</span><span class="p">;</span>
+
+    // Listen on ipv4 interfaces only
+    listen-on <span class="o">{</span>
+        127.0.0.1<span class="p">;</span>
+        192.168.0.253<span class="p">;</span>
+    <span class="o">}</span><span class="p">;</span>
+    listen-on-v6      <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+
+    // Hide version
+    version <span class="s2">"[SECURED]"</span><span class="p">;</span>
+
+    // disable zone transfert
+    allow-transfer    <span class="o">{</span><span class="s2">"none"</span><span class="p">;</span><span class="o">}</span><span class="p">;</span>
+
+    // disable recursion
+    recursion no<span class="p">;</span>
+
+    // allow query
+    allow-query       <span class="o">{</span> any<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+    allow-query-cache <span class="o">{</span> any<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="nv">$ </span><span class="nb">cat</span> /etc/bind/named.conf.local
+// https://serverfault.com/a/306109/339917
+include <span class="s2">"/etc/bind/zones.rfc1918"</span><span class="p">;</span>
+
+zone <span class="s2">"eoli3n.eu.org."</span> IN <span class="o">{</span>
+    <span class="nb">type </span>master<span class="p">;</span>
+    file <span class="s2">"selfhost.zone"</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="nv">$ </span><span class="nb">cat</span> /var/bind9/chroot/var/cache/bind/selfhost.zone
+<span class="nv">$TTL</span> 86400
+@       IN      SOA     ns1 root <span class="o">(</span>
+                        1622390729 <span class="p">;</span> serial number
+                        8h <span class="p">;</span> Refresh
+                        2h <span class="p">;</span> Retry
+                        8h <span class="p">;</span> Expire
+                        4m <span class="p">;</span> Min TTL
+                        <span class="o">)</span>
+
+@       IN      NS      ns1
+ns1     IN      A       <span class="nv">$public_ip</span>
+
+<span class="k">*</span>       IN      A       <span class="nv">$public_ip</span>
+</code></pre></div></div>
+
+<p>Lets test it</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>dig @127.0.0.1 ns1.eoli3n.eu.org
+<span class="o">[</span>...]
+<span class="p">;;</span> ANSWER SECTION:
+ns1.eoli3n.eu.org.	86400	IN	A	<span class="nv">$public_ip</span>
+
+<span class="p">;;</span> AUTHORITY SECTION:
+eoli3n.eu.org.		86400	IN	NS	ns1.eoli3n.eu.org.
+<span class="o">[</span>...]
+</code></pre></div></div>
+
+<h3 id="get-my-own-domain-on-euorg">Get my own domain on eu.org</h3>
+
+<p>I asked for <code class="language-bash highlighter-rouge">eoli3n.eu.org</code> domain by creating a request on the free domain registrar <strong>eu.org</strong>.<br />
+To configure it, just add <code class="language-bash highlighter-rouge">ns1.eoli3n.eu.org</code> glue record with your public IP and redirect TCP/UDP on port 53 to your DNS server on your ISP router.</p>
+
+
+  </div><a class="u-url" href="/2021/05/30/nas-part-3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+      </div>
+
+      <div class="footer-col footer-col-2">
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>A blog that talks about Linux, BSD, Pizza, DevOps and more.&nbspReach me on irc.libera.chat #archlinux-fr or #voidlinux.</p><!-- Social Icons -->
+<div class="social-media-wrapper">
+  <ul class="social-media-list"><li><a href="https://github.com/eoli3n" class="fab fa-github"><span class="label">GitHub</span></a></li><li><a href="https://stackoverflow.com/users/11061370/eoli3n" class="fab fa-stack-overflow"><span class="label">StackOverflow</span></a></li><li><a href="mailto:jonathan.kirszling@runbox.com" class="fas fa-envelope"><span class="label">Email</span></a></li><li><a href="https://photos.eoli3n.eu.org/pizzas" class="fas fa-pizza-slice"><span class="label">Pizza</span></a></li><li><a href="https://photos.eoli3n.eu.org/pains" class="fas fa-bread-slice"><span class="label">Bread</span></a></li><li><a href="https://asciinema.org/~eoli3n" class="fas fa-play"><span class="label">Asciinema</span></a></li><li><a href="https://www.reddit.com/user/eoli3n" class="fab fa-reddit"><span class="label">Reddit</span></a></li><li><a href="https://www.betrail.run/runner/kirszling.jonathan.0/overview" class="fas fa-person-running"><span class="label">Running</span></a></li></ul>
+</div>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>
