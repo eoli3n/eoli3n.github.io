@@ -61,6 +61,7 @@ then
     # Sync the site content from the temp folder and remove the temp folder
     rsync -avp --exclude '.*' ${temp_folder}/* .
 
+    # trigger
     #rm -rf ${temp_folder}
 
     # Commit and push our generated site to GitHub
