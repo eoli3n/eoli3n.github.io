@@ -59,7 +59,7 @@ then
     git checkout gh-pages
 
     # Sync the site content from the temp folder and remove the temp folder
-    rsync -avp --delete --exclude '.*' ${temp_folder}/* .
+    rsync -avp --delete --exclude '/.*' ${temp_folder}/* .
 
     rm -rf ${temp_folder}
 
@@ -75,4 +75,3 @@ else
 fi
 EOF
 ```
-
