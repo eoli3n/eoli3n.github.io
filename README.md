@@ -4,13 +4,27 @@ https://talk.jekyllrb.com/t/error-no-implicit-conversion-of-hash-into-integer/58
 
 ### Install
 ```bash
+# Install ruby 2.7
+$ rbenv install 2.7.5
+# Run this in the project dir
+$ rbenv local 2.7.5
+$ ruby -v
+ruby 2.7.5p203 (2021-11-24 revision f69aeb8314) [x86_64-linux]
+
+# Add webrick
 $ bundle add webrick
-$ bundler install
+
+# Install gems
+$ bundle install
+
+# Clean gh-pages branch
 $ git checkout gh-pages
 $ rm -rf *
 $ git add -A
 $ git commit -m "Initialized gh-pages branch"
 $ git push
+
+# Create git pre-push hook to automate publication
 $ cat < EOF > .git/hooks/pre-push
 #!/bin/bash
 
@@ -54,4 +68,3 @@ else
 fi
 EOF
 ```
-
