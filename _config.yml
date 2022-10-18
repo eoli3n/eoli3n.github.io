@@ -25,7 +25,7 @@ email: jonathan.kirszling@runbox.com
 description: "A blog that talks about Linux, BSD, Pizza, DevOps and more."
 message: "Reach me on irc.libera.chat #archlinux-fr or #voidlinux."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://eoli3n.eu.org" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://eoli3n.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Social icons
 twitter_url:
@@ -34,20 +34,20 @@ googleplus_url:
 instagram_url:
 linkedin_url:
 github_url: https://github.com/eoli3n
-pizza_url: https://photos.eoli3n.eu.org/pizzas
-bread_url: https://photos.eoli3n.eu.org/pains
 stackoverflow_url: https://stackoverflow.com/users/11061370/eoli3n
 pinterest_url:
 slack_url:
 dribbble_url:
 asciinema_url: https://asciinema.org/~eoli3n
 reddit_url: https://www.reddit.com/user/eoli3n
+run_url: https://www.betrail.run/runner/kirszling.jonathan.0/overview
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-gallery-generator
 
 kramdown:
   input: GFM
@@ -67,7 +67,7 @@ exclude:
   - vendor
   - INSTALL.md
   - TODO.md
-  - archzfs/*.md
+  - README.md
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
@@ -78,3 +78,42 @@ exclude:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+gallery:
+  dir: photos               # Path to the gallery
+  sections:
+    - name: _pain
+      icon: fa-bread-slice
+      dossiers:
+        - petit_epeautre
+        - respectus_panis
+        - bles_anciens
+        - bles_modernes
+    - name: _fromage
+      icon: fa-cheese
+      dossiers:
+        - camembert_1er_essai
+        - camembert_2eme_essai
+        - fromage_bleu
+        - fromage_de_kefir
+        - fromage_frais
+        - mozzarella
+    - name: _pizza
+      icon: fa-pizza-slice
+      dossiers:
+        - pizzas
+        - oven
+  galleries:
+    bles_anciens:
+      name: "Blés anciens"
+    bles_modernes:
+      name: "Blés modernes"
+
+  symlink: false            # false: copy images into _site. true: create symbolic links (saves disk space)
+  title: "Photos"           # Title for gallery index page
+  title_prefix: "Photos: "  # Title prefix for gallery pages. Gallery title = title_prefix + gallery_name
+  sort_field: "date_time"   # How to sort galleries on the index page.
+                            # Possible values are: title, date_time, best_image
+  thumbnail_size:
+    x: 400                  # max width of thumbnails (in pixels)
+    y: 400                  # max height of thumbnails (in pixels)

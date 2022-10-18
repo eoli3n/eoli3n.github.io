@@ -45,7 +45,7 @@ It seems that there is an archive mirror for its repository too, it would be eas
 For now, just use this after booting a standard archiso system to initialize zfs module.
 
 ```
-curl -s https://eoli3n.github.io/archzfs/init | bash
+curl -s https://raw.githubusercontent.com/eoli3n/archiso-zfs/master/init | bash
 ```
 
 Wait and see.

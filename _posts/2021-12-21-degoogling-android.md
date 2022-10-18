@@ -1,7 +1,7 @@
 ---
 title: Degoogling
 layout: post
-icon: fa-android
+icon: fa-eye-slash
 icon-style: solid
 ---
 * TOC

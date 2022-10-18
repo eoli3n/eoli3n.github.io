@@ -1,0 +1,35 @@
+---
+layout: default
+list_title: "_galleries"
+---
+<h3 class="post-list-heading" style="padding-bottom: 15px;">$ tree --du photos/</h3>
+
+{% for section in site.gallery["sections"] %}
+
+<h2 class="post-list-heading">{{ section["name"] }}</h2>
+  <ul class="post-list tree">
+
+    {% for dossier in section["dossiers"] %}
+    {% for gallery in page.galleries %}
+    {% if gallery["gallery"] == dossier %}
+
+    <li class="post-grid">
+      {% if section["icon"] %}
+      <i class="fa fas fab {{ section["icon"] }} post-icon"></i>
+      {% else %}
+      <i class="fas fa-images post-icon"></i>
+      {% endif %}
+      <a class="post-link" href="{{ gallery['gallery'] }}">
+        {{ gallery['name'] }}
+        <span class="post-list-meta">
+          <i class="far fa-image"></i>
+          <span class="post-size">{{ gallery["images"] | size }} pictures</span>
+        </span>
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </ul>
+  <h3 class="post-list-heading" style="padding-top: 15px; padding-bottom: 15px;">{{ section["dossiers"] | size }} galleries</h3>
+{% endfor %}
