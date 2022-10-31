@@ -73,7 +73,7 @@ There are not instructions in the [README](https://github.com/allanjude/depengui
 Let's install asked dependencies. The script needs bsdtar which is in ``libarchive-tools`` package on Debian 11.
 
 ```bash
-root@vps:~# apt install -y libarchive-tools libc6-dev zlib1g-dev gcc
+root@vps:~# apt install -y libarchive-tools libc6-dev zlib1g-dev makefs
 ```
 
 We now need to configure depenguinator. In the config file, we need to specify how the booted installer system will connect to internet.
@@ -104,7 +104,7 @@ depenguinator_netmask_external="255.255.192.0"
 ```
 
 Allan Jude version of the script doesn't need an iso path as argument, it directly fetch data on freebsd servers from the release name, so we can now build the installer system.
-I also [patched the script](https://github.com/allanjude/depenguinator/commit/3a29a2bba2347e6e7207c3cfc96fe1778637a4e1) to use ``bsdtar`` instead of ``tar``.
+I also [patched the script](https://github.com/allanjude/depenguinator/commit/3a29a2bba2347e6e7207c3cfc96fe1778637a4e1) to use ``bsdtar`` instead of ``tar``, and to use system ``makefs`` command.
 
 ```bash
 root@vps:~/depenguinator# sh makeimage.sh 13.1-RELEASE ~/.ssh/authorized_keys
