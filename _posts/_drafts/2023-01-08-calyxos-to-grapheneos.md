@@ -30,13 +30,14 @@ Main reasons to choose GrapheneOS over CalyxOS are:
 
 - [Higher release frequency](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#update-frequency) and stock security feature integration
 - [Sandboxed Google Play](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#sandboxed-google-play-vs-privileged-microg) vs Privileged microG
-- 32 [user profiles]() instead of just one isolated work profile
+- [A lot of features](https://grapheneos.org/features) added on top of AOSP.
+- [32 user profiles](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#profiles) instead of just one isolated work profile
 - [Better hardening](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#additional-hardening)
 
 ### Applications
 
 On GrapheneOS, applications are run in a [Sandboxed Google Play instead of privileged microG](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#sandboxed-google-play-vs-privileged-microg).
-It increases security and compatibility, because Google Play Services are the real one, not a reimplementation and the sandboxing let you control their permissions.
+It increases security and compatibility, because Google Play Services are the real one, not a reimplementation and the sandboxing let you control their permissions. Technically, Google Play Services are run like any other app, in a unprivileged way. GrapheneOS implement a compatibility layer which redirect privileged action required by services in the regular way. It has [some limitations](https://grapheneos.org/usage#sandboxed-google-play-limitations), like Android Auto and Google Pay not working.  
 
 Lets take a look on options when it comes to install an application.
 
@@ -52,15 +53,23 @@ I discover that [F-droid is not recommended](https://www.privacyguides.org/en/an
 - Because F-droid builds tools itself, and because the process automation can be tricky, it leads to [slow and irregular updates](https://privsec.dev/posts/android/f-droid-security-issues/#2-slow-and-irregular-updates).
 - The default f-droid client use a [out of date SDK](https://privsec.dev/posts/android/f-droid-security-issues/#3-low-target-api-level-sdk-for-client--apps).
 
-The packages signing problem can only be solved with reproducible build, but not all developers are using it.  
+The packages signing problem can only be solved with [reproducible build](https://reproducible-builds.org/). The principle is to build the package in each sides, hash the result and compare it. If the result is the same, then you're sure that the developer and the repository packages are safe. 
+
+> Trust does not exclude control
+
+Reproducible builds needs that the developers ensure that the way he codes his application always results in the same output when building. Not all developers are using it, because it's sometime hard to implement. Another problem is that closed source cannont reproducibly built, because the repository side doesn't have access to the source code.  
+[F-droid supports reproducible builds](https://f-droid.org/docs/Reproducible_Builds/).
+
+As a long term solution, I keep an eye on [Accrescent](https://accrescent.app/). Instead of putting your trust only on the repository, it let developers build and sign their own packages and upload it to the repository, then you need to trust only the developer.  
+Accrescent doesn't aim to be a F-droid replacement, only an alternative, but it solves a lot of F-droid problems.  
 
 If you need to install a F-droid package anyway, [Neo store](https://github.com/NeoApplications/Neo-Store/) is a F-Droid client "with modern UI and an arsenal of extra features", which uses latest SDK.  
 
-As a long term solution, keep an eye on [Accrescent](https://accrescent.app/) which try to solve a lot of F-droid problems.  
-
-On GrapheneOS, you would prefer a Google Play app version in front of the F-droid one !
+> On GrapheneOS, you would prefer a Google Play app version in front of the F-droid one !
 
 #### Google Play apps
+
+By default, Google Play Services is not included on GrapheneOS. You can install it from the GrapheneOS Apps repository.  
 
 There is two way to manage Google Play applications.  
 
@@ -69,11 +78,15 @@ Google Play Store provides unattended upgrades, but needs a google account.
 
 Deal with that.
 
+#### Banking apps
+
+Some [banking app could not work](https://grapheneos.org/usage#banking-apps) on GrapheneOS. A [community maintained list](https://privsec.dev/posts/android/banking-applications-compatibility-with-grapheneos/) try to list supported apps, feel free to [submit a new report](https://privsec.dev/posts/android/banking-applications-compatibility-with-grapheneos/#submit-a-new-app-report) to update the list.  
+
+If your banking app worked on CalyxOS, it should work on GrapheneOS too.
+
 ### Hardware support
 
-CalyxOS [supports my hardware](https://calyxos.org/docs/guide/device-support/) until **January 2025**.
-
-GrapheneOS [drops support](https://grapheneos.org/faq#device-lifetime) when Google stops hardware support. The device then get extended support until the next Android version.
+GrapheneOS [drops support](https://grapheneos.org/faq#device-lifetime) when Google stops hardware support. As Google stops updating firmware, it's impossible to get full security update. The device then get extended support until the next Android version, but you now need to update your hardware.  
 The support of the Pixel 4a 5g stops at November 2023.
 
 [Next Android release](https://developer.android.com/about/versions/14/get) planned to support Pixel 4a 5g.
@@ -81,7 +94,8 @@ The preview is available since [February 2023](https://en.wikipedia.org/wiki/And
 
 We can then expect to wait one year before the next stable release which leads to a supposed support date until ~ **August 2024**.
 
-GrapheneOS will force me to renew my hardware at least 6 months earlier.
+CalyxOS [supports my hardware](https://calyxos.org/docs/guide/device-support/) until **January 2025**, but can't ensure that it will be secure to use after the OEM end date.  
+GrapheneOS let me know that I need to renew my hardware as early as possible to keep a secured device.  
 
 ### Applications isolation
 
@@ -103,29 +117,23 @@ You can find a comparison table of the three solutions on [the Insular Faq](http
 
 > But do I even need profile isolation on GrapheneOS ?
 
-On GrapheneOS, you can deny storage and contact permission manually for an app.  
-You can also use [storage scopes](https://grapheneos.org/usage#storage-access).
-
+On GrapheneOS, apps execution is sandboxed. You can also deny storage and contact permission manually for an app.  
+An alternative is to use [storage scopes](https://grapheneos.org/usage#storage-access).
 Storage scope can be enabled for an app, to ensure that it will only access files created by itself.
 
 ### Others features
 
-Backup tool is [SeedVault](https://discuss.grapheneos.org/d/15-how-do-i-backup-my-phone), as in CalyxOS.
-...
-...
-...
-
-
-### OS comparison
-
+Backup tool is [SeedVault](https://discuss.grapheneos.org/d/15-how-do-i-backup-my-phone), as in CalyxOS.  
 
 ### TOTEST
 
 - Auditors
 - Storage scope
 
-### TODO upgrade process
+### TODO
 
-Backup app datas : 
-Flash Stock android first : https://flash.android.com/welcome?continue=%2Fback-to-public
-Flash GrapheneOS then : https://grapheneos.org/install/
+- upgrade process
+  - backup app datas : TOLIST
+  - flash GrapheneOS then : https://grapheneos.org/install/
+
+- credit drav-corp and matchboxbananassynergy from #grapheneos
