@@ -34,10 +34,39 @@ Main reasons to choose GrapheneOS over CalyxOS are:
 - [32 user profiles](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#profiles) instead of just one isolated work profile
 - [Better hardening](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#additional-hardening)
 
-### Applications
+### Sandboxed Google Play ?
 
 On GrapheneOS, applications are run in a [Sandboxed Google Play instead of privileged microG](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/#sandboxed-google-play-vs-privileged-microg).
-It increases security and compatibility, because Google Play Services are the real one, not a reimplementation and the sandboxing let you control their permissions. Technically, Google Play Services are run like any other app, in a unprivileged way. GrapheneOS implement a compatibility layer which redirect privileged action required by services in the regular way. It has [some limitations](https://grapheneos.org/usage#sandboxed-google-play-limitations), like Android Auto and Google Pay not working.  
+
+> But first, what are Google Play Services ?
+
+[Google Play Services](https://developers.google.com/android?hl=en) is a closed-source application which provide a specific layer to provide easy access to Google features. Some examples:
+
+- [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging?hl=en): push notifications
+- [Google play protect](https://developers.google.com/android/play-protect?hl=en): anti malware protection
+- Single sign-on
+- Location
+
+> Wasn't microG a good idea ?
+
+[Microg](https://microg.org/) is an opensource reimplementation of Google Play Services. The aim is to provide an alternative way to run apps. Not all features are reimplemented, it has a [lot of limitations](https://github.com/microg/GmsCore/wiki/Implementation-Status).
+
+> What is the benefit of unprivileged Play Services over microG ?
+
+MicroG runs in a privileged way, so in front of unprivileged Google Play Services, it has less interest.
+Google Play Services is not included on GrapheneOS, but you can install it from the GrapheneOS Apps repository.  
+
+> How to know if I will need it ?
+
+You should ask yourself two questions:  
+Do I need to log in with my google account ?
+Do I use an application which use Google push notification service ?  
+
+You can use [community maintained list](https://plexus.techlore.tech/) to check if an app have a good ungoogled phone support.  
+
+An alternative to Google push notification is [UnifiedPush](https://unifiedpush.org/), but the app needs to explicitly support it.
+
+### Applications repositories
 
 Lets take a look on options when it comes to install an application.
 
@@ -60,16 +89,16 @@ The packages signing problem can only be solved with [reproducible build](https:
 Reproducible builds needs that the developers ensure that the way he codes his application always results in the same output when building. Not all developers are using it, because it's sometime hard to implement. Another problem is that closed source cannont reproducibly built, because the repository side doesn't have access to the source code.  
 [F-droid supports reproducible builds](https://f-droid.org/docs/Reproducible_Builds/).
 
+If you need to install a F-droid package anyway, [Neo store](https://github.com/NeoApplications/Neo-Store/) is a F-Droid client "with modern UI and an arsenal of extra features", which uses latest SDK.  
+
+#### Some Alternatives
+
 As a long term solution, I keep an eye on [Accrescent](https://accrescent.app/). Instead of putting your trust only on the repository, it let developers build and sign their own packages and upload it to the repository, then you need to trust only the developer.  
 Accrescent doesn't aim to be a F-droid replacement, only an alternative, but it solves a lot of F-droid problems.  
 
-If you need to install a F-droid package anyway, [Neo store](https://github.com/NeoApplications/Neo-Store/) is a F-Droid client "with modern UI and an arsenal of extra features", which uses latest SDK.  
-
-> On GrapheneOS, you would prefer a Google Play app version in front of the F-droid one !
+Another alternative is [Obtainium](https://github.com/ImranR98/Obtainium) which allows you to get releases directly from sources, Github Releases for exemple.
 
 #### Google Play apps
-
-By default, Google Play Services is not included on GrapheneOS. You can install it from the GrapheneOS Apps repository.  
 
 There is two way to manage Google Play applications.  
 
@@ -77,6 +106,8 @@ Google Play Store provides unattended upgrades, but needs a google account.
 [Aurora Store](https://gitlab.com/AuroraOSS/AuroraStore) applications needs to be updated manually, but apps can be installed anonymously.  
 
 Deal with that.
+
+> On GrapheneOS, you would prefer a Google Play app version in front of the F-droid one, because build have quality controls !
 
 #### Banking apps
 
@@ -136,4 +167,28 @@ Backup tool is [SeedVault](https://discuss.grapheneos.org/d/15-how-do-i-backup-m
   - backup app datas : TOLIST
   - flash GrapheneOS then : https://grapheneos.org/install/
 
-- credit drav-corp and matchboxbananassynergy from #grapheneos
+### TOBACKUP
+
+- [x] App list
+- [x] Photos : syncthing
+- [x] OSMAnd+ : Paramètres / Import/Export
+- [x] Contact : carddav but export just in case
+- [x] Notes : in a file
+- [x] Catima : export
+- [x] Mes depenses : export
+- [x] Pilote budget : export mail
+- [x] Progress bar
+- [x] easer
+- [/] seedvault backup
+  - [x] main profile
+  - [ ] work profile ?
+- [ ] Whatsapp history export
+- [ ] sms exports
+
+###
+
+That Android journey added a new point of view, with Linux distributions and BSD ones, about software deployment. The concern remains the same, like in day to day life: who do **you** choose to trust ? Who is the safest party, the repository (Google, f-droid) or the developer ? Reproducible build is a way to double check that both are not lying, but is hard to generalize.  
+
+IMO, a downside to the GrapheneOS paradigm is that it doesn't push app developers to stop using google services. However, GrapheneOS is for sure the best solution to maximise compatibility and security.  
+
+Thanks to drav-corp and matchboxbananasynergy from ``irc.libera.chat#grapheneos`` who helped me to write this and understand the specifics of each packaging solution.
