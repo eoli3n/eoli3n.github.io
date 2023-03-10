@@ -1,5 +1,5 @@
 ---
-title: 
+title: From CalyxOS to GrapheneOS
 layout: post
 icon: fa-android
 icon-style: solid
@@ -10,7 +10,7 @@ icon-style: solid
 One year ago, I started to [improve my smartphone software mastery]({{ site.baseurl }}{% link _posts/2021-12-21-degoogling-android.md %}).
 I wanted a well hardware supported OS, with more security features than Android stock, and not any usage limitation, while degoogling the most of my usages. At this time, CalyxOS seemed to me a reasonable solution, easier to use and with less limitations than GrapheneOS.
 
-The only really problematic problem I encoutered with CalyxOS is the OTA upgrades management. When a new OTA upgrade is downloaded, you can't trigger a phone reboot without triggering the upgrade.
+The only problem I encoutered with CalyxOS is the OTA upgrades management. When a new OTA upgrade is downloaded, you can't trigger a phone reboot without triggering the upgrade.
 
 Privacy guide [removed CalyxOS](https://github.com/privacyguides/privacyguides.org/pull/1518), from its [OS recommendation section](https://www.privacyguides.org/en/tools/#operating-systems) and explains it in a [blog post](https://blog.privacyguides.org/2022/04/21/grapheneos-or-calyxos/).
 
@@ -40,7 +40,7 @@ On GrapheneOS, applications are run in a [Sandboxed Google Play instead of privi
 
 > But first, what are Google Play Services ?
 
-[Google Play Services](https://developers.google.com/android?hl=en) is a closed-source application which provide a specific layer to provide easy access to Google features. Some examples:
+[Google Play Services](https://developers.google.com/android?hl=en) is a closed-source application which provide a specific layer to get easy access to Google features. Some examples:
 
 - [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging?hl=en): push notifications
 - [Google play protect](https://developers.google.com/android/play-protect?hl=en): anti malware protection
@@ -54,7 +54,8 @@ On GrapheneOS, applications are run in a [Sandboxed Google Play instead of privi
 > What is the benefit of unprivileged Play Services over microG ?
 
 MicroG runs in a privileged way, so in front of unprivileged Google Play Services, it has less interest.
-Google Play Services is not included on GrapheneOS, but you can install it from the GrapheneOS Apps repository.  
+Google Play Services is not installed by default on GrapheneOS, but you can install it from the GrapheneOS Apps repository.
+You can install it on a specific profile.  
 
 > How to know if I will need it ?
 
@@ -62,7 +63,7 @@ You should ask yourself two questions:
 Do I need to log in with my google account ?
 Do I use an application which use Google push notification service ?  
 
-You can use [community maintained list](https://plexus.techlore.tech/) to check if an app have a good ungoogled phone support.  
+You can use this [community maintained list](https://plexus.techlore.tech/) to check if an app have a good ungoogled phone support.  
 
 An alternative to Google push notification is [UnifiedPush](https://unifiedpush.org/), but the app needs to explicitly support it.
 
@@ -72,7 +73,7 @@ Lets take a look on options when it comes to install an application.
 
 #### GrapheneOS Apps repository
 
-GrapheneOS comes with its [own application repository](https://github.com/GrapheneOS/Apps) which aim to provide only a limited list of high-quality apps. Default apps of the OS are managed this way.
+GrapheneOS comes with its [own application repository](https://github.com/GrapheneOS/Apps) which aim to provide only a limited list of high-quality apps. Google Play Services and default apps of the OS are managed this way.
 
 #### F-droid
 
@@ -95,12 +96,13 @@ If you need to install a F-droid package anyway, [Neo store](https://github.com/
 
 As a long term solution, I keep an eye on [Accrescent](https://accrescent.app/). Instead of putting your trust only on the repository, it let developers build and sign their own packages and upload it to the repository, then you need to trust only the developer.  
 Accrescent doesn't aim to be a F-droid replacement, only an alternative, but it solves a lot of F-droid problems.  
+Be aware that Accrescent is still in [early alpha stage](https://github.com/accrescent/accrescent#accrescent).  
 
 Another alternative is [Obtainium](https://github.com/ImranR98/Obtainium) which allows you to get releases directly from sources, Github Releases for exemple.
 
 #### Google Play apps
 
-There is two way to manage Google Play applications.  
+There are two ways to manage Google Play applications.  
 
 Google Play Store provides unattended upgrades, but needs a google account.
 [Aurora Store](https://gitlab.com/AuroraOSS/AuroraStore) applications needs to be updated manually, but apps can be installed anonymously.  
@@ -117,7 +119,7 @@ If your banking app worked on CalyxOS, it should work on GrapheneOS too.
 
 ### Hardware support
 
-GrapheneOS [drops support](https://grapheneos.org/faq#device-lifetime) when Google stops hardware support. As Google stops updating firmware, it's impossible to get full security update. The device then get extended support until the next Android version, but you now need to update your hardware.  
+GrapheneOS [drops support](https://grapheneos.org/faq#device-lifetime) when Google stops hardware support. As Google stops updating firmware, it's impossible to get full security updates. The device then get extended support until the next Android version, but you now need to update your hardware.  
 The support of the Pixel 4a 5g stops at November 2023.
 
 [Next Android release](https://developer.android.com/about/versions/14/get) planned to support Pixel 4a 5g.
@@ -128,14 +130,13 @@ We can then expect to wait one year before the next stable release which leads t
 CalyxOS [supports my hardware](https://calyxos.org/docs/guide/device-support/) until **January 2025**, but can't ensure that it will be secure to use after the OEM end date.  
 GrapheneOS let me know that I need to renew my hardware as early as possible to keep a secured device.  
 
-### Applications isolation
+### Misc security features
 
-#### Network and censors
+#### Network and censors isolation
 
-There is a [per app firewall](https://grapheneos.org/faq#firewall), when an app use network for the first time, you get asked if you want to deny it.
-Same thing for the sensors.
+There is a [per app firewall](https://grapheneos.org/faq#firewall), when an app use network or censors for the first time, you get asked if you want to deny it. GrapheneOS network security is [based on standard AOSP "INTERNET" permission](https://grapheneos.org/features#network-permission-toggle) where Datura's way is [packet filtering](https://calyxos.org/docs/tech/datura-details/).
 
-#### Storage and contact
+#### Storage and contact isolation
 
 On CalyxOS, I used Shelter to create a work profile. GrapheneOS improved Android User profiles, which is a more secured way to isolate applications. Problem with those is that [User profiles need to be manually switched](https://hub.libranet.de/wiki/and-priv-sec/wiki/user-profiles) where work profile share the same home, you can mix app shortcut from main and work profile on your home screen.
 
@@ -144,17 +145,22 @@ Some alternatives to Shelter are :
 - https://gitlab.com/secure-system/Insular
 - https://island.oasisfeng.com/
 
-You can find a comparison table of the three solutions on [the Insular Faq](https://secure-system.gitlab.io/Insular/faq.html#Insularcompare-with-island-and-shelter). As shelter is the only one which can "Block Contacts Searching", I would stick to it.
+You can find a comparison table of the three solutions on [the Insular Faq](https://secure-system.gitlab.io/Insular/faq.html#Insularcompare-with-island-and-shelter). As shelter is the only one which can "Block Contacts Searching", and provide cross profile file sharing, I would stick to it.
 
 > But do I even need profile isolation on GrapheneOS ?
 
 On GrapheneOS, apps execution is sandboxed. You can also deny storage and contact permission manually for an app.  
 An alternative is to use [storage scopes](https://grapheneos.org/usage#storage-access).
-Storage scope can be enabled for an app, to ensure that it will only access files created by itself.
+Storage scope can be enabled for an app, to ensure that it will only access files created by itself. Contact scope feature is planned.
 
-### Others features
+#### Backup
 
 Backup tool is [SeedVault](https://discuss.grapheneos.org/d/15-how-do-i-backup-my-phone), as in CalyxOS.  
+You should be able to restore CalyxOS backups to GrapheneOS, but as I want to switch my app installation sources (from f-droid to ...), I will not test it.  
+
+#### Webview
+
+!TOCHECK webview security
 
 ### TOTEST
 
@@ -191,4 +197,4 @@ That Android journey added a new point of view, with Linux distributions and BSD
 
 IMO, a downside to the GrapheneOS paradigm is that it doesn't push app developers to stop using google services. However, GrapheneOS is for sure the best solution to maximise compatibility and security.  
 
-Thanks to drav-corp and matchboxbananasynergy from ``irc.libera.chat#grapheneos`` who helped me to write this and understand the specifics of each packaging solution.
+Thanks to drav-corp, opsecs and matchboxbananasynergy from ``irc.libera.chat#grapheneos`` who helped me to write this and understand the specifics of each packaging solution.
