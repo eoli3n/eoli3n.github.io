@@ -132,9 +132,9 @@ GrapheneOS let me know that I need to renew my hardware as early as possible to 
 
 ### Misc security features
 
-#### Network and censors isolation
+#### Network and sensors isolation
 
-There is a [per app firewall](https://grapheneos.org/faq#firewall), when an app use network or censors for the first time, you get asked if you want to deny it. GrapheneOS network security is [based on standard AOSP "INTERNET" permission](https://grapheneos.org/features#network-permission-toggle) where Datura's way is [packet filtering](https://calyxos.org/docs/tech/datura-details/).
+There is a [per app firewall](https://grapheneos.org/faq#firewall), when an app use network or sensors for the first time, you get asked if you want to deny it. GrapheneOS network security is [based on standard AOSP "INTERNET" permission](https://grapheneos.org/features#network-permission-toggle) where Datura's way is [packet filtering](https://calyxos.org/docs/tech/datura-details/).
 
 #### Storage and contact isolation
 
@@ -160,6 +160,9 @@ You should be able to restore CalyxOS backups to GrapheneOS, but as I want to sw
 
 #### Webview
 
+Webview is the component which allows apps to browse internet content, which is useful in many situations, like for authentication.  
+GrapheneOS provides [Vanadium](https://grapheneos.org/usage#web-browsing), a hardened chromium version, used for web browsing and as webview broswer.  
+
 !TOCHECK webview security
 
 ### TOTEST
@@ -172,6 +175,9 @@ You should be able to restore CalyxOS backups to GrapheneOS, but as I want to sw
 - upgrade process
   - backup app datas : TOLIST
   - flash GrapheneOS then : https://grapheneos.org/install/
+- read
+  - https://grapheneos.org/usage
+  - https://grapheneos.org/features
 
 ### TOBACKUP
 
@@ -179,14 +185,14 @@ You should be able to restore CalyxOS backups to GrapheneOS, but as I want to sw
 - [x] Photos : syncthing
 - [x] OSMAnd+ : Paramètres / Import/Export
 - [x] Contact : carddav but export just in case
-- [x] Notes : in a file
+- [ ] Notes : in a file
 - [x] Catima : export
-- [x] Mes depenses : export
+- [ ] Mes depenses : export
 - [x] Pilote budget : export mail
 - [x] Progress bar
 - [x] easer
 - [/] seedvault backup
-  - [x] main profile
+  - [ ] main profile
   - [ ] work profile ?
 - [ ] Whatsapp history export
 - [ ] sms exports
@@ -198,3 +204,5 @@ That Android journey added a new point of view, with Linux distributions and BSD
 IMO, a downside to the GrapheneOS paradigm is that it doesn't push app developers to stop using google services. However, GrapheneOS is for sure the best solution to maximise compatibility and security.  
 
 Thanks to drav-corp, opsecs and matchboxbananasynergy from ``irc.libera.chat#grapheneos`` who helped me to write this and understand the specifics of each packaging solution.
+
+You can get help on the [grapheneOS forum](https://discuss.grapheneos.org/).
