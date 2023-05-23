@@ -149,9 +149,9 @@ I wanted to be able to check ansible syntax before.
   hooks:
     - id: ansible-syntax-check
       name: Ansible syntax check
-      entry: ansible-playbook --syntax-check
-      files: playbook.yml
-      types: [file]
+      entry: "ansible-playbook --syntax-check playbook.yml"
+      pass_filenames: no
+      types_or: [yaml, jinja]
       language: system
 ```
 Create the playbook.
