@@ -70,7 +70,7 @@
         <span class="post-date" style="width: 90px;">Jun 2, 2021</span>
         
         
-        <span class="post-size" style="width: 90px;">4287 words</span>
+        <span class="post-size" style="width: 90px;">4309 words</span>
         <i class="fas fa-hourglass-start"></i>
         <span>11</span>
         <span> mins</span>
@@ -214,9 +214,9 @@ shellcheck...............................................................Passed
   <span class="na">hooks</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">ansible-syntax-check</span>
       <span class="na">name</span><span class="pi">:</span> <span class="s">Ansible syntax check</span>
-      <span class="na">entry</span><span class="pi">:</span> <span class="s">ansible-playbook --syntax-check</span>
-      <span class="na">files</span><span class="pi">:</span> <span class="s">playbook.yml</span>
-      <span class="na">types</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">file</span><span class="pi">]</span>
+      <span class="na">entry</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ansible-playbook</span><span class="nv"> </span><span class="s">--syntax-check</span><span class="nv"> </span><span class="s">playbook.yml"</span>
+      <span class="na">pass_filenames</span><span class="pi">:</span> <span class="s">no</span>
+      <span class="na">types_or</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">yaml</span><span class="pi">,</span> <span class="nv">jinja</span><span class="pi">]</span>
       <span class="na">language</span><span class="pi">:</span> <span class="s">system</span>
 </code></pre></div></div>
 <p>Create the playbook.</p>
