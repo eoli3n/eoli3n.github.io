@@ -45,3 +45,4 @@ order: 5
 32. [marcel, le docker francais](https://github.com/brouberol/marcel)
 33. [The 512KB Club](https://512kb.club/)
 34. [Handy tools for developers](https://it-tools.tech/)
+35. [A hand curated directory of Web Desktops](https://desktops.zip/)
