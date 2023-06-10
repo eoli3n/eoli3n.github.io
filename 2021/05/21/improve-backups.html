@@ -70,7 +70,7 @@
         <span class="post-date" style="width: 90px;">May 21, 2021</span>
         
         
-        <span class="post-size" style="width: 90px;">4596 words</span>
+        <span class="post-size" style="width: 90px;">4764 words</span>
         <i class="fas fa-hourglass-start"></i>
         <span>12</span>
         <span> mins</span>
@@ -94,21 +94,24 @@
     <span class="pi">-</span> <span class="s">root@nas:/data/backups/osz</span>
 
   <span class="na">exclude_caches</span><span class="pi">:</span> <span class="no">true</span>
-  <span class="na">exclude_patterns</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">/dev/*</span>
-    <span class="pi">-</span> <span class="s">/proc/*</span>
-    <span class="pi">-</span> <span class="s">/sys/*</span>
-    <span class="pi">-</span> <span class="s">/tmp/*</span>
-    <span class="pi">-</span> <span class="s">/mnt/*</span>
-    <span class="pi">-</span> <span class="s">/run/*</span>
-    <span class="pi">-</span> <span class="s">/media/*</span>
-    <span class="pi">-</span> <span class="s">/var/cache/*</span>
-    <span class="pi">-</span> <span class="s">/root/.cache/*</span>
-    <span class="pi">-</span> <span class="s">/home/*/.cache/</span>
-    <span class="pi">-</span> <span class="s1">'</span><span class="s">*.iso'</span>
-    <span class="pi">-</span> <span class="s1">'</span><span class="s">*.mkv'</span>
-    <span class="pi">-</span> <span class="s1">'</span><span class="s">*.pyc'</span>
-    <span class="pi">-</span> <span class="s">lost+found</span>
+
+  <span class="c1"># See https://github.com/borgbackup/borg/pull/7635</span>
+  <span class="na">patterns</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">R /</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**/lost+found'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**/*.iso'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**/*.mkv'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**/*.vmdk'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**/*.pyc'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">root/.cache'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">home/*/.cache'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">home/*/.var/app/*/cache'</span> <span class="c1"># flatpak caches</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">home/*/.local/share/Steam'</span> <span class="c1"># steam installed games</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">+</span><span class="nv"> </span><span class="s">etc/**'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">+</span><span class="nv"> </span><span class="s">root/**'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">+</span><span class="nv"> </span><span class="s">home/**'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">!</span><span class="nv"> </span><span class="s">re:^(dev|proc|run|sys|tmp)'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">-</span><span class="nv"> </span><span class="s">**'</span>
 
 <span class="na">storage</span><span class="pi">:</span>
   <span class="na">encryption_passphrase</span><span class="pi">:</span> <span class="s2">"</span><span class="s">***************************"</span>
