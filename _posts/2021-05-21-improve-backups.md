@@ -22,21 +22,24 @@ location:
     - root@nas:/data/backups/osz
 
   exclude_caches: true
-  exclude_patterns:
-    - /dev/*
-    - /proc/*
-    - /sys/*
-    - /tmp/*
-    - /mnt/*
-    - /run/*
-    - /media/*
-    - /var/cache/*
-    - /root/.cache/*
-    - /home/*/.cache/
-    - '*.iso'
-    - '*.mkv'
-    - '*.pyc'
-    - lost+found
+
+  # See https://github.com/borgbackup/borg/pull/7635
+  patterns:
+    - R /
+    - '- **/lost+found'
+    - '- **/*.iso'
+    - '- **/*.mkv'
+    - '- **/*.vmdk'
+    - '- **/*.pyc'
+    - '- root/.cache'
+    - '- home/*/.cache'
+    - '- home/*/.var/app/*/cache' # flatpak caches
+    - '- home/*/.local/share/Steam' # steam installed games
+    - '+ etc/**'
+    - '+ root/**'
+    - '+ home/**'
+    - '! re:^(dev|proc|run|sys|tmp)'
+    - '- **'
 
 storage:
   encryption_passphrase: "***************************"
