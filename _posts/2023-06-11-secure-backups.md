@@ -79,3 +79,12 @@ Removing the retention part will not prevent borgmatic from triggering ``prune``
 
 I created an issue to be able to limit Borgmatic actions explicitly in the configuration file, this is on the road.
 See [issue "unified borgmatic command to trigger actions (prune or not) from what is in the config file"](https://projects.torsion.org/borgmatic-collective/borgmatic/issues/701).
+
+### Cron it !
+
+The last missing part is the crontab to automate ``borgmatic prune`` everyday.
+
+```
+$ crontab -l
+30 5 * * * /bin/borgmatic prune
+```
