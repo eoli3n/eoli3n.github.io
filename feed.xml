@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://eoli3n.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://eoli3n.github.io/" rel="alternate" type="text/html" /><updated>2023-06-11T13:28:41+02:00</updated><id>https://eoli3n.github.io/feed.xml</id><title type="html">eoli3n</title><subtitle>A blog that talks about Linux, BSD, Pizza, DevOps and more.</subtitle><entry><title type="html">Stop battery draining by Syncthing on Android</title><link href="https://eoli3n.github.io/2021/12/29/syncthing-battery-draining.html" rel="alternate" type="text/html" title="Stop battery draining by Syncthing on Android" /><published>2021-12-29T00:00:00+01:00</published><updated>2021-12-29T00:00:00+01:00</updated><id>https://eoli3n.github.io/2021/12/29/syncthing-battery-draining</id><content type="html" xml:base="https://eoli3n.github.io/2021/12/29/syncthing-battery-draining.html">&lt;p&gt;In &lt;a href=&quot;/2021/12/21/degoogling-android.html&quot;&gt;degoogling&lt;/a&gt; post, I explained how I switch to CalyxOS. One great relief is that, as most google services are not running, I should expect a lower battery consumption and so, a longer battery life.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://eoli3n.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://eoli3n.github.io/" rel="alternate" type="text/html" /><updated>2023-06-11T13:56:28+02:00</updated><id>https://eoli3n.github.io/feed.xml</id><title type="html">eoli3n</title><subtitle>A blog that talks about Linux, BSD, Pizza, DevOps and more.</subtitle><entry><title type="html">Secure Backups</title><link href="https://eoli3n.github.io/2023/06/11/secure-backups.html" rel="alternate" type="text/html" title="Secure Backups" /><published>2023-06-11T00:00:00+02:00</published><updated>2023-06-11T00:00:00+02:00</updated><id>https://eoli3n.github.io/2023/06/11/secure-backups</id><content type="html" xml:base="https://eoli3n.github.io/2023/06/11/secure-backups.html">&lt;p&gt;I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in &lt;a href=&quot;/2021/05/21/improve-backups.html&quot;&gt;that pre&lt;br /&gt;
+vious post&lt;/a&gt;, let’s now secure those backup.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-arent-backups-not-secure-&quot;&gt;Why aren’t backups not secure ?&lt;/h3&gt;
+
+&lt;p&gt;The repository is configured to let clients access to the repo in read/write, which is the default mode.&lt;br /&gt;
+Borg provide a &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;span class=&quot;nt&quot;&gt;--append-only&lt;/span&gt;&lt;/code&gt; mode, which let clients only add data. Then if you host is compromised, the hacker can not remove all your backups before crypt-locking your data.&lt;/p&gt;
+
+&lt;h3 id=&quot;configure-the-repository&quot;&gt;Configure the repository&lt;/h3&gt;
+
+&lt;p&gt;To configure your repository in append-only mode, edit the line in &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;authorized_keys&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- command=&quot;borg serve --restrict-to-path /backups/host1&quot;,restrict ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCth9LMtb5y1qQHENUWLEhYF8gi6NnMwM69oj8Q80/HSM3PrNT3Wf81Q6AKw4f2miqfisxS5p7zCvjf7Yle3CQY0E5NlF/ZulP4aRShjH09N3STAWryUy5wlExmcLp+L07Tq9VvqHF0aSObdb7voLnOKemvt/xDXwR0UTl/gCdueKWLDZ+HiZc7cnAKhtI/KlYKy6nIJCDOyHVRbBbEyuTm78JHxueG2BR3KiZO46XQbuVsEFx8v7AxvCUEi/a+2r3WmsYP1ux3rZ4Gs1JeK2YCck31o/dcK9ZToVSrxD6EP/HH3h/ci0sWgt8goROhqaIjCrmLQKjPMUKgSoirQRO9 root@host1
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ command=&quot;borg serve --append-only --restrict-to-path /backups/host1&quot;,restrict ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCth9LMtb5y1qQHENUWLEhYF8gi6NnMwM69oj8Q80/HSM3PrNT3Wf81Q6AKw4f2miqfisxS5p7zCvjf7Yle3CQY0E5NlF/ZulP4aRShjH09N3STAWryUy5wlExmcLp+L07Tq9VvqHF0aSObdb7voLnOKemvt/xDXwR0UTl/gCdueKWLDZ+HiZc7cnAKhtI/KlYKy6nIJCDOyHVRbBbEyuTm78JHxueG2BR3KiZO46XQbuVsEFx8v7AxvCUEi/a+2r3WmsYP1ux3rZ4Gs1JeK2YCck31o/dcK9ZToVSrxD6EP/HH3h/ci0sWgt8goROhqaIjCrmLQKjPMUKgSoirQRO9 root@host1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-clients&quot;&gt;Configure clients&lt;/h3&gt;
+
+&lt;p&gt;There is a problem then. That configuration prevents backup rotation from the client, &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;prune&lt;/code&gt; is not now possible. To workaround this, you can configure borgmatic on the server, with a cron which runs everyday.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic.d/host1-prune.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;source_directories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/backups/host1&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;encryption_passphrase&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;********************************&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;compression&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zstd&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;archive_name_format&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;host1-{now:%Y-%m-%dT%H:%M:%S}'&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# It won't work without that line&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;relocated_repo_access_is_ok&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;retention&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;host1-'&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;keep_daily&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;keep_weekly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;keep_monthly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On the client, edit the &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic.d/config-nas.yaml&lt;/code&gt; file to remove the &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;retention&lt;/code&gt; part.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &amp;lt;&amp;lt;: !include /root/.config/borgmatic/config-main.yaml
+  
+  location:
+    source_directories:
+      - /
+  
+    repositories:
+      - path: ssh://nas/data/zfs/backups/osz
+        label: nas
+  
+  consistency:
+    check_last: 3
+&lt;span class=&quot;gd&quot;&gt;- 
+- retention:
+-   prefix: '{hostname}-'
+-   keep_daily: 7
+-   keep_weekly: 4
+-   keep_monthly: 6
+-   keep_yearly: 1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;a-last-workaround&quot;&gt;A last workaround&lt;/h3&gt;
+
+&lt;p&gt;When running &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic&lt;/code&gt; command without specifying a subcommand, it defaulty runs &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;create&lt;/code&gt;, &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;check&lt;/code&gt; based on &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;consistency&lt;/code&gt; configuration and &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;prune&lt;/code&gt; based on &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;retention&lt;/code&gt; one.&lt;br /&gt;
+Removing the retention part will not prevent borgmatic from triggering &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;prune&lt;/code&gt; subcommand. You need then to run &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic create &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; borgmatic check&lt;/code&gt; explicitly instead of just &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I created an issue to be able to limit Borgmatic actions explicitly in the configuration file, this is on the road.&lt;br /&gt;
+See &lt;a href=&quot;https://projects.torsion.org/borgmatic-collective/borgmatic/issues/701&quot;&gt;issue “unified borgmatic command to trigger actions (prune or not) from what is in the config file”&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that pre vious post, let’s now secure those backup.</summary></entry><entry><title type="html">Stop battery draining by Syncthing on Android</title><link href="https://eoli3n.github.io/2021/12/29/syncthing-battery-draining.html" rel="alternate" type="text/html" title="Stop battery draining by Syncthing on Android" /><published>2021-12-29T00:00:00+01:00</published><updated>2021-12-29T00:00:00+01:00</updated><id>https://eoli3n.github.io/2021/12/29/syncthing-battery-draining</id><content type="html" xml:base="https://eoli3n.github.io/2021/12/29/syncthing-battery-draining.html">&lt;p&gt;In &lt;a href=&quot;/2021/12/21/degoogling-android.html&quot;&gt;degoogling&lt;/a&gt; post, I explained how I switch to CalyxOS. One great relief is that, as most google services are not running, I should expect a lower battery consumption and so, a longer battery life.&lt;br /&gt;
 It was true, until I install Syncthing to sync my data between my devices instead of using centralized Google Drive.The service was draining my whole battery, beeing the only app which eat it.&lt;br /&gt;
 As I rarely use Wifi networks, I need Syncthing to run over mobile data. The problem is that it runs in background, constantly checking for new data.&lt;/p&gt;
 
@@ -1884,225 +1955,4 @@ To be able to use &lt;em&gt;TOTP&lt;/em&gt; and your password store, use &lt;a h
 &lt;em&gt;gopass&lt;/em&gt; should be fully compatible with &lt;em&gt;pass&lt;/em&gt; by default, except for totp generator which differs a bit.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;gopass&lt;/em&gt; has a great plugin to manage passwords from browser: &lt;a href=&quot;https://github.com/gopasspw/gopassbridge&quot;&gt;gopassbridge&lt;/a&gt;.&lt;br /&gt;
-It would be a great firefox lockwise replacement.&lt;/p&gt;</content><author><name></name></author><summary type="html">Password managment is the cornerstone of services security. If you use web, you would create one random password per service, and activate Time-based One-Time Password for all important one, like mail.</summary></entry><entry><title type="html">Improve Backups</title><link href="https://eoli3n.github.io/2021/05/21/improve-backups.html" rel="alternate" type="text/html" title="Improve Backups" /><published>2021-05-21T00:00:00+02:00</published><updated>2021-05-21T00:00:00+02:00</updated><id>https://eoli3n.github.io/2021/05/21/improve-backups</id><content type="html" xml:base="https://eoli3n.github.io/2021/05/21/improve-backups.html">&lt;p&gt;After &lt;a href=&quot;/2020/04/30/backup.html&quot;&gt;my first post&lt;/a&gt; about how to setup BorgBackup and a first install of a home nas, I do have now two borg servers, lets spread our backups !&lt;/p&gt;
-
-&lt;h3 id=&quot;drop-the-shell-backup-script&quot;&gt;Drop the shell backup script&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://torsion.org/borgmatic/&quot;&gt;Borgmatic&lt;/a&gt; is an overlay to BorgBackup which let you configure everything with a yaml file and wrap Borg command to let you interact with your repository easierly.&lt;/p&gt;
-
-&lt;p&gt;Here a &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;/etc/borgmatic/config.yaml&lt;/code&gt; file exemple&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;11/06/23 edit: use &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;patterns&lt;/code&gt; instead of &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;exclude_patterns&lt;/code&gt; to be able to backup directories in a declarative way&lt;/em&gt;&lt;br /&gt;
-See &lt;a href=&quot;https://github.com/borgbackup/borg/pull/7644&quot;&gt;borg patterns help&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;source_directories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root@nas:/data/backups/osz&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;exclude_caches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;patterns&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;R /&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/lost+found'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.iso'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.mkv'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.vmdk'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.pyc'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;root/.cache'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.cache'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.var/app/*/cache'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# flatpak caches&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.local/share/Steam'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# steam installed games&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.local/share/Trash'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;etc/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;root/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;var/log/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;re:^(dev|proc|run|sys|tmp)'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**'&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;encryption_passphrase&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;***************************&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;compression&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zstd&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;archive_name_format&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hostname}-{now:%Y-%m-%dT%H:%M:%S}'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssh_command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssh -i /root/.ssh/backup_rsa&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;relocated_repo_access_is_ok&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;retention&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hostname}-'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_daily&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_weekly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_monthly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_yearly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;consistency&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;check_last&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;On the repository server, you need to add a restricted authorized_key as explained in my previous post.&lt;br /&gt;
-Then you can create the repository and start your first backup.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;borgmatic init &lt;span class=&quot;nt&quot;&gt;--encryption&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;repokey-blake2
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;borgmatic &lt;span class=&quot;nt&quot;&gt;-v2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;As the process is now standard, you can write an ansible task to add an anacron and automate backups more nicely.&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;automate daily backups&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/cron.daily/backup&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0755&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;#!/bin/bash&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;borgmatic -v1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The borgmatic toolbox let you interact with the repository from the client.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;borgmatic info
-root@nas:/data/backups/osz: Displaying summary info &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;archives
-Repository ID: 664b076398e3d4ef96031d33f99ec0df1bb98a8ca39b181052f5dbc6c335f70e
-Location: ssh://root@nas/data/backups/osz
-Encrypted: Yes &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;repokey BLAKE2b&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Cache: /root/.cache/borg/664b076398e3d4ef96031d33f99ec0df1bb98a8ca39b181052f5dbc6c335f70e
-Security &lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;: /root/.config/borg/security/664b076398e3d4ef96031d33f99ec0df1bb98a8ca39b181052f5dbc6c335f70e
-&lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------------&lt;/span&gt;
-                       Original size      Compressed size    Deduplicated size
-All archives:                1.90 TB              1.08 TB            149.50 GB
-                       Unique chunks         Total chunks
-Chunk index:                  961954              8286300
-
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;borgmatic list
-root@nas:/data/backups/osz: Listing archives
-osz-2021-05-14T18:19:19-voidlinux-install Fri, 2021-05-14 18:19:20 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;dd21865bff728fdf4751cdc0e1f714164436eb5863452298b72952093dfbad4c]
-osz-2021-05-15T11:50:05              Sat, 2021-05-15 11:50:06 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;a38b92d57f58c97195e42047611679aa24a065a092da93d6ed9a68d7d94a52ad]
-osz-2021-05-16T12:21:03              Sun, 2021-05-16 12:21:03 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;b2e2f061939bb4818cb7be33e7da2c572ce7b60ebb6f9482ed317e18cf01895f]
-osz-2021-05-17T09:23:14              Mon, 2021-05-17 09:23:15 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;183c1b2f399999012cfa977a3b5f67ca3b8b0299384adfad486e3858a469659e]
-osz-2021-05-18T18:36:34              Tue, 2021-05-18 18:36:35 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;b71d73f6d62a328ff09c5728ddb042b6858148fcfbfe078828178abd34a10795]
-osz-2021-05-19T08:16:24              Wed, 2021-05-19 08:16:24 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;514b13dcdfbca936930adf67066bb7fcb5e668f5301c0d5ec1a98915c9926bb9]
-osz-2021-05-20T09:40:59              Thu, 2021-05-20 09:40:59 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;de40b1ca2cfe99893cb8023b2c496ba56695f3596199a126ac79ccf36ee566d0]
-
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;borgmatic mount &lt;span class=&quot;nt&quot;&gt;--archive&lt;/span&gt; osz-2021-05-19T08:16:24 &lt;span class=&quot;nt&quot;&gt;--mount-point&lt;/span&gt; /mnt
-
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo ls&lt;/span&gt; /mnt
-bin   dev  etc	lib	lib64  mnt  proc  run	sys	tmp  var
-boot  efi  home  lib32	media  opt  root  sbin	sysroot  usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;spread-your-backups&quot;&gt;Spread your Backups&lt;/h3&gt;
-
-&lt;p&gt;I use &lt;a href=&quot;https://syncthing.net/&quot;&gt;Syncthing&lt;/a&gt; to sync my backups over the network between two repository servers.&lt;br /&gt;
-The important line in the client configuration is &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;relocated_repo_access_is_ok: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt; which lets you access your backups from the second server.&lt;br /&gt;
-Syncing a borg repository is not the recommended way to spread your backups, because if a data corruption occurs on one side, it is stupidly replicated.&lt;br /&gt;
-You should prefer to add a second repository in the yaml config, borgmatic will trigger two separated backups.&lt;/p&gt;
-
-&lt;p&gt;I chose to sync with Syncthing because one of my repository is accessible only from a OTP secured vpn. I can’t automate VPN connection on all clients that I backup.&lt;/p&gt;
-
-&lt;p&gt;The replication is done in two ways, from &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;server 1&lt;/code&gt; to &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;server 2&lt;/code&gt; and vice-versa.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;02/01/22 edit&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;As borg &lt;a href=&quot;https://borgbackup.readthedocs.io/en/stable/faq.html#can-i-copy-or-synchronize-my-repo-to-another-location&quot;&gt;documentation says&lt;/a&gt;, borg repositories are not designed to be synced.&lt;br /&gt;
-When I switched to redundant backups, I had to debug my repositories for few hours… So, just ,don’t.&lt;br /&gt;
-Using two backup locations in borgmatic config will took twice the time, but security worth it.&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;na&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root@nas:/data/backups/osz&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root@borgbase:/repo&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;online-backups&quot;&gt;Online Backups&lt;/h3&gt;
-
-&lt;p&gt;If you backup at home and at a different location, that’s pretty solid. I was annoyed by the fact that I backup my personnal data at work as second place, and wanted, for my most important data, to be safe to move in another city, and changing work without to be worried about my backups.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.borgbase.com/&quot;&gt;BorgBase&lt;/a&gt; describes itself as “Simple and Secure Offsite Backups” service.&lt;br /&gt;
-To use it, simply open an account for free, to test. Then you will be able to upgrade your plan to the 100G small plan. That’s enough for me, for my most important data, and only costs 2€/month under 100G, and then 0.01€/Go/month.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/server/borgbase.png&quot; alt=&quot;borgbase&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Repositories support encryption, and the web UI is secured with 2fa TOTP authentication.&lt;br /&gt;
-I upload my backups at 12Mo/s, so I’m fully satisfied with the service.&lt;br /&gt;
-You can enable alerts when repositories didn’t get any backup since some days.&lt;br /&gt;
-Let’s see with time.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;11/06/23 edit&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;per-repository-configurations&quot;&gt;Per repository configurations&lt;/h3&gt;
-
-&lt;p&gt;Borgbase storage is not free, you can then  define a shorter retention time on that repository.&lt;br /&gt;
-To do this, we will use include feature of configuration files, which is documented in &lt;a href=&quot;https://torsion.org/borgmatic/docs/how-to/make-per-application-backups/#multiple-backup-configurations&quot;&gt;Borgmatic multiple backup configurations&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;You need to create a &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;/etc/borgmatic/config-main.yaml&lt;/code&gt; file which will have configurations that apply to both repostiories. Then two &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;/etc/borgmatic.d/config-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;nas,borgbase&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;.yaml&lt;/code&gt; for repository specific configurations, which will include the main configuration file. You need to put the main configuration file outside of &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;/etc/borgmatic.d&lt;/code&gt; or it will be processed as a third configuration file.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic/config-main.yaml&lt;/code&gt; will contains in my case excludes and storage configurations.&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;exclude_caches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;patterns&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;R /&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/lost+found'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.iso'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.mkv'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.vmdk'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**/*.pyc'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;root/.cache'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.cache'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.var/app/*/cache'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# flatpak caches&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.local/share/Steam'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# steam installed games&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/*/.local/share/Trash'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;etc/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;root/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;home/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;var/log/**'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;re:^(dev|proc|run|sys|tmp)'&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;**'&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;encryption_passphrase&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;********************************&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;compression&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zstd&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;archive_name_format&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hostname}-{now:%Y-%m-%dT%H:%M:%S}'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;relocated_repo_access_is_ok&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic.d/config-nas.yaml&lt;/code&gt; and &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic.d/config-nas.yaml&lt;/code&gt; will contain location with source path, the repository url, consistency and retention policies.&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;!include&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/root/.config/borgmatic/config-main.yaml&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;source_directories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssh://borg-base/./repo&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;borgbase&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;retention&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hostname}-'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_daily&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_weekly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;consistency&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;check_last&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;!include&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/root/.config/borgmatic/config-main.yaml&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;source_directories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssh://nas/data/zfs/backups/osz&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nas&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;consistency&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;check_last&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;retention&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hostname}-'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_daily&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_weekly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_monthly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keep_yearly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can now run &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;borgmatic&lt;/code&gt; and it will proceed as configured.&lt;br /&gt;
-Note that &lt;a href=&quot;https://projects.torsion.org/borgmatic-collective/borgmatic/issues/635&quot;&gt;borgmatic now supports labels&lt;/a&gt; for repositories.&lt;/p&gt;</content><author><name></name></author><summary type="html">After my first post about how to setup BorgBackup and a first install of a home nas, I do have now two borg servers, lets spread our backups !</summary></entry></feed>
+It would be a great firefox lockwise replacement.&lt;/p&gt;</content><author><name></name></author><summary type="html">Password managment is the cornerstone of services security. If you use web, you would create one random password per service, and activate Time-based One-Time Password for all important one, like mail.</summary></entry></feed>
