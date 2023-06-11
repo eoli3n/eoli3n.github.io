@@ -17,7 +17,6 @@
   - [x] highlighter theme
 - [ ] cool custom title text font
 - [x] remove grey line at top
-- [ ] migration from fontawesome to pictogrammers : https://pictogrammers.com/docs/guides/iconify/
 
 # Features
 
