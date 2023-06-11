@@ -5,13 +5,12 @@ icon: fa-hdd
 icon-style: solid
 ---
 
-I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in [that pre
-vious post]({{ site.baseurl }}{% link _posts/2021-05-21-improve-backups.md %}), let's now secure those backup.      
+I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in [that previous post]({{ site.baseurl }}{% link _posts/2021-05-21-improve-backups.md %}), let's now secure those backup.      
 
 ### Why aren't backups not secure ?
 
 The repository is configured to let clients access to the repo in read/write, which is the default mode.
-Borg provide a ``--append-only`` mode, which let clients only add data. Then if you host is compromised, the hacker can not remove all your backups before crypt-locking your data.
+Borg provides a ``--append-only`` mode, which let clients only add data. Then if you host is compromised, the hacker can not remove all your backups before crypt-locking your data.
 
 ### Configure the repository
 
