@@ -70,9 +70,9 @@
         <span class="post-date" style="width: 90px;">Jun 11, 2023</span>
         
         
-        <span class="post-size" style="width: 90px;">2771 words</span>
+        <span class="post-size" style="width: 90px;">2876 words</span>
         <i class="fas fa-hourglass-start"></i>
-        <span>7</span>
+        <span>8</span>
         <span> mins</span>
       </time></p>
   </header>
@@ -149,6 +149,14 @@ Removing the retention part will not prevent borgmatic from triggering <code cla
 
 <p>I created an issue to be able to limit Borgmatic actions explicitly in the configuration file, this is on the road.<br />
 See <a href="https://projects.torsion.org/borgmatic-collective/borgmatic/issues/701">issue “unified borgmatic command to trigger actions (prune or not) from what is in the config file”</a>.</p>
+
+<h3 id="cron-it-">Cron it !</h3>
+
+<p>The last missing part is the crontab to automate <code class="language-bash highlighter-rouge">borgmatic prune</code> everyday.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>crontab <span class="nt">-l</span>
+30 5 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /bin/borgmatic prune
+</code></pre></div></div>
 
   </div><a class="u-url" href="/2023/06/11/secure-backups.html" hidden></a>
 </article>
