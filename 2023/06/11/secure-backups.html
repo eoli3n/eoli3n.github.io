@@ -27,8 +27,8 @@
 <meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Secure Backups" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that pre vious post, let’s now secure those backup." />
-<meta property="og:description" content="I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that pre vious post, let’s now secure those backup." />
+<meta name="description" content="I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that previous post, let’s now secure those backup." />
+<meta property="og:description" content="I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that previous post, let’s now secure those backup." />
 <link rel="canonical" href="https://eoli3n.github.io/2023/06/11/secure-backups.html" />
 <meta property="og:url" content="https://eoli3n.github.io/2023/06/11/secure-backups.html" />
 <meta property="og:site_name" content="eoli3n" />
@@ -37,7 +37,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Secure Backups" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-11T00:00:00+02:00","datePublished":"2023-06-11T00:00:00+02:00","description":"I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that pre vious post, let’s now secure those backup.","headline":"Secure Backups","mainEntityOfPage":{"@type":"WebPage","@id":"https://eoli3n.github.io/2023/06/11/secure-backups.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://eoli3n.github.io/avatar.png"}},"url":"https://eoli3n.github.io/2023/06/11/secure-backups.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-11T00:00:00+02:00","datePublished":"2023-06-11T00:00:00+02:00","description":"I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in that previous post, let’s now secure those backup.","headline":"Secure Backups","mainEntityOfPage":{"@type":"WebPage","@id":"https://eoli3n.github.io/2023/06/11/secure-backups.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://eoli3n.github.io/avatar.png"}},"url":"https://eoli3n.github.io/2023/06/11/secure-backups.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -70,7 +70,7 @@
         <span class="post-date" style="width: 90px;">Jun 11, 2023</span>
         
         
-        <span class="post-size" style="width: 90px;">2770 words</span>
+        <span class="post-size" style="width: 90px;">2771 words</span>
         <i class="fas fa-hourglass-start"></i>
         <span>7</span>
         <span> mins</span>
@@ -78,13 +78,12 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in <a href="/2021/05/21/improve-backups.html">that pre<br />
-vious post</a>, let’s now secure those backup.</p>
+    <p>I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in <a href="/2021/05/21/improve-backups.html">that previous post</a>, let’s now secure those backup.</p>
 
 <h3 id="why-arent-backups-not-secure-">Why aren’t backups not secure ?</h3>
 
 <p>The repository is configured to let clients access to the repo in read/write, which is the default mode.<br />
-Borg provide a <code class="language-bash highlighter-rouge"><span class="nt">--append-only</span></code> mode, which let clients only add data. Then if you host is compromised, the hacker can not remove all your backups before crypt-locking your data.</p>
+Borg provides a <code class="language-bash highlighter-rouge"><span class="nt">--append-only</span></code> mode, which let clients only add data. Then if you host is compromised, the hacker can not remove all your backups before crypt-locking your data.</p>
 
 <h3 id="configure-the-repository">Configure the repository</h3>
 
