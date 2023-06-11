@@ -58,7 +58,7 @@ On the client, edit the ``borgmatic.d/config-nas.yaml`` file to remove the ``ret
       - /
   
     repositories:
-      - path: ssh://nas/data/zfs/backups/osz
+      - path: ssh://nas/backups/host1
         label: nas
   
   consistency:

@@ -219,7 +219,7 @@ location:
     - /
 
   repositories:
-    - path: ssh://nas/data/zfs/backups/osz
+    - path: ssh://nas/backups/osz
       label: nas
 
 consistency:
