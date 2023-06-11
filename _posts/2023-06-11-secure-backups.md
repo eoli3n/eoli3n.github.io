@@ -3,6 +3,7 @@ title: Secure Backups
 layout: post
 icon: fa-hdd
 icon-style: solid
+published: false
 ---
 
 I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in [that previous post]({{ site.baseurl }}{% link _posts/2021-05-21-improve-backups.md %}), let's now secure those backup.      
