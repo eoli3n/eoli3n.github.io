@@ -13,6 +13,9 @@ After [my first post]({{ site.baseurl }}{% link _posts/2020-04-30-backup.md %}) 
 
 Here a ``/etc/borgmatic/config.yaml`` file exemple
 
+_11/06/23 edit: use ``patterns`` instead of ``exclude_patterns`` to be able to backup directories in a declarative way_
+See [borg patterns help](https://github.com/borgbackup/borg/pull/7644)
+
 ```yaml
 location:
   source_directories:
@@ -23,7 +26,6 @@ location:
 
   exclude_caches: true
 
-  # See https://github.com/borgbackup/borg/pull/7635
   patterns:
     - R /
     - '- **/lost+found'
@@ -35,9 +37,11 @@ location:
     - '- home/*/.cache'
     - '- home/*/.var/app/*/cache' # flatpak caches
     - '- home/*/.local/share/Steam' # steam installed games
+    - '- home/*/.local/share/Trash'
     - '+ etc/**'
     - '+ root/**'
     - '+ home/**'
+    - '+ var/log/**'
     - '! re:^(dev|proc|run|sys|tmp)'
     - '- **'
 
@@ -145,3 +149,89 @@ Repositories support encryption, and the web UI is secured with 2fa TOTP authent
 I upload my backups at 12Mo/s, so I'm fully satisfied with the service.
 You can enable alerts when repositories didn't get any backup since some days.
 Let's see with time.
+
+_11/06/23 edit_
+
+### Per repository configurations
+
+Borgbase storage is not free, you can then  define a shorter retention time on that repository.
+To do this, we will use include feature of configuration files, which is documented in [Borgmatic multiple backup configurations](https://torsion.org/borgmatic/docs/how-to/make-per-application-backups/#multiple-backup-configurations).
+
+You need to create a ``/etc/borgmatic/config-main.yaml`` file which will have configurations that apply to both repostiories. Then two ``/etc/borgmatic.d/config-{nas,borgbase}.yaml`` for repository specific configurations, which will include the main configuration file. You need to put the main configuration file outside of ``/etc/borgmatic.d`` or it will be processed as a third configuration file.
+
+The ``borgmatic/config-main.yaml`` will contains in my case excludes and storage configurations.
+
+```yaml
+location:
+  exclude_caches: true
+  patterns:
+    - R /
+    - '- **/lost+found'
+    - '- **/*.iso'
+    - '- **/*.mkv'
+    - '- **/*.vmdk'
+    - '- **/*.pyc'
+    - '- root/.cache'
+    - '- home/*/.cache'
+    - '- home/*/.var/app/*/cache' # flatpak caches
+    - '- home/*/.local/share/Steam' # steam installed games
+    - '- home/*/.local/share/Trash'
+    - '+ etc/**'
+    - '+ root/**'
+    - '+ home/**'
+    - '+ var/log/**'
+    - '! re:^(dev|proc|run|sys|tmp)'
+    - '- **'
+
+storage:
+  encryption_passphrase: "********************************"
+  compression: zstd
+  archive_name_format: '{hostname}-{now:%Y-%m-%dT%H:%M:%S}'
+  relocated_repo_access_is_ok: true
+```
+
+``borgmatic.d/config-nas.yaml`` and ``borgmatic.d/config-nas.yaml`` will contain location with source path, the repository url, consistency and retention policies.
+
+```yaml
+<<: !include /root/.config/borgmatic/config-main.yaml
+
+location:
+  source_directories:
+    - /
+
+  repositories:
+    - path: ssh://borg-base/./repo
+      label: borgbase
+
+retention:
+  prefix: '{hostname}-'
+  keep_daily: 7
+  keep_weekly: 4
+
+consistency:
+  check_last: 3
+```
+```yaml
+<<: !include /root/.config/borgmatic/config-main.yaml
+
+location:
+  source_directories:
+    - /
+
+  repositories:
+    - path: ssh://nas/data/zfs/backups/osz
+      label: nas
+
+consistency:
+  check_last: 3
+
+retention:
+  prefix: '{hostname}-'
+  keep_daily: 7
+  keep_weekly: 4
+  keep_monthly: 6
+  keep_yearly: 1
+```
+
+You can now run ``borgmatic`` and it will proceed as configured.
+Note that [borgmatic now supports labels](https://projects.torsion.org/borgmatic-collective/borgmatic/issues/635) for repositories.
