@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://eoli3n.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://eoli3n.github.io/" rel="alternate" type="text/html" /><updated>2023-06-11T14:15:51+02:00</updated><id>https://eoli3n.github.io/feed.xml</id><title type="html">eoli3n</title><subtitle>A blog that talks about Linux, BSD, Pizza, DevOps and more.</subtitle><entry><title type="html">Secure Backups</title><link href="https://eoli3n.github.io/2023/06/11/secure-backups.html" rel="alternate" type="text/html" title="Secure Backups" /><published>2023-06-11T00:00:00+02:00</published><updated>2023-06-11T00:00:00+02:00</updated><id>https://eoli3n.github.io/2023/06/11/secure-backups</id><content type="html" xml:base="https://eoli3n.github.io/2023/06/11/secure-backups.html">&lt;p&gt;I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in &lt;a href=&quot;/2021/05/21/improve-backups.html&quot;&gt;that previous post&lt;/a&gt;, let’s now secure those backup.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://eoli3n.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://eoli3n.github.io/" rel="alternate" type="text/html" /><updated>2023-06-11T14:22:53+02:00</updated><id>https://eoli3n.github.io/feed.xml</id><title type="html">eoli3n</title><subtitle>A blog that talks about Linux, BSD, Pizza, DevOps and more.</subtitle><entry><title type="html">Secure Backups</title><link href="https://eoli3n.github.io/2023/06/11/secure-backups.html" rel="alternate" type="text/html" title="Secure Backups" /><published>2023-06-11T00:00:00+02:00</published><updated>2023-06-11T00:00:00+02:00</updated><id>https://eoli3n.github.io/2023/06/11/secure-backups</id><content type="html" xml:base="https://eoli3n.github.io/2023/06/11/secure-backups.html">&lt;p&gt;I continue the post serie about Borg and Borgmatic, I demonstrated how to spread backups with borgmatic in &lt;a href=&quot;/2021/05/21/improve-backups.html&quot;&gt;that previous post&lt;/a&gt;, let’s now secure those backup.&lt;/p&gt;
 
 &lt;h3 id=&quot;why-arent-backups-not-secure-&quot;&gt;Why aren’t backups not secure ?&lt;/h3&gt;
 
@@ -48,7 +48,7 @@ Borg provides a &lt;code class=&quot;language-bash highlighter-rouge&quot;&gt;&l
       - /
   
     repositories:
-      - path: ssh://nas/data/zfs/backups/osz
+      - path: ssh://nas/backups/host1
         label: nas
   
   consistency:
