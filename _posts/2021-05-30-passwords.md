@@ -179,3 +179,7 @@ On my desktop hosts, I now need to find an alternative to *rofi-pass* for [Wofi]
 
 *gopass* has a great plugin to manage passwords from browser: [gopassbridge](https://github.com/gopasspw/gopassbridge).
 It would be a great firefox lockwise replacement.
+
+_20/06/23 edit_
+
+[This](https://github.com/eoli3n/dotfiles/blob/5187359320e5870dbfac50bcf1d9b678ecd605e9/roles/sway/templates/config.j2#L34-L35) is the way to get *wofi-pass* working, with autocopy and totp mode.
