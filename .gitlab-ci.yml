@@ -4,11 +4,17 @@ workflow:
   rules:
     - if: $CI_COMMIT_BRANCH
 
+cache:
+  paths:
+    - vendor/
+
+before_script:
+  - gem install bundler
+  - bundle install --path vendor
+
 pages:
   stage: deploy
   script:
-    - gem install bundler
-    - bundle install
     - bundle exec jekyll build -d public
   artifacts:
     paths:
@@ -16,3 +22,13 @@ pages:
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
   environment: production
+
+test:
+  stage: test
+  script:
+    - bundle exec jekyll build -d test
+  artifacts:
+    paths:
+      - test
+  rules:
+    - if: $CI_COMMIT_BRANCH != "main"

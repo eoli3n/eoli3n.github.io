@@ -67,7 +67,8 @@ exclude:
   - vendor
   - INSTALL.md
   - TODO.md
-  - README.md
+  - README-gitlab.md
+  - README-github.md
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

@@ -8,3 +8,10 @@ https://docs.gitlab.com/ee/user/project/pages/
 $ git remote set-url --add --push origin git@gitlab.com:eoli3n/eoli3n.gitlab.io.git
 ```
 - create gitlab-ci.yml
+- git push
+
+
+# TODO
+- [ ] don't push gh-pages on gitlab : edit the pre-push script
+- [ ] cache vendors
+- [ ] add test build
