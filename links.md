@@ -17,8 +17,8 @@ order: 5
 6. [Cloud Native Interactive Landscape](https://landscape.cncf.io/)
 7. [FDN Invidious](https://invidious.fdn.fr/) is a lighter youtube wrapper
 8. [A mother fucking website](https://motherfuckingwebsite.com/)
-8.2. [Better mother fucking website](http://bettermotherfuckingwebsite.com/)
-8.3. [Perfect mother fucking website](https://perfectmotherfuckingwebsite.com/)
+8.1. [Better mother fucking website](http://bettermotherfuckingwebsite.com/)
+8.2. [Perfect mother fucking website](https://perfectmotherfuckingwebsite.com/)
 9. [The best mother fucking website](http://thebestmotherfuckingwebsite.com/)
 10. [Why you should migrate everything from linux to bsd](https://www.unixsheikh.com/articles/why-you-should-migrate-everything-from-linux-to-bsd.html)
 11. [The Art of Code](https://www.youtube.com/watch?v=gdSlcxxYAA8)
@@ -46,3 +46,4 @@ order: 5
 33. [The 512KB Club](https://512kb.club/)
 34. [Handy tools for developers](https://it-tools.tech/)
 35. [A hand curated directory of Web Desktops](https://desktops.zip/)
+36. [Github Drama](https://github.com/github-drama/github-drama)
