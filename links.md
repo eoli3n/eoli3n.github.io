@@ -47,3 +47,4 @@ order: 5
 34. [Handy tools for developers](https://it-tools.tech/)
 35. [A hand curated directory of Web Desktops](https://desktops.zip/)
 36. [Github Drama](https://github.com/github-drama/github-drama)
+37. [Zalgo text generator](https://www.zalgo.org/)
