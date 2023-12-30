@@ -48,3 +48,4 @@ order: 5
 35. [A hand curated directory of Web Desktops](https://desktops.zip/)
 36. [Github Drama](https://github.com/github-drama/github-drama)
 37. [Zalgo text generator](https://www.zalgo.org/)
+38. [Gentoo goes binary](https://www.gentoo.org/news/2023/12/29/Gentoo-binary.html)
