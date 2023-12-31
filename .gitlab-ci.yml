@@ -9,14 +9,13 @@ cache:
     - vendor/
 
 before_script:
-  #- gem install bundler -v 2.4.22
   - gem install bundler
   - bundle install --path vendor
 
 pages:
   stage: deploy
   script:
-    - bundle exec jekyll build -d public
+    - RUBYOPT="-r./file-exists" bundle exec jekyll build -d public
   artifacts:
     paths:
       - public
@@ -27,7 +26,7 @@ pages:
 test:
   stage: test
   script:
-    - bundle exec jekyll build -d test
+    - RUBYOPT="-r./file-exists" bundle exec jekyll build -d test
   artifacts:
     paths:
       - test
