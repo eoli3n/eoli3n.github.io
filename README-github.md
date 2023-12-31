@@ -51,7 +51,9 @@ then
     bundle install
 
     # Build our Jekyll site
-    bundle exec jekyll build
+    #bundle exec jekyll build
+    # see https://github.com/ggreer/jekyll-gallery-generator/issues/47#issuecomment-1872988970
+    RUBYOPT="-r./file-exists" bundle exec jekyll build
 
     # Move the generated site in our temp folder
     rsync -avp --delete _site/ ${temp_folder}
