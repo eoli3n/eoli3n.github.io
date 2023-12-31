@@ -280,7 +280,7 @@ DEPENDENCIES
   jekyll-gallery-generator
   jekyll-seo-tag
   minima (~> 2.5)
-  webrick (~> 1.8)
+  webrick (~> 1.7)
 
 BUNDLED WITH
    2.3.23
